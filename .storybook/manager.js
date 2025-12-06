@@ -1,7 +1,5 @@
 
-// @ts-ignore
 import { addons } from '@storybook/manager-api';
-// @ts-ignore
 import { create } from '@storybook/theming';
 
 addons.setConfig({
