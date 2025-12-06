@@ -1,73 +1,49 @@
-# React + TypeScript + Vite
+# 🎨 Design System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una librería de componentes UI moderna, escalable y accesible, construida con las mejores prácticas de desarrollo frontend.
 
-Currently, two official plugins are available:
+🚀 **[Ver Documentación (Storybook)](https://IniguezMarc.github.io/design-system/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🛠 Tecnologías
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Este proyecto está construido sobre un stack moderno para garantizar rendimiento y tipado estático:
 
-## Expanding the ESLint configuration
+* **Core:** React 18 + TypeScript
+* **Estilos:** Tailwind CSS v3 (Arquitectura Utility-first)
+* **Desarrollo & Documentación:** Storybook + Vite
+* **Metodología:** Atomic Design (Atoms, Molecules, Organisms)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧩 Componentes Destacados
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+La librería incluye una colección creciente de elementos UI:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+* **Atoms:** Buttons (con variantes), Inputs, Typography.
+* **Molecules:** Project Cards, Form Groups.
+* **Organisms:** Grids responsivas, Layouts de sección.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📦 Instalación y Uso Local
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Si quieres clonar y ejecutar este proyecto en tu máquina:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone [https://github.com/IniguezMarc/design-system.git](https://github.com/IniguezMarc/design-system.git)
+    cd design-system
+    ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2.  **Instalar dependencias:**
+    ```bash
+    npm install
+    ```
+
+3.  **Iniciar Storybook:**
+    ```bash
+    npm run storybook
+    ```
+    Visita `http://localhost:6006` para ver la librería.
+
+---
+
+Hecho por **Marc Iñiguez**.
