@@ -1,17 +1,26 @@
-import type { StorybookConfig } from '@storybook/react-vite';
+import type { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
-  "stories": [
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
-  ],
-  "addons": [
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  addons: [
+    "@storybook/addon-onboarding",
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
     "@chromatic-com/storybook",
-    "@storybook/addon-vitest",
-    "@storybook/addon-a11y",
-    "@storybook/addon-docs",
-    "@storybook/addon-onboarding"
+    "@storybook/addon-interactions",
   ],
-  "framework": "@storybook/react-vite"
+  framework: {
+    name: "@storybook/react-vite",
+    options: {},
+  },
+
+  // 👇 AQUÍ ESTÁ LA SOLUCIÓN MÁGICA
+  // Inyectamos el HTML de la cabecera directamente desde la configuración
+  managerHead: (head) => `
+    ${head}
+    <title>Marc's Design System</title>
+    <link rel="icon" type="image/png" href="/design-system/favicon.png" />
+  `,
 };
+
 export default config;
