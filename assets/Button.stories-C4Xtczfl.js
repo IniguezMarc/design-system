@@ -1,4 +1,4 @@
-import{B as d}from"./Button-DO0ZwsRR.js";import"./jsx-runtime-BjG_zV1W.js";import"./index-Ch-GWmDW.js";const B={title:"Atoms/Button",component:d,tags:["autodocs"],argTypes:{variant:{control:{type:"select"}},size:{control:{type:"radio"}}}},r={args:{label:"Button Primary",variant:"primary",size:"medium"}},a={args:{label:"Button Secondary",variant:"secondary"}},e={args:{label:"Click Me!",size:"large"}};var o,s,t;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`{
+import{B as d}from"./Button-DS-WHC1N.js";import"./jsx-runtime-BjG_zV1W.js";import"./index-Ch-GWmDW.js";const B={title:"Atoms/Button",component:d,tags:["autodocs"],argTypes:{variant:{control:{type:"select"}},size:{control:{type:"radio"}}}},r={args:{label:"Button Primary",variant:"primary",size:"medium"}},a={args:{label:"Button Secondary",variant:"secondary"}},e={args:{label:"Click Me!",size:"large"}};var o,s,t;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`{
   args: {
     label: 'Button Primary',
     variant: 'primary',
