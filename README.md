@@ -1,49 +1,51 @@
 # 🎨 Design System
 
-Una librería de componentes UI moderna, escalable y accesible, construida con las mejores prácticas de desarrollo frontend.
+# 🎨 Design System
 
-🚀 **[Ver Documentación (Storybook)](https://IniguezMarc.github.io/design-system/)**
+A modern, scalable, and accessible UI component library built with the latest frontend best practices.
+
+🚀 **[View Documentation (Storybook)](https://IniguezMarc.github.io/design-system/)**
 
 ---
 
-## 🛠 Tecnologías
+## 🛠 Tech Stack
 
-Este proyecto está construido sobre un stack moderno para garantizar rendimiento y tipado estático:
+This project is built on a modern stack to ensure performance and type safety:
 
 * **Core:** React 18 + TypeScript
-* **Estilos:** Tailwind CSS v3 (Arquitectura Utility-first)
-* **Desarrollo & Documentación:** Storybook + Vite
-* **Metodología:** Atomic Design (Atoms, Molecules, Organisms)
+* **Styling:** Tailwind CSS v3 (Utility-first architecture)
+* **Development & Docs:** Storybook + Vite
+* **Methodology:** Atomic Design (Atoms, Molecules, Organisms)
 
-## 🧩 Componentes Destacados
+## 🧩 Featured Components
 
-La librería incluye una colección creciente de elementos UI:
+The library includes a growing collection of UI elements:
 
-* **Atoms:** Buttons (con variantes), Inputs, Typography.
+* **Atoms:** Buttons (with variants), Inputs, Typography.
 * **Molecules:** Project Cards, Form Groups.
-* **Organisms:** Grids responsivas, Layouts de sección.
+* **Organisms:** Responsive Grids, Section Layouts.
 
-## 📦 Instalación y Uso Local
+## 📦 Local Installation
 
-Si quieres clonar y ejecutar este proyecto en tu máquina:
+To clone and run this project on your local machine:
 
-1.  **Clonar el repositorio:**
+1.  **Clone the repository:**
     ```bash
     git clone [https://github.com/IniguezMarc/design-system.git](https://github.com/IniguezMarc/design-system.git)
     cd design-system
     ```
 
-2.  **Instalar dependencias:**
+2.  **Install dependencies:**
     ```bash
     npm install
     ```
 
-3.  **Iniciar Storybook:**
+3.  **Start Storybook:**
     ```bash
     npm run storybook
     ```
-    Visita `http://localhost:6006` para ver la librería.
+    Visit `http://localhost:6006` to view the library.
 
 ---
 
-Hecho por **Marc Iñiguez**.
+Created by **Marc Iñiguez**.
