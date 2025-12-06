@@ -1,29 +1,29 @@
 # 🎨 Design System
 
-# 🎨 Design System
-
-A modern, scalable, and accessible UI component library built with the latest frontend best practices.
+A modern, scalable, and accessible UI component library built to streamline frontend development.
 
 🚀 **[View Documentation (Storybook)](https://IniguezMarc.github.io/design-system/)**
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Tech Stack & Tools
 
-This project is built on a modern stack to ensure performance and type safety:
+This project leverages a modern ecosystem to ensure performance, type safety, and developer experience:
 
-* **Core:** React 18 + TypeScript
-* **Styling:** Tailwind CSS v3 (Utility-first architecture)
-* **Development & Docs:** Storybook + Vite
-* **Methodology:** Atomic Design (Atoms, Molecules, Organisms)
+* **⚛️ React 18:** Library for building the component-based UI architecture.
+* **📘 TypeScript:** Provides static typing to catch errors early and improve code maintainability.
+* **⚡ Vite:** Next-generation frontend tooling for ultra-fast development and optimized builds.
+* **💨 Tailwind CSS (v3):** A utility-first CSS framework for rapid, responsive, and consistent styling without leaving the HTML.
+* **📕 Storybook:** An isolated environment to build, test, and document UI components independently from the main app.
+* **🚀 GitHub Pages:** Automated hosting for the static documentation via CI/CD pipelines.
 
-## 🧩 Featured Components
+## 🏗 Architecture: Atomic Design
 
-The library includes a growing collection of UI elements:
+The library is organized following the **Atomic Design** methodology to ensure modularity:
 
-* **Atoms:** Buttons (with variants), Inputs, Typography.
-* **Molecules:** Project Cards, Form Groups.
-* **Organisms:** Responsive Grids, Section Layouts.
+* **Atoms:** Basic building blocks (Buttons, Inputs, Typography).
+* **Molecules:** Groups of atoms functioning together (Project Cards, Form Groups).
+* **Organisms:** Complex UI sections (Responsive Grids, Navbars).
 
 ## 📦 Local Installation
 
