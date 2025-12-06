@@ -15,7 +15,5 @@ addons.setConfig({
         brandImage: logo,
         colorPrimary: '#3b82f6',
         colorSecondary: '#3b82f6',
-        appBg: '#0f172a',
-        appContentBg: '#1e293b',
     }),
 });
