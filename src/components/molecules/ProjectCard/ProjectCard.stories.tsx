@@ -5,6 +5,15 @@ const meta: Meta<typeof ProjectCard> = {
     title: 'Molecules/ProjectCard',
     component: ProjectCard,
     tags: ['autodocs'],
+    // 👇 AQUÍ ESTÁ LA MAGIA: Un decorador para simular un contenedor
+    decorators: [
+        (Story) => (
+            <div className="max-w-md mx-auto py-10">
+                {/* max-w-md limita el ancho, mx-auto lo centra */}
+                <Story />
+            </div>
+        ),
+    ],
 };
 
 export default meta;
