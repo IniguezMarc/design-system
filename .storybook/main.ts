@@ -16,7 +16,7 @@ const config: StorybookConfig = {
   managerHead: (head) => `
     ${head}
     <title>Marc's Design System</title>
-    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="icon" type="image/png" href="/design-system/favicon.png" />
   `,
 };
 
