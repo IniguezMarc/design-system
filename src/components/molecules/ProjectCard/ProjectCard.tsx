@@ -1,14 +1,15 @@
 import React from 'react';
 import { Button } from '../../atoms/Button/Button';
+import { Badge } from '../../atoms/Badge/Badge';
 
 interface ProjectCardProps {
     title: string;
     description: string;
     image: string;
     tags?: string[];
-    /** 👇 ESTO ES LO QUE TE FALTA EN TU ARCHIVO ACTUAL */
     orientation?: 'vertical' | 'horizontal';
     onViewProject?: () => void;
+    actionLabel?: string;
 }
 
 export const ProjectCard = ({
@@ -17,6 +18,7 @@ export const ProjectCard = ({
     image,
     tags = [],
     orientation = 'vertical', // Valor por defecto
+    actionLabel = "Ver Proyecto", // Valor por defecto
     onViewProject
 }: ProjectCardProps) => {
 
@@ -52,15 +54,18 @@ export const ProjectCard = ({
 
                     <div className="flex flex-wrap gap-2 mb-6">
                         {tags.map((tag) => (
-                            <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full border border-gray-200">
-                                {tag}
-                            </span>
+                            <Badge
+                                key={tag}
+                                label={tag}
+                                variant="secondary"
+                            />
                         ))}
                     </div>
                 </div>
 
                 <div className="flex justify-start mt-auto">
-                    <Button label="Ver Caso de Estudio" onClick={onViewProject} size="medium" />
+                    {/* Usamos el label dinámico */}
+                    <Button label={actionLabel} onClick={onViewProject} size="medium" />
                 </div>
             </div>
         </div>

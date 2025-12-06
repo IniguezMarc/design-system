@@ -1,15 +1,12 @@
 import React from 'react';
 
-// Definimos qué propiedades puede recibir nuestro botón
 interface ButtonProps {
-    /** Texto del botón */
     label: string;
-    /** Color de fondo */
-    variant?: 'primary' | 'secondary' | 'danger';
-    /** Tamaño del botón */
+    // 1. AÑADIMOS 'outline' AQUÍ 👇
+    variant?: 'primary' | 'secondary' | 'danger' | 'outline';
     size?: 'small' | 'medium' | 'large';
-    /** Función al hacer click */
     onClick?: () => void;
+    className?: string;
 }
 
 export const Button = ({
@@ -17,29 +14,37 @@ export const Button = ({
     variant = 'primary',
     size = 'medium',
     onClick,
+    className = '',
 }: ButtonProps) => {
 
-    // Clases base (siempre las tiene)
-    const baseStyles = "font-bold rounded cursor-pointer transition-colors duration-200 border-none";
+    // Clases base (he añadido border-2 para que el outline se vea bien si se usa)
+    const baseStyles = "inline-flex justify-center items-center font-bold rounded-lg cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
-    // Clases según la variante (color)
     const variantStyles = {
-        primary: "bg-blue-600 text-white hover:bg-blue-700",
-        secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
-        danger: "bg-red-500 text-white hover:bg-red-600",
+        // Primary: Azul sólido
+        primary: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 border-2 border-transparent",
+
+        // Secondary: Gris suave
+        secondary: "bg-gray-100 text-gray-800 hover:bg-gray-200 focus:ring-gray-500 border-2 border-transparent",
+
+        // Danger: Rojo
+        danger: "bg-red-500 text-white hover:bg-red-600 focus:ring-red-500 border-2 border-transparent",
+
+        // 2. AÑADIMOS EL ESTILO VISUAL PARA 'outline' 👇
+        // Fondo transparente, borde azul y texto azul
+        outline: "bg-transparent text-blue-600 border-2 border-blue-600 hover:bg-blue-50 focus:ring-blue-500",
     };
 
-    // Clases según el tamaño
     const sizeStyles = {
-        small: "px-2 py-1 text-sm",
-        medium: "px-4 py-2 text-base",
-        large: "px-6 py-3 text-lg",
+        small: "px-3 py-1.5 text-sm",
+        medium: "px-5 py-2.5 text-base", // Un pelín más grandes para ser modernos
+        large: "px-8 py-3.5 text-lg",
     };
 
     return (
         <button
             type="button"
-            className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]}`}
+            className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
             onClick={onClick}
         >
             {label}

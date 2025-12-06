@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { PortfolioGrid } from './PortfolioGrid';
+import { ContentGrid } from './ContentGrid'; // Importamos el nuevo nombre
 
-const meta: Meta<typeof PortfolioGrid> = {
-    title: 'Organisms/PortfolioGrid',
-    component: PortfolioGrid,
+const meta: Meta<typeof ContentGrid> = {
+    title: 'Organisms/ContentGrid',
+    component: ContentGrid,
     tags: ['autodocs'],
     parameters: {
         layout: 'fullscreen',
@@ -13,7 +13,7 @@ const meta: Meta<typeof PortfolioGrid> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const projectsMock = [
+const itemsMock = [
     {
         id: '1',
         title: 'E-commerce Dashboard',
@@ -41,7 +41,7 @@ const projectsMock = [
 export const GridView: Story = {
     args: {
         title: 'Proyectos Destacados',
-        projects: projectsMock,
+        items: itemsMock,
         layout: 'grid', // Ahora TypeScript ya reconocerá esta propiedad ✅
     },
 };
