@@ -1,23 +1,27 @@
 import React from 'react';
 import { ProjectCard } from '../../molecules/ProjectCard/ProjectCard';
 
-// Hacemos la interfaz más genérica
 export interface GridItem {
     id: string;
     title: string;
     description: string;
     image: string;
     tags: string[];
+    url: string;
+}
+
+export interface ContentGridSlots {
+    container?: string;
+    title?: string;
 }
 
 interface ContentGridProps {
     title?: string;
-    /** Elementos a mostrar (antes projects) */
     items: GridItem[];
     layout?: 'grid' | 'list';
-    /** Texto del botón de cada tarjeta */
     itemButtonLabel?: string;
     onItemClick?: (id: string) => void;
+    customStyles?: ContentGridSlots;
 }
 
 export const ContentGrid = ({
@@ -25,7 +29,8 @@ export const ContentGrid = ({
     items,
     layout = 'grid',
     itemButtonLabel = "Ver Detalles",
-    onItemClick
+    onItemClick,
+    customStyles = {}
 }: ContentGridProps) => {
 
     const gridClasses = layout === 'grid'
@@ -33,11 +38,21 @@ export const ContentGrid = ({
         : 'flex flex-col gap-12 max-w-4xl mx-auto';
 
     return (
-        <section className="py-16 px-4 bg-gray-50">
+        <section className={`
+      py-16 px-4 transition-colors duration-300
+      bg-gray-50 dark:bg-gray-900
+      ${customStyles.container || ''}
+    `}>
             <div className="max-w-7xl mx-auto">
                 {title && (
-                    <div className="mb-12 text-center">
-                        <h2 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">{title}</h2>
+                    <div className="mb-12 text-start">
+                        <h2 className={`
+              text-4xl font-extrabold mb-4 tracking-tight transition-colors
+              text-gray-900 dark:text-white
+              ${customStyles.title || ''}
+            `}>
+                            {title}
+                        </h2>
                         <div className="h-1.5 w-24 bg-blue-600 mx-auto rounded-full"></div>
                     </div>
                 )}
@@ -50,6 +65,7 @@ export const ContentGrid = ({
                             description={item.description}
                             image={item.image}
                             tags={item.tags}
+                            projectUrl={item.url}
                             orientation={layout === 'list' ? 'horizontal' : 'vertical'}
                             actionLabel={itemButtonLabel}
                             onViewProject={() => onItemClick?.(item.id)}

@@ -8,6 +8,11 @@ const meta: Meta<typeof Navbar> = {
     parameters: {
         layout: 'fullscreen',
     },
+    argTypes: {
+        customStyles: { control: 'object', table: { category: 'Styles' } },
+        // Ocultamos controles técnicos
+        actions: { control: 'object' }, // Forzamos que sea objeto simple
+    },
     // Decorador para simular una página larga y probar el scroll
     decorators: [
         (Story) => (
@@ -31,13 +36,18 @@ const meta: Meta<typeof Navbar> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const PortfolioNav: Story = {
+export const Default: Story = {
     args: {
-        logoText: 'Marc.Dev', // Tu marca personal
+        logo: 'Marc.Design',
+        isLogoImage: false,
         links: [
             { label: 'Inicio', href: '#home', active: true },
             { label: 'Sobre mí', href: '#about' }, // Aquí irá tu avatar y perfil técnico
             { label: 'Proyectos', href: '#projects' }, // Aquí irá el Grid
         ],
+        actions: [
+            { label: 'Contacto', variant: 'primary', onClick: () => { } },
+        ],
+        customStyles: { container: '', logo: '', link: '', mobileMenu: '' }
     },
 };

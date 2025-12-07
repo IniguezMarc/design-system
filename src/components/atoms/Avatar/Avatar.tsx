@@ -1,25 +1,55 @@
 import React from 'react';
 
+export interface AvatarSlots {
+    container?: string;
+    image?: string;
+}
+
 interface AvatarProps {
     src: string;
     alt?: string;
     size?: 'sm' | 'md' | 'lg' | 'xl';
+    // 👇 ESTO ES LO QUE TE FALTA EN TU ARCHIVO:
+    imageFit?: 'cover' | 'contain';
+    customStyles?: AvatarSlots;
+    className?: string;
 }
 
-export const Avatar = ({ src, alt = "Avatar", size = 'md' }: AvatarProps) => {
+export const Avatar = ({
+    src,
+    alt = "Avatar",
+    size = 'md',
+    // 👇 Y ESTO:
+    imageFit = 'cover',
+    customStyles = {},
+    className = ''
+}: AvatarProps) => {
+
     const sizeClasses = {
-        sm: "w-8 h-8",
-        md: "w-12 h-12",
-        lg: "w-24 h-24",
-        xl: "w-32 h-32",
+        sm: "h-8 w-8",
+        md: "h-12 w-12",
+        lg: "h-16 w-16",
+        xl: "h-32 w-32",
     };
 
+    // Convertimos la prop en clase de Tailwind
+    const fitClass = imageFit === 'contain' ? 'object-contain' : 'object-cover';
+
     return (
-        <div className={`relative inline-block rounded-full overflow-hidden border-2 border-white shadow-sm ${sizeClasses[size]}`}>
+        <div className={`
+      ds-avatar relative rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex-shrink-0
+      ${sizeClasses[size]}
+      ${customStyles.container || ''}
+      ${className}
+    `}>
             <img
                 src={src}
                 alt={alt}
-                className="w-full h-full object-cover"
+                className={`
+          w-full h-full 
+          ${fitClass} /* 👈 Aplicamos la clase aquí */
+          ${customStyles.image || ''}
+        `}
             />
         </div>
     );

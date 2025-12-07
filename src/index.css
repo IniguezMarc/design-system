@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        /* Por defecto blanco, en oscuro gris muy oscuro (casi negro) */
+        @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-white transition-colors duration-300;
+    }
+}

@@ -15,5 +15,6 @@ addons.setConfig({
         brandImage: logo,
         colorPrimary: '#3b82f6',
         colorSecondary: '#3b82f6',
+        enableShortcuts: false,
     }),
 });

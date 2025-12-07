@@ -6,33 +6,27 @@ const meta: Meta<typeof Hero> = {
     component: Hero,
     tags: ['autodocs'],
     parameters: { layout: 'fullscreen' },
+    argTypes: {
+        customStyles: { control: 'object', table: { category: 'Styles' } },
+        actions: { control: 'object' },
+    }
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// CASO 1: Un solo botón (Call to Action claro)
-export const SingleAction: Story = {
-    args: {
-        greeting: 'Freelance Developer',
-        title: 'Impulsa tu negocio online',
-        subtitle: 'Creo webs que convierten visitas en clientes.',
-        actions: [
-            { label: 'Solicitar Presupuesto', onClick: () => { }, variant: 'primary' }
-        ]
-    },
-};
-
-// CASO 2: Dos botones (El clásico)
-export const DualAction: Story = {
+export const Default: Story = {
     args: {
         greeting: 'Marc.Dev',
         title: 'Arquitectura Frontend',
-        subtitle: 'Especialista en React y Sistemas de Diseño.',
-        imageUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80',
-        actions: [
-            { label: 'Ver Proyectos', onClick: () => { }, variant: 'primary' },
-            { label: 'Descargar CV', onClick: () => { }, variant: 'secondary' }
-        ]
+        subtitle: 'Creo soluciones digitales sólidas.',
+        actions: [{ label: 'Ver más', onClick: () => { }, variant: 'primary' }],
+        customStyles: {
+            container: '',
+            content: '',
+            title: '',
+            subtitle: '',
+            imageWrapper: ''
+        }
     },
 };

@@ -1,45 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
 
-// Configuración principal del componente en Storybook
 const meta: Meta<typeof Button> = {
-    title: 'Atoms/Button', // Dónde aparecerá en el menú
+    title: 'Atoms/Button',
     component: Button,
-    tags: ['autodocs'], // Genera documentación automática
+    tags: ['autodocs'],
+    parameters: { layout: 'centered' },
     argTypes: {
-        variant: {
-            control: { type: 'select' }, // Nos deja seleccionar variante en un desplegable
+        target: {
+            control: 'radio',
+            options: ['_self', '_blank'],
+            description: 'Comportamiento del enlace'
         },
-        size: {
-            control: { type: 'radio' },
-        },
+        className: { table: { disable: true } },
+        variant: { table: { disable: true } },
+        onClick: { table: { disable: true } },
+
     },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Historia 1: Botón Primario
-export const Primary: Story = {
+export const Playground: Story = {
     args: {
-        label: 'Button Primary',
-        variant: 'primary',
+        label: 'Button Action',
+        href: '', // Vacío por defecto
+        target: '_self',
         size: 'medium',
-    },
-};
-
-// Historia 2: Botón Secundario
-export const Secondary: Story = {
-    args: {
-        label: 'Button Secondary',
-        variant: 'secondary',
-    },
-};
-
-// Historia 3: Botón Grande
-export const Large: Story = {
-    args: {
-        label: 'Click Me!',
-        size: 'large',
     },
 };

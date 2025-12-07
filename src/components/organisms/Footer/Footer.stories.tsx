@@ -16,6 +16,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         copyrightOwner: 'Marc Iñiguez',
+        copyrightText: '© 2025 Todos los derechos reservados.',
+        customStyles: { container: '', text: '', link: '' },
         socialLinks: [
             { platform: 'GitHub', url: 'https://github.com/IniguezMarc' },
             { platform: 'LinkedIn', url: 'https://linkedin.com' },

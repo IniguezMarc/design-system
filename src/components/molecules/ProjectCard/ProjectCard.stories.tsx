@@ -1,38 +1,71 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ProjectCard } from './ProjectCard';
 
-const meta: Meta<typeof ProjectCard> = {
+// 1. Definimos los tipos para los controles extra
+type ProjectCardStory = React.ComponentProps<typeof ProjectCard> & {
+    isDark?: boolean;
+};
+
+// 2. Configuración general del componente
+const meta: Meta<ProjectCardStory> = {
     title: 'Molecules/ProjectCard',
     component: ProjectCard,
-    tags: ['autodocs'],
-    // 👇 AQUÍ ESTÁ LA MAGIA: Un decorador para simular un contenedor
-    decorators: [
-        (Story) => (
-            <div className="max-w-md mx-auto py-10">
-                {/* max-w-md limita el ancho, mx-auto lo centra */}
-                <Story />
+    tags: ['autodocs'], // Genera la página de documentación automática
+
+    // Configuración de los controles (Panel de abajo)
+    argTypes: {
+        isDark: {
+            control: 'boolean',
+            description: 'Simular modo oscuro',
+            table: { category: 'Preview Helper' }
+        },
+        customStyles: {
+            control: 'object',
+            description: 'Personalizar estilos (Hooks)',
+            table: { category: 'Styles' }
+        },
+        // Desactivamos controles que no aportan valor visual
+        className: { table: { disable: true } },
+        onViewProject: { table: { disable: true } },
+    },
+
+    // Decorador para simular el cambio de tema en tiempo real
+    render: ({ isDark, ...args }) => (
+        <div className={`
+      ${isDark ? 'dark bg-gray-950' : 'bg-gray-100'} 
+      p-12 w-full flex justify-center items-center min-h-[400px] transition-colors duration-300
+    `}>
+            <div className="max-w-md w-full">
+                <ProjectCard {...args} />
             </div>
-        ),
-    ],
+        </div>
+    ),
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<ProjectCardStory>;
 
-export const Default: Story = {
+// 3. LA ÚNICA HISTORIA QUE NECESITAS (Tu "Playground")
+export const Playground: Story = {
     args: {
-        title: 'Mi Portfolio Personal',
-        description: 'Una librería de componentes moderna construida con React, TypeScript y Tailwind CSS para exponer mis proyectos profesionales.',
-        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80',
-        tags: ['React', 'TypeScript', 'Tailwind', 'Storybook'],
-    },
-};
+        title: 'Proyecto Estándar',
+        description: 'Tarjeta interactiva. Usa los controles abajo para probar el modo oscuro o editar estilos.',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
+        tags: ['React', 'Tailwind'],
+        orientation: 'vertical',
+        projectUrl: 'https://github.com/IniguezMarc/design-system',
+        isDark: false,
+        linkTarget: '_self',
+        actionLabel: 'Ver Proyecto',
 
-export const NoTags: Story = {
-    args: {
-        title: 'Landing Page Simple',
-        description: 'Un proyecto de prueba sin etiquetas tecnológicas para ver cómo se comporta el diseño.',
-        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80',
-        tags: [],
+        // Inicializamos vacío para que el usuario vea que puede editarlo
+        customStyles: {
+            container: '',
+            imageWrapper: '',
+            content: '',
+            title: '',
+            description: '',
+            tagsContainer: ''
+        }
     },
 };

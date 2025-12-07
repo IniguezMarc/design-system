@@ -1,67 +1,93 @@
 import React from 'react';
-import { Navbar } from '../../organisms/Navbar/Navbar';
+import { Navbar, type NavbarLink } from '../../organisms/Navbar/Navbar';
 import { Hero } from '../../organisms/Hero/Hero';
-import { ContentGrid } from '../../organisms/ContentGrid/ContentGrid';
+import { ContentGrid, type GridItem } from '../../organisms/ContentGrid/ContentGrid';
 import { Footer } from '../../organisms/Footer/Footer';
-import { Avatar } from '../../atoms/Avatar/Avatar';
-import { Badge } from '../../atoms/Badge/Badge';
+import { ProfileSection } from '../../organisms/ProfileSection/ProfileSection';
 
-// Datos falsos para la preview (luego vendrán de una API o archivo de datos)
-const MOCK_ITEMS = [
+import.meta.env.BASE_URL
+
+// --- DATOS MOCK ---
+const MOCK_ITEMS: GridItem[] = [
     {
         id: '1',
         title: 'E-commerce Dashboard',
-        description: 'Panel de administración completo con métricas en tiempo real, gestión de inventario y modo oscuro. Desarrollado para escalar.',
+        description: 'Panel de administración completo con métricas en tiempo real y modo oscuro.',
         image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-        tags: ['React', 'TypeScript', 'Tailwind', 'Recharts'],
+        tags: ['React', 'TypeScript', 'Tailwind'],
+        url: 'https://google.com'
     },
     {
         id: '2',
-        title: 'Task Management App',
-        description: 'Aplicación de productividad estilo Kanban con drag & drop, autenticación de usuarios y sincronización en la nube.',
+        title: 'Task App',
+        description: 'Aplicación de productividad estilo Kanban.',
         image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800&q=80',
-        tags: ['Next.js', 'Supabase', 'DnD Kit'],
+        tags: ['Next.js', 'Supabase'],
+        url: '#'
     },
     {
         id: '3',
-        title: 'Financial Landing Page',
-        description: 'Sitio web corporativo de alto rendimiento con animaciones suaves y optimización SEO avanzada.',
+        title: 'Landing Page',
+        description: 'Sitio web corporativo de alto rendimiento.',
         image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-        tags: ['Astro', 'Framer Motion', 'Tailwind'],
+        tags: ['Astro', 'CSS'],
+        url: '#'
     },
 ];
 
-const NAV_LINKS = [
-    { label: 'Inicio', href: '#home' },
-    { label: 'Sobre mí', href: '#about' },
-    { label: 'Proyectos', href: '#projects' },
-];
-
 export const PortfolioPage = () => {
-    return (
-        <div className="bg-gray-50 min-h-screen font-sans">
 
-            {/* 1. NAVEGACIÓN FIJA */}
+    // 👇 1. LÓGICA DE DESCARGA DEL CV
+    const handleDownloadCV = () => {
+        const link = document.createElement('a');
+
+        // 👇 TRUCO PRO: Esto detecta si estás en local o en GitHub Pages automáticamente
+        // En local será: /cv.pdf
+        // En GitHub será: /design-system/cv.pdf
+        const baseUrl = import.meta.env.BASE_URL;
+
+        // Nos aseguramos de no duplicar barras '/'
+        const path = baseUrl.endsWith('/') ? baseUrl + 'cv.pdf' : baseUrl + '/cv.pdf';
+
+        link.href = path;
+        link.download = 'Marc_Iniguez_CV.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+    // 2. LÓGICA DE CONTACTO
+    const handleContact = () => {
+        const email = "marc@example.com"; // Tu email
+        const subject = "Hola Marc, vi tu portfolio";
+
+        // Construimos la URL específica de Gmail
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`;
+
+        // Abrimos pestaña nueva
+        window.open(gmailUrl, '_blank');
+    };
+
+    return (
+        <div className="bg-gray-50 dark:bg-gray-900 min-h-screen font-sans transition-colors duration-300">
+
+            {/* NAVBAR */}
             <Navbar
                 logo="Marc.Dev"
-                links={NAV_LINKS}
-                // Ahora usamos 'actions' (array) en lugar de onContactClick
+                links={[]}
                 actions={[
                     {
                         label: 'Contactar',
-                        onClick: () => window.open('mailto:marc@example.com'),
+                        onClick: handleContact,
                         variant: 'primary'
                     }
                 ]}
             />
 
             <main>
-                {/* 2. HERO SECTION (Portada) */}
                 <div id="home">
                     <Hero
                         title="Transformo ideas en experiencias digitales."
-                        subtitle="Desarrollador Full Stack apasionado por el código limpio."
-                        // 👇 ASÍ SE USA AHORA:
+                        subtitle="Desarrollador Full Stack apasionado por el código limpio y la arquitectura escalable."
                         actions={[
                             {
                                 label: "Ver Proyectos",
@@ -71,81 +97,34 @@ export const PortfolioPage = () => {
                             {
                                 label: "Descargar CV",
                                 variant: "secondary",
-                                onClick: () => window.open('/cv.pdf')
+                                onClick: handleDownloadCV // 👈 Conectado aquí
                             }
                         ]}
                     />
                 </div>
 
-                {/* 3. SECCIÓN SOBRE MÍ (Construida con Átomos) */}
-                <section id="about" className="py-20 bg-white border-y border-gray-100">
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold text-gray-900">Sobre mí</h2>
-                            <div className="mt-2 h-1 w-20 bg-blue-600 mx-auto rounded"></div>
-                        </div>
+                <ProfileSection
+                    id="about"
+                    avatarUrl="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=300&h=300"
+                    bio={`Hola, soy Marc. Llevo desarrollando software con pasión desde hace varios años. 
+          Me especializo en el ecosistema JavaScript/TypeScript, creando aplicaciones que no solo funcionan bien, sino que se sienten bien al usarlas.`}
+                    skills={['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Git', 'Docker', 'Storybook']}
+                />
 
-                        <div className="flex flex-col md:flex-row items-center gap-12">
-                            {/* Foto */}
-                            <div className="flex-shrink-0">
-                                <Avatar
-                                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=300&h=300"
-                                    size="xl"
-                                />
-                            </div>
-
-                            {/* Texto Bio */}
-                            <div className="text-lg text-gray-600 leading-relaxed">
-                                <p className="mb-6">
-                                    Hola, soy Marc. Llevo desarrollando software con pasión desde hace varios años.
-                                    Me especializo en el ecosistema <strong>JavaScript/TypeScript</strong>, creando aplicaciones
-                                    que no solo funcionan bien, sino que se sienten bien al usarlas.
-                                </p>
-                                <p className="mb-6">
-                                    Actualmente estoy enfocado en profundizar en arquitecturas frontend escalables
-                                    y en crear sistemas de diseño como este.
-                                </p>
-
-                                {/* Stack Tecnológico con Badges */}
-                                <div>
-                                    <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide mb-3">
-                                        Mi Stack Técnico
-                                    </h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Git', 'Docker', 'Storybook'].map(tech => (
-                                            <Badge key={tech} label={tech} variant="secondary" />
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* PORTFOLIO GRID FLEXIBLE */}
                 <div id="projects">
                     <ContentGrid
                         title="Proyectos Destacados"
                         items={MOCK_ITEMS}
                         layout="grid"
-                        // Ahora podemos personalizar el botón
                         itemButtonLabel="Ver Caso de Estudio"
                     />
                 </div>
             </main>
 
-            {/* FOOTER FLEXIBLE */}
             <Footer
                 copyrightOwner="Marc Iñiguez"
-                socialLinks={[
-                    { platform: 'GitHub', url: '#' },
-                    { platform: 'LinkedIn', url: '#' },
-                ]}
-                // Añadimos enlaces legales
-                secondaryLinks={[
-                    { label: 'Aviso Legal', href: '#' },
-                    { label: 'Privacidad', href: '#' },
-                ]}
+                socialLinks={[{ platform: 'GitHub', url: '#' }]}
+                secondaryLinks={[{ label: 'Aviso Legal', href: '#' }]}
             />
         </div>
     );
