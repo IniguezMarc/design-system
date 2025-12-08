@@ -5,6 +5,6 @@ import{j as a}from"./jsx-runtime-BjG_zV1W.js";import"./index-Ch-GWmDW.js";const 
       ${i}
     `,children:a.jsx("img",{src:l,alt:r,className:`
           w-full h-full 
-          ${o} /* 👈 Aplicamos la clase aquí */
+          ${o}
           ${e.image||""}
         `})})};d.__docgenInfo={description:"",methods:[],displayName:"Avatar",props:{src:{required:!0,tsType:{name:"string"},description:""},alt:{required:!1,tsType:{name:"string"},description:"",defaultValue:{value:'"Avatar"',computed:!1}},size:{required:!1,tsType:{name:"union",raw:"'sm' | 'md' | 'lg' | 'xl'",elements:[{name:"literal",value:"'sm'"},{name:"literal",value:"'md'"},{name:"literal",value:"'lg'"},{name:"literal",value:"'xl'"}]},description:"",defaultValue:{value:"'md'",computed:!1}},imageFit:{required:!1,tsType:{name:"union",raw:"'cover' | 'contain'",elements:[{name:"literal",value:"'cover'"},{name:"literal",value:"'contain'"}]},description:"",defaultValue:{value:"'cover'",computed:!1}},customStyles:{required:!1,tsType:{name:"AvatarSlots"},description:"",defaultValue:{value:"{}",computed:!1}},className:{required:!1,tsType:{name:"string"},description:"",defaultValue:{value:"''",computed:!1}}}};export{d as A};
