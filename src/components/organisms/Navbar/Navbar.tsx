@@ -39,6 +39,7 @@ export const Navbar = ({
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
+    // Handle scroll effect for glassmorphism
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
@@ -50,6 +51,7 @@ export const Navbar = ({
         const element = document.querySelector(href);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
+            // Close mobile menu on click
             setIsOpen(false);
         }
     };
@@ -58,7 +60,7 @@ export const Navbar = ({
         <nav
             className={`
         fixed top-0 left-0 right-0 z-50 transition-all duration-300
-        /* GLASS EFFECT ADAPTATIVO */
+
         ${scrolled || isOpen
                     ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800'
                     : 'bg-transparent'}

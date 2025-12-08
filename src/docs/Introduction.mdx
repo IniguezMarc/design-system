@@ -1,0 +1,189 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Introduction" />
+
+<div className="sb-container">
+  
+  {/* HERO HEADER */}
+  <div className="sb-hero">
+    <div className="sb-hero-content">
+      <h1 className="sb-title text-gradient">Design System</h1>
+      <div className="sb-badges">
+        <span className="sb-badge">v2.0.0</span>
+        <span className="sb-badge">TypeScript</span>
+        <span className="sb-badge">React 18</span>
+        <span className="sb-badge">Dark Mode</span>
+      </div>
+    </div>
+  </div>
+
+  {/* SECCIÓN DE CARACTERÍSTICAS */}
+  <div className="sb-section">
+    <h2 className="sb-section-title">Design Principles</h2>
+    <div className="sb-grid">
+      
+      <div className="sb-card">
+        <div className="sb-icon">⚛️</div>
+        <h3>Atomic Architecture</h3>
+        <p>Modular structure based on Atoms, Molecules, and Organisms for maximum reuse.</p>
+      </div>
+
+      <div className="sb-card">
+        <div className="sb-icon">🌗</div>
+        <h3>Dark Mode Native</h3>
+        <p>All components automatically react to the system theme or user preference.</p>
+      </div>
+
+      <div className="sb-card">
+        <div className="sb-icon">🎨</div>
+        <h3>Customizable & Typed</h3>
+        <p>Built with TypeScript for type safety and Tailwind CSS for total styling flexibility.</p>
+      </div>
+
+      <div className="sb-card">
+        <div className="sb-icon">⚡</div>
+        <h3>Performance First</h3>
+        <p>Lightweight components optimized for fast load times and zero unnecessary dependencies.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div className="sb-footer">
+    <p>Created by <strong>Marc Iñiguez</strong> · {new Date().getFullYear()}</p>
+  </div>
+
+</div>
+
+{/* ESTILOS CSS INCRUSTADOS */}
+<style>
+  {`
+  .sb-container {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #1f2937;
+    margin: -1rem; /* Romper márgenes por defecto de SB */
+  }
+
+  /* --- HERO --- */
+  .sb-hero {
+    background: radial-gradient(circle at 10% 20%, rgb(30, 30, 40) 0%, rgb(10, 10, 15) 90%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .sb-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.05em;
+    line-height: 1.1;
+  }
+
+  .text-gradient {
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .sb-subtitle {
+    font-size: 1.25rem;
+    color: #ffffffff;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.6;
+  }
+
+  .sb-badges {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .sb-badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #e5e7eb;
+  }
+
+  /* --- GRID --- */
+  .sb-section {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .sb-section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #111827; /* Dark gray for light mode */
+  }
+
+  .sb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .sb-card {
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .sb-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #3b82f6;
+  }
+
+  .sb-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .sb-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+  }
+
+  .sb-card p {
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  /* --- FOOTER --- */
+  .sb-footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid #e5e7eb;
+    color: #9ca3af;
+    font-size: 0.9rem;
+  }
+
+  /* --- DARK MODE SUPPORT (Automático según Storybook docs) --- */
+  @media (prefers-color-scheme: dark) {
+    .sb-section-title { color: white; }
+    .sb-card { 
+      background: #1f2937; 
+      border-color: #374151; 
+    }
+    .sb-card h3 { color: white; }
+    .sb-card p { color: #9ca3af; }
+    .sb-footer { border-color: #374151; }
+  }
+  `}
+</style>

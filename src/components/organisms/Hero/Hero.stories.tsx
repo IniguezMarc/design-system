@@ -15,12 +15,12 @@ const meta: Meta<typeof Hero> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Playground: Story = {
     args: {
         greeting: 'Marc.Dev',
-        title: 'Arquitectura Frontend',
-        subtitle: 'Creo soluciones digitales sólidas.',
-        actions: [{ label: 'Ver más', onClick: () => { }, variant: 'primary' }],
+        title: 'Frontend Architecture',
+        subtitle: 'I create solid digital solutions.',
+        actions: [{ label: 'View More', onClick: () => { }, variant: 'primary' }],
         customStyles: {
             container: '',
             content: '',

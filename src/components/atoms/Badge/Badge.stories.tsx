@@ -7,9 +7,7 @@ const meta: Meta<typeof Badge> = {
     tags: ['autodocs'],
     parameters: { layout: 'centered' },
     argTypes: {
-        // 👇 Ocultamos lo que no queremos ver
         className: { table: { disable: true } },
-        // Configuramos el objeto bonito
         customStyles: { control: 'object', table: { category: 'Styles' } },
     },
 };
@@ -17,11 +15,10 @@ const meta: Meta<typeof Badge> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Playground: Story = {
     args: {
         label: 'Technology',
         variant: 'primary',
-        // 👇 Inicializamos para que salga editable
         customStyles: { container: '' }
     },
 };

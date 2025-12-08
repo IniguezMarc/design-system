@@ -20,8 +20,7 @@ export const Button = ({
     target
 }: ButtonProps) => {
 
-    // Clases comunes para ambos casos (button y a)
-    const baseStyles = "inline-flex justify-center items-center font-bold rounded-lg cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 no-underline"; // Añadido no-underline
+    const baseStyles = "inline-flex justify-center items-center font-bold rounded-lg cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 no-underline";
 
     const variantStyles = {
         primary: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 border-2 border-transparent",
@@ -38,9 +37,6 @@ export const Button = ({
 
     const combinedClasses = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
 
-    // LÓGICA POLIMÓRFICA 👇
-
-    // 1. Si hay href, devolvemos un enlace <a>
     if (href) {
         return (
             <a
@@ -48,14 +44,13 @@ export const Button = ({
                 className={combinedClasses}
                 target={target}
                 rel={target === '_blank' ? 'noopener noreferrer' : undefined}
-                onClick={onClick} // Permitimos onClick también en enlaces (analytics, etc)
+                onClick={onClick}
             >
                 {label}
             </a>
         );
     }
 
-    // 2. Si no, devolvemos un botón estándar <button>
     return (
         <button
             type="button"

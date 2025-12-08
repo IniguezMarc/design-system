@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-// 1. Definimos los huecos de estilo
 export interface ThemeToggleSlots {
     container?: string;
     icon?: string;
@@ -12,7 +11,6 @@ export interface ThemeToggleProps {
     sunImage?: string;
     moonImage?: string;
     imageFit?: 'cover' | 'contain';
-    // 2. Añadimos la prop de estilos
     customStyles?: ThemeToggleSlots;
     className?: string;
 }
@@ -23,17 +21,20 @@ export const ThemeToggle = ({
     sunImage,
     moonImage,
     imageFit = 'contain',
-    customStyles = {}, // 👈 Inicializamos
+    customStyles = {},
     className = ''
 }: ThemeToggleProps) => {
     const [isDark, setIsDark] = useState(false);
 
     useEffect(() => {
+        // Sync with system preference and persist selection
         const checkTheme = () => {
             const isDarkNow = document.documentElement.classList.contains('dark');
             setIsDark(isDarkNow);
         };
         checkTheme();
+
+        // Listen for external changes (e.g. system theme change)
         const observer = new MutationObserver(checkTheme);
         observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
         return () => observer.disconnect();
@@ -50,7 +51,6 @@ export const ThemeToggle = ({
         }
     };
 
-    // Clases base para el icono
     const iconBaseClasses = `w-6 h-6 ${customStyles.icon || ''}`;
 
     const DefaultSun = (
@@ -70,12 +70,12 @@ export const ThemeToggle = ({
 
         if (isDark) {
             if (sunImage) {
-                return <img src={sunImage} alt="Modo Claro" className={`${iconBaseClasses} ${fitClass}`} />;
+                return <img src={sunImage} alt="Light Mode" className={`${iconBaseClasses} ${fitClass}`} />;
             }
             return iconSun || DefaultSun;
         } else {
             if (moonImage) {
-                return <img src={moonImage} alt="Modo Oscuro" className={`${iconBaseClasses} ${fitClass}`} />;
+                return <img src={moonImage} alt="Dark Mode" className={`${iconBaseClasses} ${fitClass}`} />;
             }
             return iconMoon || DefaultMoon;
         }
@@ -84,19 +84,16 @@ export const ThemeToggle = ({
     return (
         <button
             onClick={toggleTheme}
-            title={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+            title={isDark ? "Switch to light mode" : "Switch to dark mode"}
             className={`
-        /* Estilos Base */
         p-2 rounded-full transition-all duration-300 ease-in-out 
         focus:outline-none focus:ring-2 focus:ring-blue-500 hover:rotate-12 hover:scale-110 overflow-hidden
         
-        /* Colores */
         ${isDark
                     ? 'bg-gray-700 text-yellow-300 hover:bg-gray-600'
                     : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
                 }
         
-        /* 👇 INYECCIÓN DE ESTILOS */
         ${customStyles.container || ''}
         ${className}
       `}

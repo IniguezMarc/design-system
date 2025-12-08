@@ -26,7 +26,7 @@ interface FooterProps {
 
 export const Footer = ({
     copyrightOwner,
-    copyrightText = `© ${new Date().getFullYear()} Todos los derechos reservados.`,
+    copyrightText = `© ${new Date().getFullYear()} All rights reserved.`,
     socialLinks,
     secondaryLinks = [],
     customStyles = {}
@@ -35,9 +35,9 @@ export const Footer = ({
     return (
         <footer className={`
       py-12 border-t transition-colors duration-300
-      /* Light: Fondo muy oscuro (casi negro) */
+      /* Light: Very dark background (almost black) */
       bg-gray-900 text-white border-gray-800
-      /* Dark: Fondo negro puro o gris muy oscuro */
+      /* Dark: Pure black or very dark gray background */
       dark:bg-black dark:border-gray-800
       ${customStyles.container || ''}
     `}>

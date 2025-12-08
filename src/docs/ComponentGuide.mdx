@@ -1,0 +1,91 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Component Guide" />
+
+# Component Creation Guide
+
+This guide explains how to create new components following the **Atomic Design** methodology used in this project.
+
+## 1. Choose the Level
+
+Before coding, decide where your component belongs:
+
+- **Atom**: Is it a basic HTML element with style? (e.g., `Label`, `Icon`).
+- **Molecule**: Is it a group of atoms functioning together? (e.g., `UserCard` = Avatar + Label).
+- **Organism**: Is it a full section of a page? (e.g., `Header`, `Sidebar`).
+
+## 2. Create the Files
+
+Navigate to `src/components/[level]/[ComponentName]/` and create these two files:
+
+1.  **`ComponentName.tsx`**: The actual React component.
+2.  **`ComponentName.stories.tsx`**: The Storybook stories.
+
+### Example: Creating a `Tag` Atom
+
+**File: `Tag.tsx`**
+
+```tsx
+import React from 'react';
+
+interface TagProps {
+  label: string;
+  color?: 'blue' | 'green';
+}
+
+export const Tag = ({ label, color = 'blue' }: TagProps) => {
+  const colorClass = color === 'blue' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800';
+  
+  return (
+    <span className={`px-2 py-1 rounded text-xs font-bold ${colorClass}`}>
+      {label}
+    </span>
+  );
+};
+```
+
+**File: `Tag.stories.tsx`**
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { Tag } from './Tag';
+
+const meta: Meta<typeof Tag> = {
+  title: 'Atoms/Tag', // Folder path in Storybook sidebar
+  component: Tag,
+  tags: ['autodocs'],
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+// Playground Story
+export const Playground: Story = {
+  args: {
+    label: 'React',
+    color: 'blue'
+  }
+};
+
+// Variation Story
+export const Green: Story = {
+  args: {
+    label: 'Vue',
+    color: 'green'
+  }
+};
+```
+
+## 3. Best Practices
+
+- **Props**: Always define a clean TypeScript interface for your props.
+- **Defaults**: Provide sensible default values for optional props.
+- **Classes**: Use Tailwind CSS for styling. Avoid inline styles.
+- **Stories**: distinct stories for different component states (e.g., `Loading`, `Error`, `Disabled`).
+- **Playground vs Preview**:
+    - Use `Playground` for interactive components where users can tweak controls (e.g., `Button`).
+    - Use `Preview` for full pages or complex organisms where there are few or no controls to adjust.
+
+## 4. Check Storybook
+
+Once saved, Storybook will automatically reload and show your new component under the path defined in `meta.title`.

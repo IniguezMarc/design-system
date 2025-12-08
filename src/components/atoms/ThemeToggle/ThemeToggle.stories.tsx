@@ -7,17 +7,17 @@ const meta: Meta<typeof ThemeToggle> = {
     tags: ['autodocs'],
     parameters: { layout: 'centered' },
     argTypes: {
-        sunImage: { control: 'text', description: 'URL imagen Sol' },
-        moonImage: { control: 'text', description: 'URL imagen Luna' },
+        sunImage: { control: 'text', description: 'Sun Image URL' },
+        moonImage: { control: 'text', description: 'Moon Image URL' },
         imageFit: {
             control: 'radio',
             options: ['cover', 'contain'],
-            description: 'Ajuste de imagen'
+            description: 'Image Fit'
         },
         iconSun: { control: 'text' },
         iconMoon: { control: 'text' },
 
-        // 👇 Configuración del objeto de estilos
+        // 👇 Style object configuration
         customStyles: { control: 'object', table: { category: 'Styles' } },
         className: { table: { disable: true } },
     },
@@ -34,12 +34,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
+    tags: ['!autodocs'],
     args: {
         iconSun: undefined,
         iconMoon: undefined,
         imageFit: 'contain',
 
-        // 👇 Inicializamos vacío para que sea editable
+        // 👇 Initialize empty to be editable
         customStyles: {
             container: '',
             icon: ''
@@ -47,7 +48,7 @@ export const Playground: Story = {
     },
 };
 
-// Ejemplo: Botón Cuadrado Grande con estilos inyectados
+// Example: Large Square Button with injected styles
 export const CustomLook: Story = {
     args: {
         ...Playground.args,

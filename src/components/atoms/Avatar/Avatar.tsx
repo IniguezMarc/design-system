@@ -9,7 +9,6 @@ interface AvatarProps {
     src: string;
     alt?: string;
     size?: 'sm' | 'md' | 'lg' | 'xl';
-    // 👇 ESTO ES LO QUE TE FALTA EN TU ARCHIVO:
     imageFit?: 'cover' | 'contain';
     customStyles?: AvatarSlots;
     className?: string;
@@ -19,7 +18,6 @@ export const Avatar = ({
     src,
     alt = "Avatar",
     size = 'md',
-    // 👇 Y ESTO:
     imageFit = 'cover',
     customStyles = {},
     className = ''
@@ -32,7 +30,6 @@ export const Avatar = ({
         xl: "h-32 w-32",
     };
 
-    // Convertimos la prop en clase de Tailwind
     const fitClass = imageFit === 'contain' ? 'object-contain' : 'object-cover';
 
     return (
@@ -47,7 +44,7 @@ export const Avatar = ({
                 alt={alt}
                 className={`
           w-full h-full 
-          ${fitClass} /* 👈 Aplicamos la clase aquí */
+          ${fitClass}
           ${customStyles.image || ''}
         `}
             />

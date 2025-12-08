@@ -21,11 +21,11 @@ interface HeroProps {
     subtitle: string;
     imageUrl?: string;
     actions?: HeroAction[];
-    customStyles?: HeroSlots; // Hooks de estilo
+    customStyles?: HeroSlots; // Style hooks
 }
 
 export const Hero = ({
-    greeting = "Hola",
+    greeting = "Hello",
     title,
     subtitle,
     imageUrl,

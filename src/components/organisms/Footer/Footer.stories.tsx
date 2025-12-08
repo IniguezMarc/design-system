@@ -13,10 +13,10 @@ const meta: Meta<typeof Footer> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Playground: Story = {
     args: {
         copyrightOwner: 'Marc Iñiguez',
-        copyrightText: '© 2025 Todos los derechos reservados.',
+        copyrightText: '© 2025 All rights reserved.',
         customStyles: { container: '', text: '', link: '' },
         socialLinks: [
             { platform: 'GitHub', url: 'https://github.com/IniguezMarc' },

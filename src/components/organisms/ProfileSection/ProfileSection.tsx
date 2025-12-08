@@ -12,26 +12,26 @@ export interface ProfileSectionSlots {
 }
 
 interface ProfileSectionProps {
-    /** Título de la sección (ej: Sobre mí) */
+    /** Section title (ex: About Me) */
     title?: string;
-    /** URL de la foto de perfil */
+    /** Profile photo URL */
     avatarUrl: string;
-    /** Texto principal de la biografía (acepta saltos de línea) */
+    /** Main biography text (accepts line breaks) */
     bio: string;
-    /** Título para la lista de tecnologías */
+    /** Title for the skills list */
     skillsTitle?: string;
-    /** Lista de tecnologías para mostrar como Badges */
+    /** List of technologies to show as Badges */
     skills?: string[];
-    /** Hooks de estilo */
+    /** Style hooks */
     customStyles?: ProfileSectionSlots;
-    id?: string; // Para el ancla del menú (#about)
+    id?: string; // For menu anchor (#about)
 }
 
 export const ProfileSection = ({
-    title = "Sobre mí",
+    title = "About Me",
     avatarUrl,
     bio,
-    skillsTitle = "Stack Tecnológico",
+    skillsTitle = "Tech Stack",
     skills = [],
     customStyles = {},
     id
@@ -47,7 +47,7 @@ export const ProfileSection = ({
         >
             <div className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 ${customStyles.contentWrapper || ''}`}>
 
-                {/* CABECERA (Título) */}
+                {/* HEADER (Title) */}
                 {title && (
                     <div className="text-center mb-12">
                         <h2 className={`
@@ -62,20 +62,20 @@ export const ProfileSection = ({
 
                 <div className="flex flex-col md:flex-row items-center gap-12">
 
-                    {/* FOTO (Avatar) */}
+                    {/* PHOTO (Avatar) */}
                     <div className="flex-shrink-0">
                         <Avatar src={avatarUrl} size="xl" />
                     </div>
 
-                    {/* TEXTO Y SKILLS */}
+                    {/* TEXT AND SKILLS */}
                     <div className={`text-lg text-gray-600 dark:text-gray-300 leading-relaxed ${customStyles.textWrapper || ''}`}>
 
-                        {/* Renderizamos la bio respetando saltos de línea */}
+                        {/* Render bio respecting line breaks */}
                         <p className={`mb-8 whitespace-pre-line ${customStyles.bio || ''}`}>
                             {bio}
                         </p>
 
-                        {/* SECCIÓN SKILLS */}
+                        {/* SKILLS SECTION */}
                         {skills.length > 0 && (
                             <div>
                                 {skillsTitle && (

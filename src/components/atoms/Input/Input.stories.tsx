@@ -11,6 +11,6 @@ const meta: Meta<typeof Input> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = { args: { placeholder: 'Escribe algo...' } };
-export const WithLabel: Story = { args: { label: 'Correo Electrónico', placeholder: 'ejemplo@gmail.com', type: 'email' } };
-export const WithError: Story = { args: { label: 'Usuario', value: 'Marc', error: 'Este usuario ya existe' } };
+export const Playground: Story = { args: { placeholder: 'Type something...' }, tags: ['!autodocs'] };
+export const WithLabel: Story = { args: { label: 'Email Address', placeholder: 'example@gmail.com', type: 'email' } };
+export const WithError: Story = { args: { label: 'Username', value: 'Marc', error: 'This username already exists' } };

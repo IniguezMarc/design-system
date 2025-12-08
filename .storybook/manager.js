@@ -1,20 +1,15 @@
-
-// @ts-ignore
 import { addons } from '@storybook/manager-api';
-// @ts-ignore
 import { create } from '@storybook/theming';
-// @ts-ignore
-import logo from './favicon.png';
 
 addons.setConfig({
+    enableShortcuts: false,
     theme: create({
         base: 'dark',
         brandTitle: "Marc's Design System",
-        brandUrl: 'https://github.com/IniguezMarc/design-system',
+        brandUrl: '/',
         brandTarget: '_self',
-        brandImage: logo,
         colorPrimary: '#3b82f6',
         colorSecondary: '#3b82f6',
-        enableShortcuts: false,
+        appBg: '#111827',
     }),
 });

@@ -1,18 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ProjectCard } from './ProjectCard';
 
-// 1. Definimos los tipos para los controles extra
 type ProjectCardStory = React.ComponentProps<typeof ProjectCard> & {
     isDark?: boolean;
 };
 
-// 2. Configuración general del componente
+
 const meta: Meta<ProjectCardStory> = {
     title: 'Molecules/ProjectCard',
     component: ProjectCard,
-    tags: ['autodocs'], // Genera la página de documentación automática
+    tags: ['autodocs'],
 
-    // Configuración de los controles (Panel de abajo)
     argTypes: {
         isDark: {
             control: 'boolean',
@@ -24,12 +22,9 @@ const meta: Meta<ProjectCardStory> = {
             description: 'Personalizar estilos (Hooks)',
             table: { category: 'Styles' }
         },
-        // Desactivamos controles que no aportan valor visual
         className: { table: { disable: true } },
         onViewProject: { table: { disable: true } },
     },
-
-    // Decorador para simular el cambio de tema en tiempo real
     render: ({ isDark, ...args }) => (
         <div className={`
       ${isDark ? 'dark bg-gray-950' : 'bg-gray-100'} 
@@ -45,7 +40,6 @@ const meta: Meta<ProjectCardStory> = {
 export default meta;
 type Story = StoryObj<ProjectCardStory>;
 
-// 3. LA ÚNICA HISTORIA QUE NECESITAS (Tu "Playground")
 export const Playground: Story = {
     args: {
         title: 'Proyecto Estándar',
@@ -58,7 +52,6 @@ export const Playground: Story = {
         linkTarget: '_self',
         actionLabel: 'Ver Proyecto',
 
-        // Inicializamos vacío para que el usuario vea que puede editarlo
         customStyles: {
             container: '',
             imageWrapper: '',

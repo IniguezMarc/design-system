@@ -1,0 +1,62 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Getting Started" />
+
+# Getting Started
+
+Welcome to **Marc's Design System**. This guide will help you get up and running with the project locally.
+
+## 📦 Installation
+
+This project is built with **Vite** and **React**. To install dependencies, run:
+
+```bash
+npm install
+```
+
+## 🚀 Running Storybook
+
+To start the development environment and view the component library:
+
+```bash
+npm run storybook
+```
+
+This will start the Storybook server (usually at `http://localhost:6006`), where you can explore:
+- **Atoms**: Basic building blocks (Buttons, Inputs, Badges).
+- **Molecules**: Combinations of atoms (Cards, Search bars).
+- **Organisms**: Complex sections (Navbar, Hero, Footer).
+- **Pages**: Full page layouts.
+
+## 🛠️ Tech Stack
+
+- **Framework**: React + TypeScript
+- **Styling**: Tailwind CSS
+- **Tooling**: Vite, Storybook
+- **Code Quality**: ESLint, Prettier
+
+## 📦 Usage in External Projects
+
+If you want to use a component from this library in another project:
+
+1.  **Copy the Code**: The easiest way is to copy the component file (e.g., `Button.tsx`) and its dependencies (like `index.css` or Tailwind config) directly into your project.
+2.  **Dependencies**: Ensure your project has the required dependencies installed (React, Tailwind CSS, etc.).
+3.  **Import**: Import the component in your project:
+    ```tsx
+    import { Button } from './components/atoms/Button/Button';
+    ```
+
+> **Note**: In the future, this library could be published as an NPM package for easier installation (`npm install @marc-design-system/ui`).
+
+## 📂 Project Structure
+
+```text
+src/
+├── components/
+│   ├── atoms/       # Smallest units (Button, Avatar)
+│   ├── molecules/   # Groups of atoms (ProjectCard)
+│   ├── organisms/   # Complex UI sections (Navbar)
+│   └── pages/       # Full application pages
+├── docs/            # Documentation files (.mdx)
+└── assets/          # Static assets
+```

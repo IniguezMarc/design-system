@@ -14,14 +14,14 @@ const meta: Meta<typeof ProfileSection> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Playground: Story = {
     args: {
-        title: 'Sobre mí',
+        title: 'About Me',
         avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=300&h=300',
-        bio: `Hola, soy Marc. Llevo desarrollando software con pasión desde hace varios años.
+        bio: `Hi, I'm Marc. I've been passionately developing software for several years.
     
-    Me especializo en el ecosistema JavaScript/TypeScript, creando aplicaciones que no solo funcionan bien, sino que se sienten bien al usarlas.`,
-        skillsTitle: 'Mi Stack Técnico',
+    I specialize in the JavaScript/TypeScript ecosystem, building applications that not only work well, but feel good to use.`,
+        skillsTitle: 'My Tech Stack',
         skills: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Storybook', 'Git'],
 
         customStyles: {

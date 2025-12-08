@@ -25,10 +25,10 @@ interface ContentGridProps {
 }
 
 export const ContentGrid = ({
-    title = "Contenido Destacado",
+    title = "Featured Content",
     items,
     layout = 'grid',
-    itemButtonLabel = "Ver Detalles",
+    itemButtonLabel = "View Details",
     onItemClick,
     customStyles = {}
 }: ContentGridProps) => {

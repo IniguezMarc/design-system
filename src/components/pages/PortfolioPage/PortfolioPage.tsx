@@ -7,12 +7,12 @@ import { ProfileSection } from '../../organisms/ProfileSection/ProfileSection';
 
 import.meta.env.BASE_URL
 
-// --- DATOS MOCK ---
+// --- MOCK DATA ---
 const MOCK_ITEMS: GridItem[] = [
     {
         id: '1',
         title: 'E-commerce Dashboard',
-        description: 'Panel de administración completo con métricas en tiempo real y modo oscuro.',
+        description: 'Complete admin dashboard with real-time metrics and dark mode.',
         image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
         tags: ['React', 'TypeScript', 'Tailwind'],
         url: 'https://google.com'
@@ -20,7 +20,7 @@ const MOCK_ITEMS: GridItem[] = [
     {
         id: '2',
         title: 'Task App',
-        description: 'Aplicación de productividad estilo Kanban.',
+        description: 'Kanban-style productivity app.',
         image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800&q=80',
         tags: ['Next.js', 'Supabase'],
         url: '#'
@@ -28,7 +28,7 @@ const MOCK_ITEMS: GridItem[] = [
     {
         id: '3',
         title: 'Landing Page',
-        description: 'Sitio web corporativo de alto rendimiento.',
+        description: 'High-performance corporate website.',
         image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
         tags: ['Astro', 'CSS'],
         url: '#'
@@ -37,16 +37,16 @@ const MOCK_ITEMS: GridItem[] = [
 
 export const PortfolioPage = () => {
 
-    // 👇 1. LÓGICA DE DESCARGA DEL CV
+    // 👇 1. CV DOWNLOAD LOGIC
     const handleDownloadCV = () => {
         const link = document.createElement('a');
 
-        // 👇 TRUCO PRO: Esto detecta si estás en local o en GitHub Pages automáticamente
-        // En local será: /cv.pdf
-        // En GitHub será: /design-system/cv.pdf
+        // 👇 PRO TIP: This automatically detects if you are on local or GitHub Pages
+        // Local: /cv.pdf
+        // GitHub: /design-system/cv.pdf
         const baseUrl = import.meta.env.BASE_URL;
 
-        // Nos aseguramos de no duplicar barras '/'
+        // Ensure no duplicate '/' slashes
         const path = baseUrl.endsWith('/') ? baseUrl + 'cv.pdf' : baseUrl + '/cv.pdf';
 
         link.href = path;
@@ -55,15 +55,15 @@ export const PortfolioPage = () => {
         link.click();
         document.body.removeChild(link);
     };
-    // 2. LÓGICA DE CONTACTO
+    // 2. CONTACT LOGIC
     const handleContact = () => {
-        const email = "marc@example.com"; // Tu email
-        const subject = "Hola Marc, vi tu portfolio";
+        const email = "marc@example.com"; // Your email
+        const subject = "Hi Marc, I saw your portfolio";
 
-        // Construimos la URL específica de Gmail
+        // Build specific Gmail URL
         const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`;
 
-        // Abrimos pestaña nueva
+        // Open new tab
         window.open(gmailUrl, '_blank');
     };
 
@@ -76,7 +76,7 @@ export const PortfolioPage = () => {
                 links={[]}
                 actions={[
                     {
-                        label: 'Contactar',
+                        label: 'Contact',
                         onClick: handleContact,
                         variant: 'primary'
                     }
@@ -86,18 +86,18 @@ export const PortfolioPage = () => {
             <main>
                 <div id="home">
                     <Hero
-                        title="Transformo ideas en experiencias digitales."
-                        subtitle="Desarrollador Full Stack apasionado por el código limpio y la arquitectura escalable."
+                        title="I transform ideas into digital experiences."
+                        subtitle="Full Stack Developer passionate about clean code and scalable architecture."
                         actions={[
                             {
-                                label: "Ver Proyectos",
+                                label: "View Projects",
                                 variant: "primary",
                                 onClick: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
                             },
                             {
-                                label: "Descargar CV",
+                                label: "Download CV",
                                 variant: "secondary",
-                                onClick: handleDownloadCV // 👈 Conectado aquí
+                                onClick: handleDownloadCV // 👈 Connected here
                             }
                         ]}
                     />
@@ -106,17 +106,17 @@ export const PortfolioPage = () => {
                 <ProfileSection
                     id="about"
                     avatarUrl="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=300&h=300"
-                    bio={`Hola, soy Marc. Llevo desarrollando software con pasión desde hace varios años. 
-          Me especializo en el ecosistema JavaScript/TypeScript, creando aplicaciones que no solo funcionan bien, sino que se sienten bien al usarlas.`}
+                    bio={`Hi, I'm Marc. I've been passionately developing software for several years. 
+          I specialize in the JavaScript/TypeScript ecosystem, building applications that not only work well but feel good to use.`}
                     skills={['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Git', 'Docker', 'Storybook']}
                 />
 
                 <div id="projects">
                     <ContentGrid
-                        title="Proyectos Destacados"
+                        title="Featured Projects"
                         items={MOCK_ITEMS}
                         layout="grid"
-                        itemButtonLabel="Ver Caso de Estudio"
+                        itemButtonLabel="View Case Study"
                     />
                 </div>
             </main>
@@ -124,7 +124,7 @@ export const PortfolioPage = () => {
             <Footer
                 copyrightOwner="Marc Iñiguez"
                 socialLinks={[{ platform: 'GitHub', url: '#' }]}
-                secondaryLinks={[{ label: 'Aviso Legal', href: '#' }]}
+                secondaryLinks={[{ label: 'Legal Notice', href: '#' }]}
             />
         </div>
     );

@@ -10,7 +10,7 @@ const meta: Meta<typeof Button> = {
         target: {
             control: 'radio',
             options: ['_self', '_blank'],
-            description: 'Comportamiento del enlace'
+            description: 'Link behavior'
         },
         className: { table: { disable: true } },
         variant: { table: { disable: true } },
@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
     args: {
         label: 'Button Action',
-        href: '', // Vacío por defecto
+        href: '',
         target: '_self',
         size: 'medium',
     },

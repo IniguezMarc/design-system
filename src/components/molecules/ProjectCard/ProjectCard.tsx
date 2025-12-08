@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Button } from '../../atoms/Button/Button';
 import { Badge } from '../../atoms/Badge/Badge';
 
@@ -9,10 +9,10 @@ export interface ProjectCardSlots {
     title?: string;
     description?: string;
     tagsContainer?: string;
-    /** URL a la que lleva el botón */
+    /** URL the button links to */
     projectUrl?: string;
     linkTarget?: '_self' | '_blank';
-    /** Callback opcional (por si prefieres onClick) */
+    /** Optional callback (if you prefer onClick) */
     onViewProject?: () => void;
 }
 
@@ -26,9 +26,9 @@ interface ProjectCardProps {
     orientation?: 'vertical' | 'horizontal';
     actionLabel?: string;
     onViewProject?: () => void;
-    /** Hooks para personalizar estilos de partes internas */
+    /** Hooks to customize internal style parts */
     customStyles?: ProjectCardSlots;
-    // className para el contenedor externo (márgenes, etc)
+    // className for the outer container (margins, etc)
     className?: string;
 }
 
@@ -38,7 +38,7 @@ export const ProjectCard = ({
     image,
     tags = [],
     orientation = 'vertical',
-    actionLabel = "Ver Proyecto",
+    actionLabel = "View Project",
     projectUrl,
     linkTarget = '_self',
     onViewProject,
@@ -50,39 +50,40 @@ export const ProjectCard = ({
 
     return (
         <div className={`
-      /* 1. CLASE IDENTIFICADORA */
+      /* 1. IDENTIFIER CLASS */
       ds-card
       
-      /* 2. ESTRUCTURA BASE */
+      /* 2. BASE STRUCTURE */
       group w-full rounded-xl overflow-hidden border transition-all duration-300
+      /* Switch layout based on orientation prop */
       ${isHorizontal ? 'flex flex-col md:flex-row' : 'flex flex-col'}
       
-      /* 3. MODO CLARO (Por defecto) */
-      /* Fondo blanco, borde gris, sombra negra al hover */
+      /* 3. LIGHT MODE (Default) */
+      /* White background, gray border, black shadow on hover */
       bg-white border-gray-100 shadow-lg hover:shadow-xl hover:-translate-y-1
       
-      /* 4. MODO OSCURO (Overrides) */
-      /* Fondo oscuro y borde */
+      /* 4. DARK MODE (Overrides) */
+      /* Dark background and border */
       dark:bg-gray-800 dark:border-gray-700
       
-      /* IMPORTANTE: */
-     /* 1. Quitamos la sombra base */
+      /* IMPORTANT: */
+      /* 1. Remove base shadow */
       dark:shadow-none 
       
-      /* 2. Quitamos la sombra negra del hover */
+      /* 2. Remove black hover shadow */
       dark:hover:shadow-none
       
-      /* 3. APLICAMOS LA SOMBRA BLANCA PORTABLE (Sin config externa) */
-      /* Sintaxis: shadow-[X_Y_Blur_Spread_Color] */
-      /* Usamos ! para forzar la prioridad */
-      /* 0 (X) | 20px (Y, cae hacia abajo) | 25px (Blur) | -5px (Spread) | Color */
+      /* 3. APPLY PORTABLE WHITE SHADOW (No external config) */
+      /* Syntax: shadow-[X_Y_Blur_Spread_Color] */
+      /* Use ! to force priority */
+      /* 0 (X) | 20px (Y, falls down) | 25px (Blur) | -5px (Spread) | Color */
       dark:hover:!shadow-[0_20px_25px_-5px_rgba(255,255,255,0.30)]
       
-      /* 5. INYECCIONES EXTERNAS */
+      /* 5. EXTERNAL INJECTIONS */
       ${customStyles.container || ''} 
       ${className}
     `}>
-            {/* Imagen */}
+            {/* Image */}
             <div className={`
         ds-card-image overflow-hidden relative
         ${isHorizontal ? 'w-full h-48 md:w-2/5 md:h-auto' : 'w-full h-48'} 
@@ -93,11 +94,11 @@ export const ProjectCard = ({
                     alt={title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                {/* Capa oscura para que la imagen no brille tanto de noche */}
+                {/* Dark overlay so the image isn't too bright at night */}
                 <div className="absolute inset-0 bg-transparent dark:bg-black/20 transition-colors pointer-events-none" />
             </div>
 
-            {/* Contenido */}
+            {/* Content */}
             <div className={`ds-card-content p-6 flex flex-col justify-between flex-1 ${customStyles.content || ''}`}>
                 <div>
                     <h3 className={`
@@ -125,8 +126,8 @@ export const ProjectCard = ({
                     <Button
                         label={actionLabel}
                         onClick={onViewProject}
-                        href={projectUrl}      // El botón decidirá si ser <a> o <button>
-                        target={linkTarget}      // Opcional: abrir en pestaña nueva
+                        href={projectUrl}      // The button will decide whether to be <a> or <button>
+                        target={linkTarget}      // Optional: open in new tab
                         size="medium"
                         variant="primary"
                     />
