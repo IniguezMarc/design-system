@@ -1,18 +1,32 @@
 {
-  "name": "design-system",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@iniguezmarc/design-system",
+  "private": false,
+  "version": "0.0.1",
   "type": "module",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
+    "type-check": "tsc -b",
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "deploy-storybook": "gh-pages -d storybook-static"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
@@ -44,6 +58,7 @@
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-plugin-dts": "^4.5.4"
   }
 }

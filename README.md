@@ -44,7 +44,32 @@ To clone and run this project on your local machine:
     ```bash
     npm run storybook
     ```
+    npm run storybook
+    ```
     Visit `http://localhost:6006` to view the library.
+
+## 📦 Usage as a Package
+
+1.  **Install the package:**
+    ```bash
+    npm install @iniguezmarc/design-system
+    ```
+
+2.  **Import styles:**
+    Import the CSS in your main entry file (e.g., `main.tsx` or `App.tsx`):
+    ```tsx
+    import '@iniguezmarc/design-system/dist/style.css'; // Adjust path if needed based on build output
+    ```
+    *Note: If `style.css` is not generated, ensure Tailwind is configured to scan node_modules or exported correctly.*
+
+3.  **Use components:**
+    ```tsx
+    import { Button } from '@iniguezmarc/design-system';
+
+    function App() {
+      return <Button label="Click Me" />;
+    }
+    ```
 
 ---
 
