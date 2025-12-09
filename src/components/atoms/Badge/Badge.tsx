@@ -2,6 +2,7 @@ import React from 'react';
 
 export interface BadgeSlots {
     container?: string;
+    label?: string;
 }
 
 interface BadgeProps {
@@ -9,22 +10,48 @@ interface BadgeProps {
     variant?: 'primary' | 'secondary' | 'outline' | 'success';
     customStyles?: BadgeSlots;
     className?: string;
+
+    // Color Overrides
+    primaryColor?: string;
+    darkPrimaryColor?: string;
+
+    secondaryColor?: string;
+    darkSecondaryColor?: string;
+
+    outlineColor?: string;
+    darkOutlineColor?: string;
+
+    successColor?: string;
+    darkSuccessColor?: string;
 }
 
 export const Badge = ({
     label,
     variant = 'primary',
     customStyles = {},
-    className = ''
+    className = '',
+
+    // Default Colors
+    primaryColor = "bg-blue-100 text-blue-800",
+    darkPrimaryColor = "dark:bg-blue-900/50 dark:text-blue-200",
+
+    secondaryColor = "bg-gray-100 text-gray-800",
+    darkSecondaryColor = "dark:bg-gray-700 dark:text-gray-300",
+
+    outlineColor = "border border-gray-300 text-gray-600 bg-transparent",
+    darkOutlineColor = "dark:border-gray-600 dark:text-gray-400",
+
+    successColor = "bg-green-100 text-green-800",
+    darkSuccessColor = "dark:bg-green-900/50 dark:text-green-200",
 }: BadgeProps) => {
 
     const baseStyles = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors";
 
     const variants = {
-        primary: "bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-200",
-        secondary: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
-        outline: "border border-gray-300 text-gray-600 dark:border-gray-600 dark:text-gray-400 bg-transparent",
-        success: "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-200",
+        primary: `${primaryColor} ${darkPrimaryColor}`,
+        secondary: `${secondaryColor} ${darkSecondaryColor}`,
+        outline: `${outlineColor} ${darkOutlineColor}`,
+        success: `${successColor} ${darkSuccessColor}`,
     };
 
     return (
@@ -35,7 +62,9 @@ export const Badge = ({
       ${customStyles.container || ''}
       ${className}
     `}>
-            {label}
+            <span className={customStyles.label || ''}>
+                {label}
+            </span>
         </span>
     );
 };
