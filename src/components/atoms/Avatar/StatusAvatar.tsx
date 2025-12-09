@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BasicAvatar, type AvatarProps } from './BasicAvatar';
 
 export type AvatarStatus = 'online' | 'offline' | 'busy' | 'away';

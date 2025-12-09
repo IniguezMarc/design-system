@@ -1,11 +1,11 @@
-import React from 'react';
-import { Navbar, type NavbarLink } from '../../organisms/Navbar/Navbar';
+
+import { Navbar } from '../../organisms/Navbar/Navbar';
 import { Hero } from '../../organisms/Hero/Hero';
 import { ContentGrid, type GridItem } from '../../organisms/ContentGrid/ContentGrid';
 import { Footer } from '../../organisms/Footer/Footer';
 import { ProfileSection } from '../../organisms/ProfileSection/ProfileSection';
 
-import.meta.env.BASE_URL
+
 
 // --- MOCK DATA ---
 const MOCK_ITEMS: GridItem[] = [

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Avatar } from '../../atoms/Avatar/Avatar';
 import { Badge } from '../../atoms/Badge/Badge';
 

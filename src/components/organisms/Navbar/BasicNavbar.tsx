@@ -1,6 +1,8 @@
-import React from 'react';
+
 import { Button } from '../../atoms/Button/Button';
 import { ThemeToggle } from '../../atoms/ThemeToggle/ThemeToggle';
+import { type MouseEvent } from 'react';
+
 
 export interface NavbarLink {
     label: string;
@@ -31,7 +33,7 @@ export interface BasicNavbarProps {
     isOpen?: boolean;
     isScrolled?: boolean;
     onToggleMenu?: () => void;
-    onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+    onLinkClick?: (e: MouseEvent<HTMLAnchorElement>, href: string) => void;
     onLogoClick?: () => void;
 }
 

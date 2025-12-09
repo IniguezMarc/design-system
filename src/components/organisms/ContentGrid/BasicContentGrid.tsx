@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BasicProjectCard } from '../../molecules/ProjectCard/BasicProjectCard';
 
 export interface GridItem {

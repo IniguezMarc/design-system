@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BasicButton, type ButtonProps } from './BasicButton';
 
 export const ThreeDButton = (props: ButtonProps) => {

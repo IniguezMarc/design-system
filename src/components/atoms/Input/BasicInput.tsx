@@ -1,4 +1,7 @@
-import React from 'react';
+
+
+import { forwardRef, type InputHTMLAttributes, type ReactNode } from 'react';
+
 
 export interface InputSlots {
     container?: string;
@@ -8,12 +11,12 @@ export interface InputSlots {
     iconContainer?: string;
 }
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> { // Omit size if it conflicts, or just generic
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> { // Omit size if it conflicts, or just generic
     label?: string;
     error?: string;
     customStyles?: InputSlots;
-    startIcon?: React.ReactNode;
-    endIcon?: React.ReactNode;
+    startIcon?: ReactNode;
+    endIcon?: ReactNode;
 
     // Color Overrides
     labelColor?: string;
@@ -37,7 +40,7 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
     darkErrorTextColor?: string;
 }
 
-export const BasicInput = React.forwardRef<HTMLInputElement, InputProps>(({
+export const BasicInput = forwardRef<HTMLInputElement, InputProps>(({
     label,
     error,
     className,
