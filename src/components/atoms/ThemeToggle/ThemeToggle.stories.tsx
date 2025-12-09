@@ -2,11 +2,23 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ThemeToggle } from './ThemeToggle';
 
 const meta: Meta<typeof ThemeToggle> = {
-    title: 'Atoms/ThemeToggle',
+    title: 'Atoms/ThemeToggle/ThemeToggle',
     component: ThemeToggle,
-    tags: ['autodocs'],
-    parameters: { layout: 'centered' },
+    tags: [],
+    parameters: {
+        layout: 'centered',
+        docs: {
+            description: {
+                component: 'The smart container for the theme toggle. It handles system preference detection and local storage persistence. Use the `isDark` control in Storybook to override the internal state for visual testing, otherwise it defaults to the system/local storage state.'
+            }
+        }
+    },
     argTypes: {
+        isDark: {
+            control: 'boolean',
+            description: 'Override internal state (for testing)',
+            table: { category: 'State' }
+        },
         sunImage: { control: 'text', description: 'Sun Image URL' },
         moonImage: { control: 'text', description: 'Moon Image URL' },
         imageFit: {
@@ -16,14 +28,11 @@ const meta: Meta<typeof ThemeToggle> = {
         },
         iconSun: { control: 'text' },
         iconMoon: { control: 'text' },
-
-        // 👇 Style object configuration
         customStyles: { control: 'object', table: { category: 'Styles' } },
-        className: { table: { disable: true } },
     },
     decorators: [
-        (Story) => (
-            <div className="p-8 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 transition-colors duration-300">
+        (Story, context) => (
+            <div className={`p-8 rounded-xl border border-gray-200 dark:border-gray-700 transition-colors duration-300 bg-white dark:bg-gray-900 ${context.args.isDark ? 'dark' : ''}`}>
                 <Story />
             </div>
         ),
@@ -36,11 +45,10 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
     tags: ['!autodocs'],
     args: {
-        iconSun: undefined,
-        iconMoon: undefined,
+        // We leave isDark undefined so it uses internal state by default, 
+        // but user can toggle it in controls to "force" a state.
+        isDark: undefined,
         imageFit: 'contain',
-
-        // 👇 Initialize empty to be editable
         customStyles: {
             container: '',
             icon: ''
@@ -48,13 +56,26 @@ export const Playground: Story = {
     },
 };
 
-// Example: Large Square Button with injected styles
-export const CustomLook: Story = {
+export const CustomIcons: Story = {
     args: {
         ...Playground.args,
-        customStyles: {
-            container: '!rounded-lg !p-4 !bg-purple-100 dark:!bg-purple-900 !text-purple-600 dark:!text-purple-300',
-            icon: '!w-8 !h-8'
+        isDark: false, // Force light mode to see the Sun initially
+        iconSun: (
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+            </svg>
+        ),
+        iconMoon: (
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-blue-300" viewBox="0 0 24 24" fill="currentColor">
+                <path fillRule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clipRule="evenodd" />
+            </svg>
+        )
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: 'Demonstrates passing custom ReactNodes for `iconSun` and `iconMoon`. You can also use `sunImage` and `moonImage` for URLs.'
+            }
         }
     }
 };

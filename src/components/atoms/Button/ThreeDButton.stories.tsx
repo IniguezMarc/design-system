@@ -1,21 +1,46 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
+import { fn } from '@storybook/test';
+import { ThreeDButton } from './ThreeDButton';
+import { BasicButton } from './BasicButton';
 
-type ButtonStory = React.ComponentProps<typeof Button> & { isDark?: boolean; animation?: string };
+// Use BasicButton props type as ThreeDButton passes them through
+type ButtonStory = React.ComponentProps<typeof BasicButton> & { isDark?: boolean };
 
 const meta: Meta<ButtonStory> = {
-    title: 'Atoms/Button',
-    component: Button,
+    title: 'Atoms/Button/ThreeDButton',
+    component: ThreeDButton,
     tags: ['autodocs'],
-    parameters: { layout: 'centered' },
+    parameters: {
+        layout: 'centered',
+        docs: {
+            source: {
+                type: 'dynamic',
+                excludeDecorators: true,
+            },
+        },
+    },
+    decorators: [
+        (Story, context) => (
+            <div className={`
+                ${context.args.isDark ? 'dark bg-gray-950' : 'bg-gray-100'} 
+                p-12 min-w-[300px] flex justify-center items-center rounded-xl transition-colors duration-300
+            `}>
+                <Story />
+            </div>
+        ),
+    ],
     argTypes: {
         target: {
             control: 'radio',
             options: ['_self', '_blank'],
             description: 'Link behavior'
         },
-        className: { table: { disable: true } },
+        className: {
+            control: 'text',
+            description: 'Add custom animation or utility classes',
+            table: { category: 'Animation', type: { summary: 'string' } }
+        },
         variant: {
             control: 'select',
             options: ['primary', 'secondary', 'outline'],
@@ -27,11 +52,7 @@ const meta: Meta<ButtonStory> = {
             description: 'Toggles dark mode',
             table: { category: 'Controls' },
         },
-        animation: {
-            control: 'text',
-            description: 'Add custom animation classes (e.g., hover:scale-105)',
-            table: { category: 'Animation' }
-        },
+
 
         // Primary Colors
         primaryColor: { control: 'text', description: 'Primary bg class', table: { category: 'Primary Colors' } },
@@ -45,7 +66,6 @@ const meta: Meta<ButtonStory> = {
         darkSecondaryColor: { control: 'text', description: 'Dark secondary bg class', table: { category: 'Secondary Colors' } },
         darkSecondaryHoverColor: { control: 'text', description: 'Dark secondary hover class', table: { category: 'Secondary Colors' } },
 
-
         // Outline Colors
         outlineColor: { control: 'text', description: 'Outline text/border class', table: { category: 'Outline Colors' } },
         outlineHoverColor: { control: 'text', description: 'Outline hover class', table: { category: 'Outline Colors' } },
@@ -58,33 +78,24 @@ const meta: Meta<ButtonStory> = {
             table: { category: 'Styles' }
         },
     },
-    render: ({ isDark, animation, ...args }) => (
-        <div className={`
-      ${isDark ? 'dark bg-gray-950' : 'bg-gray-100'} 
-      p-12 min-w-[300px] flex justify-center items-center rounded-xl transition-colors duration-300
-    `}>
-            <Button className={animation} {...args} />
-        </div>
-    ),
 };
 
 export default meta;
 type Story = StoryObj<ButtonStory>;
 
 export const Playground: Story = {
+    tags: ['!autodocs'],
     args: {
-        label: 'Button Action',
-        href: '',
-        target: '_self',
-        size: 'medium',
+        onClick: fn(),
+        label: '3D 8-Bit Button',
         variant: 'primary',
         isDark: false,
-        animation: '',
+        className: '',
         customStyles: { container: '', label: '' },
 
-        // Default Colors (matching Button.tsx defaults)
-        primaryColor: 'bg-blue-600',
-        primaryHoverColor: 'hover:bg-blue-700',
+        // Default Colors
+        primaryColor: 'bg-indigo-500',
+        primaryHoverColor: 'hover:bg-indigo-600',
         darkPrimaryColor: 'dark:bg-blue-600',
         darkPrimaryHoverColor: 'dark:hover:bg-blue-500',
 
@@ -92,7 +103,6 @@ export const Playground: Story = {
         secondaryHoverColor: 'hover:bg-gray-200',
         darkSecondaryColor: 'dark:bg-gray-800',
         darkSecondaryHoverColor: 'dark:hover:bg-gray-700',
-
 
         outlineColor: 'text-blue-600 border-blue-600',
         outlineHoverColor: 'hover:bg-blue-50',

@@ -16,7 +16,7 @@ export interface ProjectCardSlots {
     onViewProject?: () => void;
 }
 
-interface ProjectCardProps {
+export interface BasicProjectCardProps {
     title: string;
     description: string;
     image: string;
@@ -32,7 +32,7 @@ interface ProjectCardProps {
     className?: string;
 }
 
-export const ProjectCard = ({
+export const BasicProjectCard = ({
     title,
     description,
     image,
@@ -44,7 +44,7 @@ export const ProjectCard = ({
     onViewProject,
     customStyles = {},
     className = ''
-}: ProjectCardProps) => {
+}: BasicProjectCardProps) => {
 
     const isHorizontal = orientation === 'horizontal';
 

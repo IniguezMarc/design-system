@@ -1,14 +1,33 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Input } from './Input';
+import { BasicInput } from './BasicInput';
+import { fn } from '@storybook/test';
 
-type InputStory = React.ComponentProps<typeof Input> & { isDark?: boolean };
+type InputStory = React.ComponentProps<typeof BasicInput> & { isDark?: boolean };
 
 const meta: Meta<InputStory> = {
-    title: 'Atoms/Input',
-    component: Input,
-    tags: ['autodocs'],
-    parameters: { layout: 'centered' },
+    title: 'Atoms/Input/BasicInput',
+    component: BasicInput,
+    // tags: ['autodocs'], // Disabled per user request
+    parameters: {
+        layout: 'centered',
+        docs: {
+            source: {
+                type: 'dynamic',
+                excludeDecorators: true,
+            },
+        },
+    },
+    decorators: [
+        (Story, context) => (
+            <div className={`
+                ${context.args.isDark ? 'dark bg-gray-950' : 'bg-gray-100'} 
+                p-12 min-w-[400px] flex justify-center items-center rounded-xl transition-colors duration-300
+            `}>
+                <Story />
+            </div>
+        ),
+    ],
     argTypes: {
         label: {
             control: 'text',
@@ -39,12 +58,18 @@ const meta: Meta<InputStory> = {
             description: 'Toggles dark mode',
             table: { category: 'Controls' },
         },
+        startIcon: { table: { disable: true } },
+        endIcon: { table: { disable: true } },
         customStyles: {
             control: 'object',
             description: 'Custom styles for slots',
             table: { category: 'Styles' }
         },
-        className: { table: { disable: true } },
+        className: {
+            control: 'text',
+            description: 'Add custom animation or utility classes',
+            table: { category: 'Animation', type: { summary: 'string' } }
+        },
 
         // Label Colors
         labelColor: { control: 'text', description: 'Label text color', table: { category: 'Label Colors' } },
@@ -64,22 +89,14 @@ const meta: Meta<InputStory> = {
         darkErrorBorderColor: { control: 'text', description: 'Dark error border color', table: { category: 'Validation Colors' } },
         errorTextColor: { control: 'text', description: 'Error text color', table: { category: 'Validation Colors' } },
         darkErrorTextColor: { control: 'text', description: 'Dark error text color', table: { category: 'Validation Colors' } },
-
     },
-    render: ({ isDark, ...args }) => (
-        <div className={`
-      ${isDark ? 'dark bg-gray-950' : 'bg-gray-100'} 
-      p-12 min-w-[400px] flex justify-center items-center rounded-xl transition-colors duration-300
-    `}>
-            <Input {...args} />
-        </div>
-    ),
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<InputStory>;
 
 export const Playground: Story = {
+    tags: ['!autodocs'],
     args: {
         label: 'Email Address',
         placeholder: 'example@domain.com',
@@ -87,7 +104,11 @@ export const Playground: Story = {
         error: '',
         disabled: false,
         isDark: false,
-        customStyles: { container: '', label: '', input: '', error: '' },
+        className: '',
+        customStyles: { container: '', label: '', input: '', error: '', iconContainer: '' },
+        onChange: fn(),
+        onFocus: fn(),
+        onBlur: fn(),
 
         // Default Colors
         labelColor: "text-gray-700",
@@ -110,4 +131,17 @@ export const Playground: Story = {
         errorTextColor: "text-red-500",
         darkErrorTextColor: "dark:text-red-400",
     },
+};
+
+export const WithIcon: Story = {
+    args: {
+        ...Playground.args,
+        label: 'Search',
+        placeholder: 'Search for items...',
+        startIcon: (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+            </svg>
+        )
+    }
 };

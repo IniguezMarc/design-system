@@ -27,19 +27,47 @@ import '@iniguezmarc/design-system/dist/style.css';
 Import components directly from the package:
 
 ```tsx
-import { Button, ProjectCard } from '@iniguezmarc/design-system';
+import { Navbar, Hero, ContentGrid, Footer } from '@iniguezmarc/design-system';
 
 function App() {
-  return (
-    <div className="p-10">
-      <Button label="Click Me" variant="primary" />
+  const projects = [
+    {
+      id: '1',
+      title: 'E-commerce App',
+      description: 'A modern shopping platform built with React.',
+      image: 'https://via.placeholder.com/600x400',
+      tags: ['React', 'TypeScript'],
+      url: 'https://github.com/my-user/project-1'
+    }
+  ];
 
-      <ProjectCard
-         title="My Project"
-         description="A cool project using the design system."
-         tags={['React', 'TypeScript']}
-         image="https://via.placeholder.com/300"
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <Navbar 
+        logo="My Portfolio" 
+        links={[{ label: 'Home', href: '#' }, { label: 'Projects', href: '#projects' }]} 
       />
+
+      <main>
+        <Hero
+          title="Building Digital Experiences"
+          subtitle="Full Stack Developer & UI Designer"
+          actions={[
+            { label: "View Work", variant: "primary", onClick: () => console.log('Scroll') }
+          ]}
+        />
+
+        <div id="projects">
+          <ContentGrid
+            title="Latest Projects"
+            items={projects}
+            layout="grid"
+            itemButtonLabel="View Case Study"
+          />
+        </div>
+      </main>
+
+      <Footer copyrightOwner="Marc Iñiguez" />
     </div>
   );
 }

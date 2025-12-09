@@ -1,22 +1,49 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Badge } from './Badge';
+import { fn } from '@storybook/test';
+import { RemovableBadge } from './RemovableBadge';
+import { BasicBadge } from './BasicBadge';
 
-type BadgeStory = React.ComponentProps<typeof Badge> & { isDark?: boolean };
+// Use BasicBadge props where possible
+type BadgeStory = React.ComponentProps<typeof BasicBadge> & { isDark?: boolean; onRemove?: () => void };
 
 const meta: Meta<BadgeStory> = {
-    title: 'Atoms/Badge',
-    component: Badge,
+    title: 'Atoms/Badge/RemovableBadge',
+    component: RemovableBadge,
     tags: ['autodocs'],
-    parameters: { layout: 'centered' },
+    parameters: {
+        layout: 'centered',
+        docs: {
+            source: {
+                type: 'dynamic',
+                excludeDecorators: true,
+            },
+        },
+    },
+    decorators: [
+        (Story, context) => (
+            <div className={`
+                ${context.args.isDark ? 'dark bg-gray-950' : 'bg-gray-100'} 
+                p-12 min-w-[300px] flex justify-center items-center rounded-xl transition-colors duration-300
+            `}>
+                <Story />
+            </div>
+        ),
+    ],
     argTypes: {
-        className: { table: { disable: true } },
+        className: {
+            control: 'text',
+            description: 'Add custom animation or utility classes',
+            table: { category: 'Animation', type: { summary: 'string' } }
+        },
         customStyles: { control: 'object', table: { category: 'Styles' } },
         isDark: {
             control: 'boolean',
             description: 'Toggles dark mode',
             table: { category: 'Controls' },
         },
+        onRemove: { table: { disable: true } },
+        endIcon: { table: { disable: true } },
 
         // Primary Colors
         primaryColor: { control: 'text', description: 'Primary colors', table: { category: 'Primary Colors' } },
@@ -34,25 +61,20 @@ const meta: Meta<BadgeStory> = {
         successColor: { control: 'text', description: 'Success colors', table: { category: 'Success Colors' } },
         darkSuccessColor: { control: 'text', description: 'Dark success colors', table: { category: 'Success Colors' } },
     },
-    render: ({ isDark, ...args }) => (
-        <div className={`
-      ${isDark ? 'dark bg-gray-950' : 'bg-gray-100'} 
-      p-12 min-w-[300px] flex justify-center items-center rounded-xl transition-colors duration-300
-    `}>
-            <Badge {...args} />
-        </div>
-    ),
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<BadgeStory>;
 
 export const Playground: Story = {
+    tags: ['!autodocs'],
     args: {
-        label: 'Technology',
+        label: 'Filter: React',
         variant: 'primary',
         customStyles: { container: '', label: '' },
         isDark: false,
+        className: '',
+        onRemove: fn(),
 
         // Default Colors
         primaryColor: 'bg-blue-100 text-blue-800',
