@@ -1,0 +1,57 @@
+name: Deploy Storybook to GitHub Pages
+
+# SE ACTIVA: Cada vez que haces push a la rama 'main'
+on:
+  push:
+    branches: ["main"]
+  # Permite ejecutarlo manualmente desde la pestaña Actions si quieres
+  workflow_dispatch:
+
+# Permisos necesarios para que el robot toque la configuración de Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Solo permitimos un despliegue a la vez (para no liarla si haces 2 pushes rápidos)
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # TRABAJO 1: CONSTRUIR LA WEB (BUILD)
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Construir Storybook
+        run: npm run build-storybook
+        # Esto genera la carpeta 'storybook-static'
+
+      - name: Preparar artefacto para Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './storybook-static' # La carpeta que acabamos de crear
+
+  # TRABAJO 2: DESPLEGAR (DEPLOY)
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build # Espera a que termine el build
+    steps:
+      - name: Desplegar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
