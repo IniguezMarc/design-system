@@ -81,6 +81,7 @@ import React from 'react';
 export interface TagSlots {
     container?: string;
     text?: string;
+    // ...
 }
 
 export interface TagProps {
@@ -139,3 +140,41 @@ export const Default: StoryObj<typeof BasicTag> = {
     }
 };
 ```
+
+## 5. AI Generation Prompt
+
+Use the following detailed prompt to generate a new component that adheres to all project standards.
+
+> **Prompt:**
+>
+> You are an expert React developer working on a Design System. I need a new component called `[ComponentName]` of type `[Atom/Molecule/Organism]`.
+>
+> **Context & Tech Stack:**
+> -   **Framework**: React (TypeScript)
+> -   **Styling**: Tailwind CSS (Utility-first)
+> -   **Documentation**: Storybook 8
+> -   **Methodology**: Atomic Design
+>
+> Please implement it following these strict rules:
+>
+> 1.  **File Structure**:
+>     -   `Basic[ComponentName].tsx`: The core component.
+>     -   `[ComponentName].tsx`: A simplified wrapper export (re-export `Basic[ComponentName]` as `[ComponentName]`).
+>     -   `Basic[ComponentName].stories.tsx`: The Storybook file.
+>
+> 2.  **Architecture (The "Basic" Pattern)**:
+>     -   Use strict TypeScript interfaces.
+>     -   **Slots**: Expose a `customStyles` prop (interface `[ComponentName]Slots`) for granular internal element styling (e.g., `{ container, text, icon }`).
+>     -   **Colors**: Do NOT hardcode colors (e.g., `bg-blue-500`). Instead, accept props like `primaryColor`, `borderColor` with default values (e.g., `primaryColor = "bg-blue-500"`).
+>     -   **Dark Mode**: Ensure every color prop has a `dark:` counterpart in its default value.
+>     -   **Images**: For images, use `loading="lazy"` and `decoding="async"` (optional via `loading` prop).
+>
+> 3.  **Storybook Standards**:
+>     -   **Title**: `[Type]/[ComponentName]/Basic[ComponentName]`
+>     -   **Tags**: Set `tags: []` to disable automatic docs generation.
+>     -   **Stories**: Create a `Default` story for the main interactive example.
+>     -   **Docs**: Add `tags: ['!autodocs']` to the `Default` story definition (redundant but good practice).
+>     -   **Controls**: Use `argTypes` to categorize props (e.g., `table: { category: 'Colors' }`).
+>     -   **Decorator**: Wrap the story in a `div` that toggles `dark` class based on an `isDark` arg.
+>
+> Please provide the code for all three files.

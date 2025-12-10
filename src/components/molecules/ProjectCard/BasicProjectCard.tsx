@@ -92,6 +92,8 @@ export const BasicProjectCard = ({
                 <img
                     src={image}
                     alt={title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 {/* Dark overlay so the image isn't too bright at night */}

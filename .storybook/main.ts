@@ -6,14 +6,7 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    {
-      name: '@storybook/addon-storysource',
-      options: {
-        loaderOptions: {
-          injectStoryParameters: false,
-        },
-      },
-    },
+
   ],
   framework: {
     name: "@storybook/react-vite",

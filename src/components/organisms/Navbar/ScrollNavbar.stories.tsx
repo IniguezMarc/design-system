@@ -12,7 +12,7 @@ type ScrollNavbarStory = React.ComponentProps<typeof ScrollNavbar> & {
 const meta: Meta<ScrollNavbarStory> = {
     title: 'Organisms/Navbar/ScrollNavbar',
     component: ScrollNavbar,
-    tags: [], // Hidden docs
+    tags: ['autodocs'],
     parameters: {
         layout: 'fullscreen',
     },
@@ -52,6 +52,7 @@ export default meta;
 type Story = StoryObj<ScrollNavbarStory>;
 
 export const Default: Story = {
+    tags: ['!autodocs'],
     render: ({ isOpen, isScrolled, onToggleMenu, onLinkClick, onLogoClick, ...args }) => (
         <div>
             {/* Delegate logic to the Wrapper for a clean simple story */}

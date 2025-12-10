@@ -18,6 +18,8 @@ export interface AvatarProps {
     darkBorderColor?: string;
     backgroundColor?: string;
     darkBackgroundColor?: string;
+    /** Image loading strategy */
+    loading?: "eager" | "lazy";
 }
 
 export const BasicAvatar = ({
@@ -31,6 +33,7 @@ export const BasicAvatar = ({
     darkBorderColor = 'dark:border-gray-700',
     backgroundColor = 'bg-gray-100',
     darkBackgroundColor = 'dark:bg-gray-800',
+    loading = "lazy",
 }: AvatarProps) => {
 
     const sizeClasses = {
@@ -57,6 +60,8 @@ export const BasicAvatar = ({
             <img
                 src={src}
                 alt={alt}
+                loading={loading}
+                decoding="async"
                 className={`
                     w-full h-full 
                     ${fitClass}

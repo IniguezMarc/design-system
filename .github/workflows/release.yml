@@ -1,0 +1,48 @@
+name: Publish Package to NPM & GitHub
+
+# ¿Cuándo se activa el robot?
+# Cada vez que creas una "Release" en la web de GitHub
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # Permiso para escribir en GitHub Packages
+
+    steps:
+      # 1. Descargar el código
+      - uses: actions/checkout@v4
+
+      # 2. Instalar Node.js (Configurado para NPM)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      # 3. Instalar dependencias y compilar
+      - run: npm ci
+      - run: npm run build
+
+      # 4. PUBLICAR EN NPM (Usa el secreto que guardaste)
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # -----------------------------------------------------
+
+      # 5. Cambiar el chip a GitHub Packages
+      # (Volvemos a configurar Node pero ahora apuntando a GitHub)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+
+      # 6. PUBLICAR EN GITHUB PACKAGES
+      # (Usa el token automático de GitHub)
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -11,7 +11,7 @@ type BasicNavbarStory = React.ComponentProps<typeof BasicNavbar> & {
 const meta: Meta<BasicNavbarStory> = {
     title: 'Organisms/Navbar/BasicNavbar',
     component: BasicNavbar,
-    tags: ['autodocs'],
+    tags: [],
     parameters: {
         layout: 'fullscreen',
     },
