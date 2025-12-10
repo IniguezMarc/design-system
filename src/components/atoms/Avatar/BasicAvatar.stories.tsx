@@ -64,7 +64,7 @@ const meta: Meta<AvatarStory> = {
 export default meta;
 type Story = StoryObj<AvatarStory>;
 
-export const Playground: Story = {
+export const Default: Story = {
     tags: ['!autodocs'],
     args: {
         src: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=500&q=80',

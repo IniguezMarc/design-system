@@ -1,8 +1,8 @@
+
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { fn } from '@storybook/test';
 import { BasicNavbar } from './BasicNavbar';
-import { Navbar } from './Navbar';
 
 type BasicNavbarStory = React.ComponentProps<typeof BasicNavbar> & {
     isDark?: boolean;
@@ -11,7 +11,7 @@ type BasicNavbarStory = React.ComponentProps<typeof BasicNavbar> & {
 const meta: Meta<BasicNavbarStory> = {
     title: 'Organisms/Navbar/BasicNavbar',
     component: BasicNavbar,
-    tags: [], // Hidden docs
+    tags: ['autodocs'],
     parameters: {
         layout: 'fullscreen',
     },
@@ -26,9 +26,7 @@ const meta: Meta<BasicNavbarStory> = {
             description: 'Custom implementation styles (slots)',
             table: { category: 'Styles' }
         },
-        // State controls for testing UI states without interaction
         isOpen: { control: 'boolean', description: 'Force mobile menu open' },
-        isScrolled: { control: 'boolean', description: 'Force scrolled state (glass effect)' },
         actions: { control: 'object' },
     },
     decorators: [
@@ -38,9 +36,8 @@ const meta: Meta<BasicNavbarStory> = {
                 min-h-screen transition-colors duration-300
             `}>
                 <Story />
-                {/* Visualizer for scrollable area */}
-                <div className="pt-24 p-8 text-center text-gray-400">
-                    Scroll or toggle states to see changes
+                <div className="p-8 text-center text-gray-400">
+                    Static Navbar Content Below
                 </div>
             </div>
         ),
@@ -51,39 +48,21 @@ export default meta;
 type Story = StoryObj<BasicNavbarStory>;
 
 export const Default: Story = {
-    render: ({ isOpen, isScrolled, onToggleMenu, onLinkClick, onLogoClick, ...args }) => (
-        <div>
-            {/* Delegate logic to the Wrapper for a clean simple story */}
-            <Navbar {...args} />
-
-            {/* Mock Content Sections for Navigation */}
-            <div id="home" className="h-screen bg-blue-50 flex items-center justify-center text-3xl font-bold text-blue-300">
-                Home Section (Top)
-            </div>
-            <div id="about" className="h-screen bg-white flex items-center justify-center text-3xl font-bold text-gray-300">
-                About Section (Scroll Target)
-            </div>
-            <div id="projects" className="h-screen bg-gray-100 flex items-center justify-center text-3xl font-bold text-gray-400">
-                Projects Section (Scroll Target)
-            </div>
-        </div>
-    ),
+    tags: ['!autodocs'],
     args: {
         logo: 'Marc.Design',
         isLogoImage: false,
         links: [
-            { label: 'Home', href: '#home', active: true },
-            { label: 'About', href: '#about' },
-            { label: 'Projects', href: '#projects' },
+            { label: 'Home', href: '#', active: true },
+            { label: 'About', href: '#' },
+            { label: 'Projects', href: '#' },
         ],
         actions: [
             { label: 'Contact', variant: 'primary', onClick: () => { } },
         ],
         isDark: false,
         customStyles: {},
-        // These are required by typescript for BasicNavbarStory, but unused in render because we use Navbar
         isOpen: false,
-        isScrolled: false,
         onToggleMenu: fn(),
         onLinkClick: fn(),
         onLogoClick: fn(),

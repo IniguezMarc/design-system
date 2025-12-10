@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { BasicNavbar, type BasicNavbarProps, type NavbarLink, type NavbarAction, type NavbarSlots } from './BasicNavbar';
+import { ScrollNavbar, type ScrollNavbarProps, type NavbarLink, type NavbarAction, type NavbarSlots } from './ScrollNavbar';
 
-export interface NavbarProps extends Omit<BasicNavbarProps, 'isOpen' | 'isScrolled' | 'onToggleMenu' | 'onLinkClick' | 'onLogoClick'> {
+export interface NavbarProps extends Omit<ScrollNavbarProps, 'isOpen' | 'isScrolled' | 'onToggleMenu' | 'onLinkClick' | 'onLogoClick'> {
     // Wrapper can optionally override these if needed, but primarily manages them
 }
 
@@ -31,7 +31,7 @@ export const Navbar = (props: NavbarProps) => {
     };
 
     return (
-        <BasicNavbar
+        <ScrollNavbar
             {...props}
             isOpen={isOpen}
             isScrolled={scrolled}

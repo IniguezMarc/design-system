@@ -83,7 +83,7 @@ const meta: Meta<ButtonStory> = {
 export default meta;
 type Story = StoryObj<ButtonStory>;
 
-export const Playground: Story = {
+export const Default: Story = {
     tags: ['!autodocs'],
     args: {
         onClick: fn(),

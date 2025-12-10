@@ -66,7 +66,7 @@ const meta: Meta<BadgeStory> = {
 export default meta;
 type Story = StoryObj<BadgeStory>;
 
-export const Playground: Story = {
+export const Default: Story = {
     tags: ['!autodocs'],
     args: {
         label: 'Filter: React',

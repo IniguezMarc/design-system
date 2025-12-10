@@ -21,8 +21,8 @@ Navigate to `src/components/[level]/[ComponentName]/` and create:
 1.  **`Basic[ComponentName].tsx`**: The CORE "super-component". Contains all logic, slots, and color overrides.
 2.  **`[VariantName][ComponentName].tsx`** (Optional): A distinct variation that presets props on the Basic component (e.g., `ThreeDButton.tsx`).
 3.  **`[ComponentName].tsx`**: The standard export. Usually references `Basic[ComponentName]` or the main variant.
-4.  **`Basic[ComponentName].stories.tsx`**: Playground for the core component.
-5.  **`[VariantName][ComponentName].stories.tsx`**: Playground for the variation.
+4.  **`Basic[ComponentName].stories.tsx`**: Default story for the core component.
+5.  **`[VariantName][ComponentName].stories.tsx`**: Default story for the variation.
 
 ## 3. Implementation Standards
 
@@ -69,7 +69,7 @@ Always include `dark:` utility classes for every color prop or default value.
 
 -   **Wrapper**: Use the standard dark-mode wrapper in `render`.
 -   **Controls**: Group props into categories (`PROPS`, `Colors`, `Styles`).
--   **Docs**: Hide interactive stories (`Playground`) from the "Docs" tab using `tags: ['!autodocs']` to keep the API reference clean.
+-   **Docs**: Hide interactive stories (`Default`) from the "Docs" tab using `tags: ['!autodocs']` to keep the component documentation clean.
 
 ## 4. Example: `Tag` Component
 
@@ -130,7 +130,7 @@ const meta: Meta<typeof BasicTag> = {
 };
 export default meta;
 
-export const Playground: StoryObj<typeof BasicTag> = {
+export const Default: StoryObj<typeof BasicTag> = {
     tags: ['!autodocs'],
     args: {
         label: 'React',

@@ -94,7 +94,7 @@ const meta: Meta<InputStory> = {
 export default meta;
 type Story = StoryObj<InputStory>;
 
-export const Playground: Story = {
+export const Default: Story = {
     tags: ['!autodocs'],
     args: {
         label: 'Password',

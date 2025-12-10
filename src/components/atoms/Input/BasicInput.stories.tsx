@@ -95,7 +95,7 @@ const meta: Meta<InputStory> = {
 export default meta;
 type Story = StoryObj<InputStory>;
 
-export const Playground: Story = {
+export const Default: Story = {
     tags: ['!autodocs'],
     args: {
         label: 'Email Address',
@@ -135,7 +135,7 @@ export const Playground: Story = {
 
 export const WithIcon: Story = {
     args: {
-        ...Playground.args,
+        ...Default.args,
         label: 'Search',
         placeholder: 'Search for items...',
         startIcon: (

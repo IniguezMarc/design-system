@@ -1,5 +1,5 @@
 
-import { Navbar } from '../../organisms/Navbar/Navbar';
+import { BasicNavbar } from '../../organisms/Navbar/BasicNavbar';
 import { Hero } from '../../organisms/Hero/Hero';
 import { ContentGrid, type GridItem } from '../../organisms/ContentGrid/ContentGrid';
 import { Footer } from '../../organisms/Footer/Footer';
@@ -71,7 +71,7 @@ export const PortfolioPage = () => {
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen font-sans transition-colors duration-300">
 
             {/* NAVBAR */}
-            <Navbar
+            <BasicNavbar
                 logo="Marc.Dev"
                 links={[]}
                 actions={[

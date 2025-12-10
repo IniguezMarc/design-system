@@ -42,7 +42,7 @@ const meta: Meta<typeof ThemeToggle> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = {
+export const Default: Story = {
     tags: ['!autodocs'],
     args: {
         // We leave isDark undefined so it uses internal state by default, 
@@ -58,7 +58,7 @@ export const Playground: Story = {
 
 export const CustomIcons: Story = {
     args: {
-        ...Playground.args,
+        ...Default.args,
         isDark: false, // Force light mode to see the Sun initially
         iconSun: (
             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-orange-500" viewBox="0 0 24 24" fill="currentColor">

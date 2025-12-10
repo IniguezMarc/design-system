@@ -23,7 +23,7 @@ export interface NavbarSlots {
     mobileMenu?: string;
 }
 
-export interface BasicNavbarProps {
+export interface ScrollNavbarProps {
     logo?: string;
     isLogoImage?: boolean;
     links: NavbarLink[];
@@ -31,27 +31,33 @@ export interface BasicNavbarProps {
     customStyles?: NavbarSlots;
     // Basic props for state
     isOpen?: boolean;
+    isScrolled?: boolean;
     onToggleMenu?: () => void;
     onLinkClick?: (e: MouseEvent<HTMLAnchorElement>, href: string) => void;
     onLogoClick?: () => void;
 }
 
-export const BasicNavbar = ({
+export const ScrollNavbar = ({
     logo = "Marc.Dev",
     isLogoImage = false,
     links,
     actions = [],
     customStyles = {},
     isOpen = false,
+    isScrolled = false,
     onToggleMenu,
     onLinkClick,
     onLogoClick
-}: BasicNavbarProps) => {
+}: ScrollNavbarProps) => {
 
     return (
         <nav
             className={`
-        w-full bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 transition-colors duration-300
+        fixed top-0 left-0 right-0 z-50 transition-all duration-300
+
+        ${isScrolled || isOpen
+                    ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800'
+                    : 'bg-transparent'}
         ${customStyles.container || ''}
       `}
         >
@@ -112,22 +118,16 @@ export const BasicNavbar = ({
                 </div>
             </div>
 
-            {/* Mobile Menu - Push content down or overlay? 
-                If BasicNavbar is static, maybe mobile menu should just expand the height (block flow) or overlay absolutely.
-                Usually mobile menus overlay. So absolute is fine if the parent is relative (which nav usually shouldn't enforce, but nav is the container).
-                Actually, 'nav' is the container. If 'nav' is static, 'absolute top-20' will be relative to the nearest positioned ancestor.
-                We should probably make 'nav' relative.
-            */}
             <div
                 className={`
-          md:hidden
+          md:hidden absolute top-20 left-0 w-full 
           bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 
-          transition-all duration-300 ease-in-out
-          ${isOpen ? 'opacity-100 max-h-screen py-4' : 'opacity-0 max-h-0 overflow-hidden'}
+          shadow-xl transition-all duration-300 ease-in-out origin-top 
+          ${isOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 h-0 overflow-hidden'}
           ${customStyles.mobileMenu || ''}
         `}
             >
-                <div className="px-6 space-y-4 flex flex-col items-center">
+                <div className="px-6 py-6 space-y-4 flex flex-col items-center">
                     {links.map((link) => (
                         <a
                             key={link.label}
