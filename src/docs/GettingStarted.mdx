@@ -16,11 +16,38 @@ npm install @iniguezmarc/design-system
 
 ## ⚙️ Setup
 
-### 1. Import Styles
-You **must** import the library's CSS in your application's entry point (e.g., `main.tsx`, `App.tsx`) to ensure components are styled correctly.
+### 1. Tailwind Configuration
+To use the library's design tokens and enable JIT styling for components, configure your `tailwind.config.js` to use our preset and scan the library's files:
 
-```tsx
-import '@iniguezmarc/design-system/dist/style.css';
+```js
+// tailwind.config.js
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  presets: [
+    require('@iniguezmarc/design-system/tailwind.preset')
+  ],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    // Ensure Tailwind scans the library's built files
+    "./node_modules/@iniguezmarc/design-system/dist/**/*.{js,ts,jsx,tsx}"
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+Ensure your project's main CSS file includes the Tailwind directives:
+```css
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 ```
 
 ### 2. Usage
