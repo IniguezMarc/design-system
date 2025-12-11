@@ -16,8 +16,12 @@ const meta: Meta<ButtonStory> = {
                 type: 'dynamic',
                 excludeDecorators: true,
             },
+            description: {
+                component: 'The core button component. Supports 3D, outline, and solid variants with full color and style customization.'
+            }
         },
     },
+    // ... rest of config
     decorators: [
         (Story, context) => (
             <div className={`
@@ -80,8 +84,7 @@ const meta: Meta<ButtonStory> = {
 export default meta;
 type Story = StoryObj<ButtonStory>;
 
-export const Default: Story = {
-    tags: ['!autodocs'],
+export const Playground: Story = {
     args: {
         onClick: fn(),
         label: 'Button Action',

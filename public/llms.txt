@@ -1,0 +1,42 @@
+# @iniguezmarc/design-system
+
+A modern, accessible, and type-safe React component library built with Atomic Design.
+
+## Tech Stack
+- **Framework**: React 18+ (TypeScript)
+- **Styling**: Tailwind CSS (Utility-first styling)
+- **Documentation**: Storybook 8
+- **Build**: Vite
+
+## Architecture
+- **Methodology**: Atomic Design (Atoms, Molecules, Organisms).
+- **Structure**: "Basic + Variation" pattern.
+  - `Basic[Component].tsx`: Core logic and styling (The "Super Component").
+  - `[Component].tsx`: Main export wrapper.
+  - `Basic[Component].stories.tsx`: Storybook configuration.
+
+## Component Standards
+1. **Slots**: All components accept a `customStyles` prop for granular overrides (e.g., `{ container, text }`).
+2. **Color Props**: NO hardcoded colors. Components accept generic color props with default values covering both Light and Dark modes.
+   - Example Props: `backgroundColor`, `textColor`, `borderColor`, `activeLinkColor`.
+   - Example Default: `backgroundColor="bg-white" darkBackgroundColor="dark:bg-gray-900"`.
+3. **Dark Mode**: Fully supported via Tailwind's `dark:` modifier in defaults and user overrides.
+
+## Documentation Standards
+- **Source**: Dynamic source code enabled.
+- **Stories**: Single primary story named `Playground`.
+- **Docs**: `autodocs` tag enabled for all components.
+
+## Component Library
+### Atoms
+- **Button, Input, Badge, Avatar, Title, Toggle**
+
+### Molecules
+- **ProjectCard**
+
+### Organisms
+- **Navbar**: Responsive, supports generic links and actions.
+- **Hero**: Flexible layout (image/no-image).
+- **Footer**: configurable links and social icons.
+- **ContentGrid**: Grid/List view for items.
+- **ProfileSection**: About Me section with avatar and skills.

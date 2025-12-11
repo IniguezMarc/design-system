@@ -25,6 +25,16 @@ export interface BasicProfileSectionProps {
     /** Style hooks */
     customStyles?: ProfileSectionSlots;
     id?: string; // For menu anchor (#about)
+
+    // --- Color Props ---
+    backgroundColor?: string;
+    darkBackgroundColor?: string;
+    borderColor?: string;
+    darkBorderColor?: string;
+    titleColor?: string;
+    darkTitleColor?: string;
+    textColor?: string;
+    darkTextColor?: string;
 }
 
 export const BasicProfileSection = ({
@@ -34,14 +44,26 @@ export const BasicProfileSection = ({
     skillsTitle = "Tech Stack",
     skills = [],
     customStyles = {},
-    id
+    id,
+
+    // Default Colors
+    backgroundColor = "bg-white",
+    darkBackgroundColor = "dark:bg-gray-900",
+    borderColor = "border-gray-100",
+    darkBorderColor = "dark:border-gray-800",
+    titleColor = "text-gray-900",
+    darkTitleColor = "dark:text-white",
+    textColor = "text-gray-600",
+    darkTextColor = "dark:text-gray-300",
 }: BasicProfileSectionProps) => {
     return (
         <section
             id={id}
             className={`
         py-20 transition-colors duration-300
-        bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800
+        border-y 
+        ${backgroundColor} ${darkBackgroundColor}
+        ${borderColor} ${darkBorderColor}
         ${customStyles.container || ''}
       `}
         >
@@ -51,7 +73,8 @@ export const BasicProfileSection = ({
                 {title && (
                     <div className="text-center mb-12">
                         <h2 className={`
-              text-3xl font-bold text-gray-900 dark:text-white transition-colors
+              text-3xl font-bold transition-colors
+              ${titleColor} ${darkTitleColor}
               ${customStyles.title || ''}
             `}>
                             {title}
@@ -68,7 +91,7 @@ export const BasicProfileSection = ({
                     </div>
 
                     {/* TEXT AND SKILLS */}
-                    <div className={`text-lg text-gray-600 dark:text-gray-300 leading-relaxed ${customStyles.textWrapper || ''}`}>
+                    <div className={`text-lg leading-relaxed ${textColor} ${darkTextColor} ${customStyles.textWrapper || ''}`}>
 
                         {/* Render bio respecting line breaks */}
                         <p className={`mb-8 whitespace-pre-line ${customStyles.bio || ''}`}>
@@ -80,7 +103,8 @@ export const BasicProfileSection = ({
                             <div>
                                 {skillsTitle && (
                                     <h3 className={`
-                    text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-3
+                    text-sm font-bold uppercase tracking-wide mb-3
+                    ${titleColor} ${darkTitleColor}
                     ${customStyles.skillsTitle || ''}
                   `}>
                                         {skillsTitle}

@@ -1,6 +1,6 @@
 
 import { Button } from '../../atoms/Button/Button';
-import { ThemeToggle } from '../../atoms/ThemeToggle/ThemeToggle';
+import { ThemeToggle } from '../../atoms/Toggle/ThemeToggle';
 import { type MouseEvent } from 'react';
 
 
@@ -34,6 +34,20 @@ export interface BasicNavbarProps {
     onToggleMenu?: () => void;
     onLinkClick?: (e: MouseEvent<HTMLAnchorElement>, href: string) => void;
     onLogoClick?: () => void;
+
+    // --- Color Props ---
+    backgroundColor?: string;
+    darkBackgroundColor?: string;
+    borderColor?: string;
+    darkBorderColor?: string;
+
+    // Text Colors
+    textColor?: string;
+    darkTextColor?: string;
+    activeLinkColor?: string;
+    darkActiveLinkColor?: string;
+    hoverLinkColor?: string;
+    darkHoverLinkColor?: string;
 }
 
 export const BasicNavbar = ({
@@ -45,13 +59,28 @@ export const BasicNavbar = ({
     isOpen = false,
     onToggleMenu,
     onLinkClick,
-    onLogoClick
+    onLogoClick,
+
+    // Default Colors
+    backgroundColor = "bg-white",
+    darkBackgroundColor = "dark:bg-gray-900",
+    borderColor = "border-gray-100",
+    darkBorderColor = "dark:border-gray-800",
+
+    textColor = "text-gray-900",
+    darkTextColor = "dark:text-white",
+    activeLinkColor = "text-blue-600",
+    darkActiveLinkColor = "dark:text-blue-400",
+    hoverLinkColor = "hover:text-blue-600",
+    darkHoverLinkColor = "dark:hover:text-blue-400",
 }: BasicNavbarProps) => {
 
     return (
         <nav
             className={`
-        w-full bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 transition-colors duration-300
+        w-full border-b transition-colors duration-300
+        ${backgroundColor} ${darkBackgroundColor}
+        ${borderColor} ${darkBorderColor}
         ${customStyles.container || ''}
       `}
         >
@@ -62,7 +91,11 @@ export const BasicNavbar = ({
                         {isLogoImage ? (
                             <img src={logo} alt="Logo" className="h-8 w-auto" />
                         ) : (
-                            <span className="text-2xl font-bold text-gray-900 dark:text-white tracking-tighter hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                            <span className={`
+                                text-2xl font-bold tracking-tighter transition-colors
+                                ${textColor} ${darkTextColor}
+                                ${hoverLinkColor} ${darkHoverLinkColor}
+                            `}>
                                 {logo}
                             </span>
                         )}
@@ -76,10 +109,10 @@ export const BasicNavbar = ({
                                 onClick={(e) => onLinkClick?.(e, link.href)}
                                 className={`
                   text-sm font-medium transition-colors 
-                  hover:text-blue-600 dark:hover:text-blue-400
                   ${link.active
-                                        ? 'text-blue-600 dark:text-blue-400'
+                                        ? `${activeLinkColor} ${darkActiveLinkColor}`
                                         : 'text-gray-600 dark:text-gray-300'}
+                  ${hoverLinkColor} ${darkHoverLinkColor}
                   ${customStyles.link || ''}
                 `}
                             >
@@ -112,17 +145,13 @@ export const BasicNavbar = ({
                 </div>
             </div>
 
-            {/* Mobile Menu - Push content down or overlay? 
-                If BasicNavbar is static, maybe mobile menu should just expand the height (block flow) or overlay absolutely.
-                Usually mobile menus overlay. So absolute is fine if the parent is relative (which nav usually shouldn't enforce, but nav is the container).
-                Actually, 'nav' is the container. If 'nav' is static, 'absolute top-20' will be relative to the nearest positioned ancestor.
-                We should probably make 'nav' relative.
-            */}
+            {/* Mobile Menu */}
             <div
                 className={`
           md:hidden
-          bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 
+          border-b border-gray-100 dark:border-gray-800 
           transition-all duration-300 ease-in-out
+          ${backgroundColor} ${darkBackgroundColor}
           ${isOpen ? 'opacity-100 max-h-screen py-4' : 'opacity-0 max-h-0 overflow-hidden'}
           ${customStyles.mobileMenu || ''}
         `}
@@ -133,7 +162,11 @@ export const BasicNavbar = ({
                             key={link.label}
                             href={link.href}
                             onClick={(e) => onLinkClick?.(e, link.href)}
-                            className="block text-lg font-medium text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                            className={`
+                                block text-lg font-medium transition-colors
+                                text-gray-800 dark:text-gray-200 
+                                ${hoverLinkColor} ${darkHoverLinkColor}
+                            `}
                         >
                             {link.label}
                         </a>

@@ -8,7 +8,7 @@ type InputStory = React.ComponentProps<typeof BasicInput> & { isDark?: boolean }
 const meta: Meta<InputStory> = {
     title: 'Atoms/Input/BasicInput',
     component: BasicInput,
-    // tags: ['autodocs'], // Disabled per user request
+    tags: ['autodocs'],
     parameters: {
         layout: 'centered',
         docs: {
@@ -16,8 +16,12 @@ const meta: Meta<InputStory> = {
                 type: 'dynamic',
                 excludeDecorators: true,
             },
+            description: {
+                component: 'A highly customizable input field with generic slots for icons, labels, and error messages.'
+            }
         },
     },
+    // ... rest of config
     decorators: [
         (Story, context) => (
             <div className={`
@@ -95,8 +99,7 @@ const meta: Meta<InputStory> = {
 export default meta;
 type Story = StoryObj<InputStory>;
 
-export const Default: Story = {
-    tags: ['!autodocs'],
+export const Playground: Story = {
     args: {
         label: 'Email Address',
         placeholder: 'example@domain.com',
@@ -131,17 +134,4 @@ export const Default: Story = {
         errorTextColor: "text-red-500",
         darkErrorTextColor: "dark:text-red-400",
     },
-};
-
-export const WithIcon: Story = {
-    args: {
-        ...Default.args,
-        label: 'Search',
-        placeholder: 'Search for items...',
-        startIcon: (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
-            </svg>
-        )
-    }
 };

@@ -18,6 +18,9 @@ const meta: Meta<ButtonStory> = {
                 type: 'dynamic',
                 excludeDecorators: true,
             },
+            description: {
+                component: 'A retro-styled 8-bit button with 3D press effects. Wraps BasicButton with specific presets.'
+            }
         },
     },
     decorators: [
@@ -83,8 +86,7 @@ const meta: Meta<ButtonStory> = {
 export default meta;
 type Story = StoryObj<ButtonStory>;
 
-export const Default: Story = {
-    tags: ['!autodocs'],
+export const Playground: Story = {
     args: {
         onClick: fn(),
         label: '3D 8-Bit Button',

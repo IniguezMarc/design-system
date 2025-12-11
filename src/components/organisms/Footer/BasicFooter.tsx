@@ -22,6 +22,16 @@ export interface BasicFooterProps {
     copyrightText?: string;
     secondaryLinks?: FooterLink[];
     customStyles?: FooterSlots;
+
+    // --- Color Props ---
+    backgroundColor?: string;
+    darkBackgroundColor?: string;
+    borderColor?: string;
+    darkBorderColor?: string;
+    textColor?: string;
+    darkTextColor?: string;
+    linksColor?: string;
+    linksHoverColor?: string;
 }
 
 export const BasicFooter = ({
@@ -29,24 +39,32 @@ export const BasicFooter = ({
     copyrightText = `© ${new Date().getFullYear()} All rights reserved.`,
     socialLinks,
     secondaryLinks = [],
-    customStyles = {}
+    customStyles = {},
+
+    // Default Colors
+    backgroundColor = "bg-gray-900",
+    darkBackgroundColor = "dark:bg-black",
+    borderColor = "border-gray-800",
+    darkBorderColor = "dark:border-gray-800",
+    textColor = "text-white",
+    darkTextColor = "dark:text-white",
+    linksColor = "text-gray-400",
+    linksHoverColor = "hover:text-white",
 }: BasicFooterProps) => {
 
     return (
         <footer className={`
       py-12 border-t transition-colors duration-300
-      /* Light: Very dark background (almost black) */
-      bg-gray-900 text-white border-gray-800
-      /* Dark: Pure black or very dark gray background */
-      dark:bg-black dark:border-gray-800
+      ${backgroundColor} ${darkBackgroundColor}
+      ${borderColor} ${darkBorderColor}
       ${customStyles.container || ''}
     `}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6">
 
                     <div className={`text-center md:text-left ${customStyles.text || ''}`}>
-                        <p className="text-lg font-bold text-white">{copyrightOwner}</p>
-                        <p className="text-gray-400 text-sm mt-1">
+                        <p className={`text-lg font-bold ${textColor} ${darkTextColor}`}>{copyrightOwner}</p>
+                        <p className={`text-sm mt-1 ${linksColor} opacity-80`}>
                             {copyrightText}
                         </p>
                     </div>
@@ -57,7 +75,11 @@ export const BasicFooter = ({
                                 <a
                                     key={link.label}
                                     href={link.href}
-                                    className={`text-gray-400 hover:text-blue-400 text-sm transition-colors ${customStyles.link || ''}`}
+                                    className={`
+                                        text-sm transition-colors 
+                                        ${linksColor} ${linksHoverColor}
+                                        ${customStyles.link || ''}
+                                    `}
                                 >
                                     {link.label}
                                 </a>
@@ -72,7 +94,11 @@ export const BasicFooter = ({
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`text-gray-400 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider ${customStyles.link || ''}`}
+                                className={`
+                                    transition-colors text-sm font-medium uppercase tracking-wider 
+                                    ${linksColor} ${linksHoverColor}
+                                    ${customStyles.link || ''}
+                                `}
                             >
                                 {link.platform}
                             </a>

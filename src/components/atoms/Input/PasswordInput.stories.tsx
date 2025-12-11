@@ -18,6 +18,9 @@ const meta: Meta<InputStory> = {
                 type: 'dynamic',
                 excludeDecorators: true,
             },
+            description: {
+                component: 'A secure password input with a built-in visibility toggle. Extends BasicInput capabilities.'
+            }
         },
     },
     decorators: [
@@ -94,8 +97,7 @@ const meta: Meta<InputStory> = {
 export default meta;
 type Story = StoryObj<InputStory>;
 
-export const Default: Story = {
-    tags: ['!autodocs'],
+export const Playground: Story = {
     args: {
         label: 'Password',
         placeholder: 'Enter your password',

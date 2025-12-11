@@ -52,6 +52,8 @@ function App() {
         <Hero
           title="Building Digital Experiences"
           subtitle="Full Stack Developer & UI Designer"
+          // Customize colors easily via props
+          greetingColor="text-indigo-600"
           actions={[
             { label: "View Work", variant: "primary", onClick: () => console.log('Scroll') }
           ]}
@@ -63,6 +65,8 @@ function App() {
             items={projects}
             layout="grid"
             itemButtonLabel="View Case Study"
+            // Dark mode overrides
+            darkTitleColor="dark:text-indigo-100"
           />
         </div>
       </main>

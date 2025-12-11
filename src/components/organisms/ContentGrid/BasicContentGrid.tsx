@@ -22,6 +22,11 @@ export interface BasicContentGridProps {
     itemButtonLabel?: string;
     onItemClick?: (id: string) => void;
     customStyles?: ContentGridSlots;
+    // --- Color Props ---
+    backgroundColor?: string;
+    darkBackgroundColor?: string;
+    titleColor?: string;
+    darkTitleColor?: string;
 }
 
 export const BasicContentGrid = ({
@@ -30,7 +35,13 @@ export const BasicContentGrid = ({
     layout = 'grid',
     itemButtonLabel = "View Details",
     onItemClick,
-    customStyles = {}
+    customStyles = {},
+
+    // Default Colors
+    backgroundColor = "bg-gray-50",
+    darkBackgroundColor = "dark:bg-gray-900",
+    titleColor = "text-gray-900",
+    darkTitleColor = "dark:text-white",
 }: BasicContentGridProps) => {
 
     const gridClasses = layout === 'grid'
@@ -40,7 +51,7 @@ export const BasicContentGrid = ({
     return (
         <section className={`
       py-16 px-4 transition-colors duration-300
-      bg-gray-50 dark:bg-gray-900
+      ${backgroundColor} ${darkBackgroundColor}
       ${customStyles.container || ''}
     `}>
             <div className="max-w-7xl mx-auto">
@@ -48,7 +59,7 @@ export const BasicContentGrid = ({
                     <div className="mb-12 text-start">
                         <h2 className={`
               text-4xl font-extrabold mb-4 tracking-tight transition-colors
-              text-gray-900 dark:text-white
+              ${titleColor} ${darkTitleColor}
               ${customStyles.title || ''}
             `}>
                             {title}

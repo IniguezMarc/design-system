@@ -2,7 +2,7 @@ export * from './components/atoms/Avatar/Avatar';
 export * from './components/atoms/Badge/Badge';
 export * from './components/atoms/Button/Button';
 export * from './components/atoms/Input/Input';
-export * from './components/atoms/ThemeToggle/ThemeToggle';
+export * from './components/atoms/Toggle/ThemeToggle';
 
 export * from './components/molecules/ProjectCard/ProjectCard';
 

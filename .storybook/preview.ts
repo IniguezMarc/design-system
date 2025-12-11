@@ -31,6 +31,12 @@ const preview: Preview = {
       'storybook/outline': { hidden: true },
       'storybook/measure': { hidden: true },
     },
+    docs: {
+      source: {
+        type: 'dynamic',
+        excludeDecorators: true,
+      },
+    },
   },
 };
 

@@ -8,9 +8,18 @@ type BasicHeroStory = React.ComponentProps<typeof BasicHero> & {
 const meta: Meta<BasicHeroStory> = {
     title: 'Organisms/Hero/BasicHero',
     component: BasicHero,
-    tags: [], // Hidden docs per standard
+    tags: ['autodocs'],
     parameters: {
         layout: 'fullscreen',
+        docs: {
+            source: {
+                type: 'dynamic',
+                excludeDecorators: true,
+            },
+            description: {
+                component: 'A versatile hero section with title, subtitle, call-to-action, and optional image.'
+            }
+        },
     },
     argTypes: {
         isDark: {
@@ -24,6 +33,16 @@ const meta: Meta<BasicHeroStory> = {
             table: { category: 'Styles' }
         },
         actions: { control: 'object' },
+
+        // Colors
+        backgroundColor: { control: 'text', table: { category: 'Colors' } },
+        darkBackgroundColor: { control: 'text', table: { category: 'Colors' } },
+        greetingColor: { control: 'text', table: { category: 'Colors' } },
+        darkGreetingColor: { control: 'text', table: { category: 'Colors' } },
+        titleColor: { control: 'text', table: { category: 'Colors' } },
+        darkTitleColor: { control: 'text', table: { category: 'Colors' } },
+        subtitleColor: { control: 'text', table: { category: 'Colors' } },
+        darkSubtitleColor: { control: 'text', table: { category: 'Colors' } },
     },
     decorators: [
         (Story, context) => (
@@ -40,7 +59,7 @@ const meta: Meta<BasicHeroStory> = {
 export default meta;
 type Story = StoryObj<BasicHeroStory>;
 
-export const Default: Story = {
+export const Playground: Story = {
     args: {
         greeting: 'Marc.Dev',
         title: 'Frontend Architecture',
@@ -54,14 +73,16 @@ export const Default: Story = {
             title: '',
             subtitle: '',
             imageWrapper: ''
-        }
-    },
-};
+        },
 
-export const Centered: Story = {
-    args: {
-        ...Default.args,
-        imageUrl: undefined,
-        subtitle: 'A clean hero section without an image, perfect for simple landing pages or introductions.',
-    }
+        // Default Colors
+        backgroundColor: "bg-white",
+        darkBackgroundColor: "dark:bg-gray-900",
+        greetingColor: "text-blue-600",
+        darkGreetingColor: "dark:text-blue-400",
+        titleColor: "text-gray-900",
+        darkTitleColor: "dark:text-white",
+        subtitleColor: "text-gray-500",
+        darkSubtitleColor: "dark:text-gray-400",
+    },
 };

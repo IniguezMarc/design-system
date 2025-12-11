@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { BasicThemeToggle } from './BasicThemeToggle';
+import { BasicToggle } from './BasicToggle';
 
-const meta: Meta<typeof BasicThemeToggle> = {
-    title: 'Atoms/ThemeToggle/BasicThemeToggle',
-    component: BasicThemeToggle,
-    tags: [],
+const meta: Meta<typeof BasicToggle> = {
+    title: 'Atoms/Toggle/BasicToggle',
+    component: BasicToggle,
+    tags: ['autodocs'],
     parameters: {
         layout: 'centered',
         docs: {
@@ -13,23 +13,26 @@ const meta: Meta<typeof BasicThemeToggle> = {
                 type: 'dynamic',
                 excludeDecorators: true,
             },
+            description: {
+                component: 'The fundamental switching component. Use it to toggle between two states (On/Off).'
+            }
         },
     },
     argTypes: {
-        isDark: {
+        isToggled: {
             control: 'boolean',
-            description: 'Current theme state',
+            description: 'Current toggle state',
             table: { category: 'State' }
         },
-        sunImage: { control: 'text', description: 'Sun Image URL' },
-        moonImage: { control: 'text', description: 'Moon Image URL' },
+        imageOn: { control: 'text', description: 'Image when Toggled ON' },
+        imageOff: { control: 'text', description: 'Image when Toggled OFF' },
         imageFit: {
             control: 'radio',
             options: ['cover', 'contain'],
             description: 'Image Fit'
         },
-        iconSun: { control: 'text' },
-        iconMoon: { control: 'text' },
+        iconOn: { control: 'text' },
+        iconOff: { control: 'text' },
         customStyles: {
             control: 'object',
             description: 'Custom implementation styles',
@@ -39,7 +42,7 @@ const meta: Meta<typeof BasicThemeToggle> = {
     },
     decorators: [
         (Story, context) => (
-            <div className={`p-8 rounded-xl border border-gray-200 dark:border-gray-700 transition-colors duration-300 ${context.args.isDark ? 'dark bg-gray-900' : 'bg-white'}`}>
+            <div className={`p-8 rounded-xl border border-gray-200 dark:border-gray-700 transition-colors duration-300 bg-white`}>
                 <Story />
             </div>
         ),
@@ -49,27 +52,16 @@ const meta: Meta<typeof BasicThemeToggle> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Playground: Story = {
     args: {
-        isDark: false,
+        isToggled: false,
         onToggle: fn(),
         imageFit: 'contain',
         customStyles: {
             container: '',
             icon: ''
-        }
+        },
+        iconOn: <span>ON</span>,
+        iconOff: <span>OFF</span>
     },
-};
-
-
-
-export const CustomLook: Story = {
-    args: {
-        ...Default.args,
-        isDark: true,
-        customStyles: {
-            container: '!rounded-lg !p-4 !bg-purple-100 dark:!bg-purple-900 !text-purple-600 dark:!text-purple-300',
-            icon: '!w-8 !h-8'
-        }
-    }
 };

@@ -15,6 +15,9 @@ const meta: Meta<BadgeStory> = {
                 type: 'dynamic',
                 excludeDecorators: true,
             },
+            description: {
+                component: 'A compact label component for status indicators, tags, or counts.'
+            }
         },
     },
     decorators: [
@@ -62,8 +65,7 @@ const meta: Meta<BadgeStory> = {
 export default meta;
 type Story = StoryObj<BadgeStory>;
 
-export const Default: Story = {
-    tags: ['!autodocs'],
+export const Playground: Story = {
     args: {
         label: 'Technology',
         variant: 'primary',

@@ -9,9 +9,18 @@ type BasicContentGridStory = React.ComponentProps<typeof BasicContentGrid> & {
 const meta: Meta<BasicContentGridStory> = {
     title: 'Organisms/ContentGrid/BasicContentGrid',
     component: BasicContentGrid,
-    tags: [],
+    tags: ['autodocs'],
     parameters: {
         layout: 'fullscreen',
+        docs: {
+            source: {
+                type: 'dynamic',
+                excludeDecorators: true,
+            },
+            description: {
+                component: 'A responsive grid layout for displaying lists of items (like projects) with filtering and sorting capabilities.'
+            }
+        },
     },
     argTypes: {
         isDark: {
@@ -30,6 +39,12 @@ const meta: Meta<BasicContentGridStory> = {
             table: { category: 'Styles' }
         },
         onItemClick: { table: { disable: true } },
+
+        // Colors
+        backgroundColor: { control: 'text', table: { category: 'Colors' } },
+        darkBackgroundColor: { control: 'text', table: { category: 'Colors' } },
+        titleColor: { control: 'text', table: { category: 'Colors' } },
+        darkTitleColor: { control: 'text', table: { category: 'Colors' } },
     },
     decorators: [
         (Story, context) => (
@@ -73,7 +88,7 @@ const MOCK_ITEMS = [
     },
 ];
 
-export const Default: Story = {
+export const Playground: Story = {
     args: {
         title: 'My Projects',
         items: MOCK_ITEMS,
@@ -81,6 +96,11 @@ export const Default: Story = {
         itemButtonLabel: 'View Details',
         isDark: false,
         onItemClick: fn(),
-        customStyles: {}
+        customStyles: {},
+
+        backgroundColor: "bg-gray-50",
+        darkBackgroundColor: "dark:bg-gray-900",
+        titleColor: "text-gray-900",
+        darkTitleColor: "dark:text-white",
     },
 };

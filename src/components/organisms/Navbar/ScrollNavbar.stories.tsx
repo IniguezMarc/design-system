@@ -15,44 +15,27 @@ const meta: Meta<ScrollNavbarStory> = {
     tags: ['autodocs'],
     parameters: {
         layout: 'fullscreen',
+        docs: {
+            source: {
+                type: 'dynamic',
+                excludeDecorators: true,
+            },
+            description: {
+                component: 'A navbar variant that changes style on scroll. Handles active section highlighting and smooth scrolling.'
+            }
+        },
     },
+    // ...
     argTypes: {
-        isDark: {
-            control: 'boolean',
-            description: 'Simulate dark mode',
-            table: { category: 'Preview Helper' }
-        },
-        customStyles: {
-            control: 'object',
-            description: 'Custom implementation styles (slots)',
-            table: { category: 'Styles' }
-        },
-        // State controls for testing UI states without interaction
-        isOpen: { control: 'boolean', description: 'Force mobile menu open' },
-        isScrolled: { control: 'boolean', description: 'Force scrolled state (glass effect)' },
-        actions: { control: 'object' },
+        // ...
     },
-    decorators: [
-        (Story, context) => (
-            <div className={`
-                ${context.args.isDark ? 'dark bg-gray-900' : 'bg-gray-50'} 
-                min-h-screen transition-colors duration-300
-            `}>
-                <Story />
-                {/* Visualizer for scrollable area */}
-                <div className="pt-24 p-8 text-center text-gray-400">
-                    Scroll or toggle states to see changes
-                </div>
-            </div>
-        ),
-    ],
+    // ... decorators
 };
 
 export default meta;
 type Story = StoryObj<ScrollNavbarStory>;
 
-export const Default: Story = {
-    tags: ['!autodocs'],
+export const Playground: Story = {
     render: ({ isOpen, isScrolled, onToggleMenu, onLinkClick, onLogoClick, ...args }) => (
         <div>
             {/* Delegate logic to the Wrapper for a clean simple story */}

@@ -8,9 +8,18 @@ type BasicProfileSectionStory = React.ComponentProps<typeof BasicProfileSection>
 const meta: Meta<BasicProfileSectionStory> = {
     title: 'Organisms/ProfileSection/BasicProfileSection',
     component: BasicProfileSection,
-    tags: [], // Hidden docs per standard
+    tags: ['autodocs'],
     parameters: {
         layout: 'fullscreen',
+        docs: {
+            source: {
+                type: 'dynamic',
+                excludeDecorators: true,
+            },
+            description: {
+                component: 'A personal profile section featuring an avatar, bio, and skills list, typically used in "About Me" pages.'
+            }
+        },
     },
     argTypes: {
         isDark: {
@@ -23,6 +32,16 @@ const meta: Meta<BasicProfileSectionStory> = {
             description: 'Custom implementation styles (slots)',
             table: { category: 'Styles' }
         },
+
+        // Colors
+        backgroundColor: { control: 'text', table: { category: 'Colors' } },
+        darkBackgroundColor: { control: 'text', table: { category: 'Colors' } },
+        borderColor: { control: 'text', table: { category: 'Colors' } },
+        darkBorderColor: { control: 'text', table: { category: 'Colors' } },
+        titleColor: { control: 'text', table: { category: 'Colors' } },
+        darkTitleColor: { control: 'text', table: { category: 'Colors' } },
+        textColor: { control: 'text', table: { category: 'Colors' } },
+        darkTextColor: { control: 'text', table: { category: 'Colors' } },
     },
     decorators: [
         (Story, context) => (
@@ -39,7 +58,7 @@ const meta: Meta<BasicProfileSectionStory> = {
 export default meta;
 type Story = StoryObj<BasicProfileSectionStory>;
 
-export const Default: Story = {
+export const Playground: Story = {
     args: {
         title: 'About Me',
         avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=300&h=300',
@@ -53,6 +72,15 @@ export const Default: Story = {
             container: '',
             title: '',
             bio: ''
-        }
+        },
+
+        backgroundColor: "bg-white",
+        darkBackgroundColor: "dark:bg-gray-900",
+        borderColor: "border-gray-100",
+        darkBorderColor: "dark:border-gray-800",
+        titleColor: "text-gray-900",
+        darkTitleColor: "dark:text-white",
+        textColor: "text-gray-600",
+        darkTextColor: "dark:text-gray-300",
     },
 };

@@ -1,6 +1,6 @@
 
 import { Button } from '../../atoms/Button/Button';
-import { ThemeToggle } from '../../atoms/ThemeToggle/ThemeToggle';
+import { ThemeToggle } from '../../atoms/Toggle/ThemeToggle';
 import { type MouseEvent } from 'react';
 
 

@@ -18,6 +18,9 @@ const meta: Meta<BadgeStory> = {
                 type: 'dynamic',
                 excludeDecorators: true,
             },
+            description: {
+                component: 'A badge that can be dismissed. Perfect for active filters or removable tags.'
+            }
         },
     },
     decorators: [
@@ -66,8 +69,7 @@ const meta: Meta<BadgeStory> = {
 export default meta;
 type Story = StoryObj<BadgeStory>;
 
-export const Default: Story = {
-    tags: ['!autodocs'],
+export const Playground: Story = {
     args: {
         label: 'Filter: React',
         variant: 'primary',

@@ -67,9 +67,11 @@ Always include `dark:` utility classes for every color prop or default value.
 
 ### D. Standardized Storybook
 
--   **Wrapper**: Use the standard dark-mode wrapper in `render`.
--   **Controls**: Group props into categories (`PROPS`, `Colors`, `Styles`).
--   **Docs**: Hide interactive stories (`Default`) from the "Docs" tab using `tags: ['!autodocs']` to keep the component documentation clean.
+-   **Structure**: `title: 'Type/Component/BasicComponent'`
+-   **Docs**: Enable `tags: ['autodocs']` and add a `parameters.docs.description.component` string.
+-   **Source**: Enable dynamic source with `parameters.docs.source: { type: 'dynamic', excludeDecorators: true }`.
+-   **Stories**: Use a single primary story named `Playground`.
+-   **Controls**: Group props into categories (e.g., `Colors`, `Styles`).
 
 ## 4. Example: `Tag` Component
 
@@ -81,24 +83,34 @@ import React from 'react';
 export interface TagSlots {
     container?: string;
     text?: string;
-    // ...
 }
 
 export interface TagProps {
     label: string;
     customStyles?: TagSlots;
-    bgColor?: string;
+    
+    // Color Props
+    backgroundColor?: string;
+    darkBackgroundColor?: string;
     textColor?: string;
+    darkTextColor?: string;
 }
 
 export const BasicTag = ({ 
     label, 
     customStyles = {},
-    bgColor = "bg-blue-100", 
-    textColor = "text-blue-800" 
+    // Default Colors with Dark Mode counterparts
+    backgroundColor = "bg-blue-100", 
+    darkBackgroundColor = "dark:bg-blue-900",
+    textColor = "text-blue-800",
+    darkTextColor = "dark:text-blue-200"
 }: TagProps) => {
     return (
-        <span className={`${bgColor} ${textColor} ${customStyles.container || ''}`}>
+        <span className={`
+            ${backgroundColor} ${darkBackgroundColor} 
+            ${textColor} ${darkTextColor} 
+            ${customStyles.container || ''}
+        `}>
             <span className={customStyles.text}>{label}</span>
         </span>
     );
@@ -123,19 +135,36 @@ const meta: Meta<typeof BasicTag> = {
     title: 'Atoms/Tag/BasicTag',
     component: BasicTag,
     tags: ['autodocs'],
+    parameters: {
+        docs: {
+            source: { type: 'dynamic', excludeDecorators: true },
+            description: { component: 'A flexible tag component...' }
+        }
+    },
     argTypes: {
-        bgColor: { control: 'text', table: { category: 'Colors' } },
+        backgroundColor: { control: 'text', table: { category: 'Colors' } },
+        darkBackgroundColor: { control: 'text', table: { category: 'Colors' } },
+        textColor: { control: 'text', table: { category: 'Colors' } },
+        darkTextColor: { control: 'text', table: { category: 'Colors' } },
         customStyles: { control: 'object', table: { category: 'Styles' } }
     },
-    // ... render wrapper ...
+    decorators: [
+        (Story, context) => (
+            <div className={`p-8 transition-colors duration-300 ${context.args.isDark ? 'dark bg-gray-900' : 'bg-white'}`}>
+                <Story />
+            </div>
+        ),
+    ],
 };
 export default meta;
 
-export const Default: StoryObj<typeof BasicTag> = {
-    tags: ['!autodocs'],
+export const Playground: StoryObj<typeof BasicTag> = {
     args: {
         label: 'React',
-        bgColor: 'bg-blue-100',
+        backgroundColor: 'bg-blue-100',
+        darkBackgroundColor: 'dark:bg-blue-900',
+        textColor: 'text-blue-800',
+        darkTextColor: 'dark:text-blue-200',
         customStyles: { container: '', text: '' }
     }
 };
@@ -158,23 +187,22 @@ Use the following detailed prompt to generate a new component that adheres to al
 > Please implement it following these strict rules:
 >
 > 1.  **File Structure**:
->     -   `Basic[ComponentName].tsx`: The core component.
+>     -   `Basic[ComponentName].tsx`: The core component (logic + styling).
 >     -   `[ComponentName].tsx`: A simplified wrapper export (re-export `Basic[ComponentName]` as `[ComponentName]`).
 >     -   `Basic[ComponentName].stories.tsx`: The Storybook file.
 >
 > 2.  **Architecture (The "Basic" Pattern)**:
->     -   Use strict TypeScript interfaces.
->     -   **Slots**: Expose a `customStyles` prop (interface `[ComponentName]Slots`) for granular internal element styling (e.g., `{ container, text, icon }`).
->     -   **Colors**: Do NOT hardcode colors (e.g., `bg-blue-500`). Instead, accept props like `primaryColor`, `borderColor` with default values (e.g., `primaryColor = "bg-blue-500"`).
->     -   **Dark Mode**: Ensure every color prop has a `dark:` counterpart in its default value.
+>     -   **Slots**: Expose a `customStyles` prop (interface `[ComponentName]Slots`) for granular internal element styling.
+>     -   **Colors**: Do NOT hardcode colors. Accept generic color props (e.g., `backgroundColor`, `textColor`, `borderColor`) with default values that include `dark:` mode variants.
+>     -   **Example**: `backgroundColor = "bg-white"`, `darkBackgroundColor = "dark:bg-gray-900"`.
 >     -   **Images**: For images, use `loading="lazy"` and `decoding="async"` (optional via `loading` prop).
 >
 > 3.  **Storybook Standards**:
 >     -   **Title**: `[Type]/[ComponentName]/Basic[ComponentName]`
->     -   **Tags**: Set `tags: []` to disable automatic docs generation.
->     -   **Stories**: Create a `Default` story for the main interactive example.
->     -   **Docs**: Add `tags: ['!autodocs']` to the `Default` story definition (redundant but good practice).
->     -   **Controls**: Use `argTypes` to categorize props (e.g., `table: { category: 'Colors' }`).
+>     -   **Tags**: Set `tags: ['autodocs']`.
+>     -   **Docs**: Enable dynamic source code AND add a concise component description in `parameters.docs.description.component`.
+>     -   **Stories**: Create a SINGLE primary story named `Playground`.
+>     -   **Controls**: Categorize all props (especially Colors and Styles) using `argTypes`.
 >     -   **Decorator**: Wrap the story in a `div` that toggles `dark` class based on an `isDark` arg.
 >
 > Please provide the code for all three files.

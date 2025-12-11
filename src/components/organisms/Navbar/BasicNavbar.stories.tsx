@@ -11,10 +11,20 @@ type BasicNavbarStory = React.ComponentProps<typeof BasicNavbar> & {
 const meta: Meta<BasicNavbarStory> = {
     title: 'Organisms/Navbar/BasicNavbar',
     component: BasicNavbar,
-    tags: [],
+    tags: ['autodocs'],
     parameters: {
         layout: 'fullscreen',
+        docs: {
+            source: {
+                type: 'dynamic',
+                excludeDecorators: true,
+            },
+            description: {
+                component: 'A responsive navigation bar with logo, links, and action buttons. Supports mobile menu and sticky positioning.'
+            }
+        },
     },
+    // ... rest of config
     argTypes: {
         isDark: {
             control: 'boolean',
@@ -28,6 +38,18 @@ const meta: Meta<BasicNavbarStory> = {
         },
         isOpen: { control: 'boolean', description: 'Force mobile menu open' },
         actions: { control: 'object' },
+
+        // Colors
+        backgroundColor: { control: 'text', table: { category: 'Colors' } },
+        darkBackgroundColor: { control: 'text', table: { category: 'Colors' } },
+        borderColor: { control: 'text', table: { category: 'Colors' } },
+        darkBorderColor: { control: 'text', table: { category: 'Colors' } },
+        textColor: { control: 'text', table: { category: 'Colors' } },
+        darkTextColor: { control: 'text', table: { category: 'Colors' } },
+        activeLinkColor: { control: 'text', table: { category: 'Colors' } },
+        darkActiveLinkColor: { control: 'text', table: { category: 'Colors' } },
+        hoverLinkColor: { control: 'text', table: { category: 'Colors' } },
+        darkHoverLinkColor: { control: 'text', table: { category: 'Colors' } },
     },
     decorators: [
         (Story, context) => (
@@ -47,8 +69,7 @@ const meta: Meta<BasicNavbarStory> = {
 export default meta;
 type Story = StoryObj<BasicNavbarStory>;
 
-export const Default: Story = {
-    tags: ['!autodocs'],
+export const Playground: Story = {
     args: {
         logo: 'Marc.Design',
         isLogoImage: false,
@@ -66,5 +87,17 @@ export const Default: Story = {
         onToggleMenu: fn(),
         onLinkClick: fn(),
         onLogoClick: fn(),
+
+        backgroundColor: "bg-white",
+        darkBackgroundColor: "dark:bg-gray-900",
+        borderColor: "border-gray-100",
+        darkBorderColor: "dark:border-gray-800",
+
+        textColor: "text-gray-900",
+        darkTextColor: "dark:text-white",
+        activeLinkColor: "text-blue-600",
+        darkActiveLinkColor: "dark:text-blue-400",
+        hoverLinkColor: "hover:text-blue-600",
+        darkHoverLinkColor: "dark:hover:text-blue-400",
     },
 };

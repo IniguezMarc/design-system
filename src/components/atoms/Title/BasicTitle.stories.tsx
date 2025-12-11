@@ -9,7 +9,18 @@ type TitleStory = React.ComponentProps<typeof BasicTitle> & {
 const meta: Meta<TitleStory> = {
     title: 'Atoms/Title/BasicTitle',
     component: BasicTitle,
-    tags: [],
+    tags: ['autodocs'],
+    parameters: {
+        docs: {
+            source: {
+                type: 'dynamic',
+                excludeDecorators: true,
+            },
+            description: {
+                component: 'A typography component for section headings. Supports different levels (h1-h6) and alignments.'
+            }
+        },
+    },
     argTypes: {
         as: {
             control: 'select',
@@ -51,8 +62,7 @@ const meta: Meta<TitleStory> = {
 export default meta;
 type Story = StoryObj<TitleStory>;
 
-export const Default: Story = {
-    tags: ['!autodocs'],
+export const Playground: Story = {
     args: {
         label: 'Section Title',
         as: 'h2',
@@ -60,21 +70,5 @@ export const Default: Story = {
         textColor: 'text-gray-900',
         darkTextColor: 'dark:text-white',
         isDark: false,
-    }
-};
-
-export const Centered: Story = {
-    args: {
-        ...Default.args,
-        label: 'Centered Heading',
-        align: 'center',
-    }
-};
-
-export const LargeHeading: Story = {
-    args: {
-        ...Default.args,
-        label: 'Big Impact Title',
-        as: 'h1',
     }
 };

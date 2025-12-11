@@ -1,0 +1,33 @@
+You are an expert React developer specializing in Design Systems.
+
+# Tech Stack
+- Framework: React 18+ (TypeScript)
+- Styling: Tailwind CSS (Utility-first)
+- Build: Vite
+- Documentation: Storybook 8
+
+# Project Structure
+- Methodology: Atomic Design (Atoms, Molecules, Organisms)
+- Path: `src/components/[Type]/[ComponentName]/`
+
+# Component Architecture Rules
+1. **File Pattern**:
+   - `Basic[ComponentName].tsx`: Core logic, styling, and props.
+   - `[ComponentName].tsx`: Main export wrapper (re-export `Basic` component).
+   - `Basic[ComponentName].stories.tsx`: Storybook configuration.
+
+2. **Styling & Customization**:
+   - **Slots**: ALWAYS expose a `customStyles` prop (interface `[ComponentName]Slots`) for granular overrides.
+   - **Colors**: NEVER hardcode colors in classes (e.g., `bg-blue-500`). ALWAYS accept generic color props (e.g., `backgroundColor`, `textColor`) with default values.
+   - **Dark Mode**: ALWAYS include `dark:` modifiers in default color values (e.g., `backgroundColor = "bg-white"`, `darkBackgroundColor = "dark:bg-gray-900"`).
+
+3. **Storybook Standards**:
+   - **Tags**: `tags: ['autodocs']` MUST be present.
+   - **Stories**: create ONE primary story named `Playground`.
+   - **Docs**: Enable dynamic source: `parameters: { docs: { source: { type: 'dynamic', excludeDecorators: true } } }`.
+   - **Description**: Add a concise description in `parameters.docs.description.component`.
+
+# General Rules
+- Use functional components with strict TypeScript interfaces.
+- Prefer `interface` over `type` for props.
+- Ensure all new components follow the "Basic" pattern.

@@ -22,6 +22,16 @@ export interface BasicHeroProps {
     imageUrl?: string;
     actions?: HeroAction[];
     customStyles?: HeroSlots; // Style hooks
+
+    // --- Color Props ---
+    backgroundColor?: string;
+    darkBackgroundColor?: string;
+    greetingColor?: string;
+    darkGreetingColor?: string;
+    titleColor?: string;
+    darkTitleColor?: string;
+    subtitleColor?: string;
+    darkSubtitleColor?: string;
 }
 
 export const BasicHero = ({
@@ -30,7 +40,17 @@ export const BasicHero = ({
     subtitle,
     imageUrl,
     actions = [],
-    customStyles = {}
+    customStyles = {},
+
+    // Default Colors
+    backgroundColor = "bg-white",
+    darkBackgroundColor = "dark:bg-gray-900",
+    greetingColor = "text-blue-600",
+    darkGreetingColor = "dark:text-blue-400",
+    titleColor = "text-gray-900",
+    darkTitleColor = "dark:text-white",
+    subtitleColor = "text-gray-500",
+    darkSubtitleColor = "dark:text-gray-400",
 }: BasicHeroProps) => {
 
     const containerLayout = imageUrl
@@ -48,7 +68,7 @@ export const BasicHero = ({
     return (
         <section className={`
       relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden transition-colors duration-300
-      bg-white dark:bg-gray-900 
+      ${backgroundColor} ${darkBackgroundColor}
       ${customStyles.container || ''}
     `}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,14 +77,17 @@ export const BasicHero = ({
 
                     <div className={`${textAlignment} ${customStyles.content || ''}`}>
                         {greeting && (
-                            <p className="text-blue-600 dark:text-blue-400 font-semibold tracking-wide uppercase text-sm mb-4">
+                            <p className={`
+                                font-semibold tracking-wide uppercase text-sm mb-4
+                                ${greetingColor} ${darkGreetingColor}
+                            `}>
                                 {greeting}
                             </p>
                         )}
 
                         <h1 className={`
               text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 transition-colors
-              text-gray-900 dark:text-white
+              ${titleColor} ${darkTitleColor}
               ${customStyles.title || ''}
             `}>
                             {title}
@@ -72,7 +95,7 @@ export const BasicHero = ({
 
                         <p className={`
               text-lg sm:text-xl mb-8 leading-relaxed transition-colors
-              text-gray-500 dark:text-gray-400
+              ${subtitleColor} ${darkSubtitleColor}
               ${!imageUrl && 'mx-auto max-w-2xl'}
               ${customStyles.subtitle || ''}
             `}>

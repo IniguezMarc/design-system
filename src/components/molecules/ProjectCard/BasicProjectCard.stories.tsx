@@ -9,9 +9,18 @@ type BasicProjectCardStory = React.ComponentProps<typeof BasicProjectCard> & {
 const meta: Meta<BasicProjectCardStory> = {
     title: 'Molecules/ProjectCard/BasicProjectCard',
     component: BasicProjectCard,
-    tags: [],
+    tags: ['autodocs'],
     parameters: {
         layout: 'centered',
+        docs: {
+            source: {
+                type: 'dynamic',
+                excludeDecorators: true,
+            },
+            description: {
+                component: 'A feature-rich card component for displaying project details, including tags, links, and hover effects.'
+            }
+        },
     },
     argTypes: {
         isDark: {
@@ -58,7 +67,7 @@ const meta: Meta<BasicProjectCardStory> = {
 export default meta;
 type Story = StoryObj<BasicProjectCardStory>;
 
-export const Default: Story = {
+export const Playground: Story = {
     args: {
         title: 'Design System Project',
         description: 'A comprehensive library of reusable UI components built with React, Typescript, and TailwindCSS.',
