@@ -9,8 +9,9 @@ export default defineConfig({
     react(),
     dts({
       insertTypesEntry: true,
-      include: ['src/components'],
+      include: ['src'],
       exclude: ['src/**/*.stories.tsx', 'src/**/*.test.tsx', 'src/components/pages/**/*', 'src/docs/**/*'],
+      tsconfigPath: './tsconfig.app.json',
     }),
   ],
   build: {
