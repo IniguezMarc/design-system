@@ -1,13 +1,14 @@
 {
   "name": "@iniguezmarc/design-system",
   "private": false,
-  "version": "0.0.8",
+  "version": "0.0.9",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "tailwind.preset.js"
   ],
   "exports": {
     ".": {
