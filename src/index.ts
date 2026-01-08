@@ -4,8 +4,10 @@ export * from './components/atoms/Button/Button';
 export * from './components/atoms/Input/Input';
 export * from './components/atoms/Toggle/ThemeToggle';
 export * from './components/atoms/Toggle/LanguageToggle';
+export * from './components/atoms/Slider/Slider';
 
 export * from './components/molecules/ProjectCard/ProjectCard';
+export * from './components/molecules/ControlPanel/ControlPanel';
 
 export * from './components/organisms/ContentGrid/ContentGrid';
 export * from './components/organisms/Footer/Footer';
@@ -14,3 +16,7 @@ export * from './components/organisms/Navbar/Navbar';
 export * from './components/organisms/ProfileSection/ProfileSection';
 
 export * from './components/pages/PortfolioPage/PortfolioPage';
+
+export * from './components/organisms/Layout/SplitLayout';
+
+export * from './components/organisms/Grid/InteractiveGrid';
