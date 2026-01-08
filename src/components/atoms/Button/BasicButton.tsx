@@ -7,7 +7,7 @@ export interface ButtonSlots {
 
 export interface ButtonProps {
     label: string;
-    variant?: 'primary' | 'secondary' | 'outline';
+    variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
     size?: 'small' | 'medium' | 'large';
     onClick?: () => void;
     className?: string;
@@ -30,6 +30,11 @@ export interface ButtonProps {
     outlineHoverColor?: string;
     darkOutlineColor?: string;
     darkOutlineHoverColor?: string;
+
+    ghostColor?: string;
+    ghostHoverColor?: string;
+    darkGhostColor?: string;
+    darkGhostHoverColor?: string;
 }
 
 export const BasicButton = ({
@@ -57,6 +62,11 @@ export const BasicButton = ({
     outlineHoverColor = "hover:bg-blue-50",
     darkOutlineColor = "dark:text-blue-400 dark:border-blue-400",
     darkOutlineHoverColor = "dark:hover:bg-blue-950",
+
+    ghostColor = "text-gray-600 bg-transparent",
+    ghostHoverColor = "hover:bg-gray-100",
+    darkGhostColor = "dark:text-gray-300",
+    darkGhostHoverColor = "dark:hover:bg-gray-800",
 }: ButtonProps) => {
 
     const baseStyles = "relative group inline-flex justify-center items-center font-bold rounded-lg cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 no-underline";
@@ -65,6 +75,7 @@ export const BasicButton = ({
         primary: `${primaryColor} text-white ${primaryHoverColor} focus:ring-blue-500 border-2 border-transparent ${darkPrimaryColor} ${darkPrimaryHoverColor}`,
         secondary: `${secondaryColor} text-gray-800 ${secondaryHoverColor} focus:ring-gray-500 border-2 border-transparent ${darkSecondaryColor} dark:text-gray-100 ${darkSecondaryHoverColor}`,
         outline: `bg-transparent ${outlineColor} border-2 ${outlineHoverColor} focus:ring-blue-500 ${darkOutlineColor} ${darkOutlineHoverColor}`,
+        ghost: `${ghostColor} border-2 border-transparent ${ghostHoverColor} focus:ring-gray-500 ${darkGhostColor} ${darkGhostHoverColor}`,
     };
 
     const sizeStyles = {

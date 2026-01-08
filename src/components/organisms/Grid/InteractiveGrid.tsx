@@ -48,10 +48,7 @@ export const InteractiveGrid: React.FC<InteractiveGridProps> = ({
         }
     };
 
-    const handleMouseUp = () => {
-        setIsMouseDown(false);
-        onCellMouseUp?.(-1, -1); // -1 indicates end of drag global
-    };
+
 
     // Global mouse up handler to catch releases outside the grid
     useEffect(() => {

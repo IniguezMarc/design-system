@@ -1,4 +1,4 @@
-import { BasicSlider, BasicSliderProps } from './BasicSlider';
+import { BasicSlider, type BasicSliderProps } from './BasicSlider';
 
 export type SliderProps = BasicSliderProps;
 

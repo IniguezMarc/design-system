@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ControlPanel } from './ControlPanel';
 import { Button } from '../../atoms/Button/Button';
@@ -9,24 +10,40 @@ const meta: Meta<typeof ControlPanel> = {
     tags: ['autodocs'],
     argTypes: {
         title: { control: 'text' },
+        actions: { control: false },
+        children: { control: false },
     },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const ControlPanelWithSlider = (args: any) => {
+    const [speed, setSpeed] = useState(50);
+    return (
+        <ControlPanel
+            {...args}
+            children={
+                <div className="flex flex-col gap-4">
+                    <Slider
+                        label="Speed"
+                        value={speed}
+                        onChange={setSpeed}
+                    />
+                    <div className="flex gap-2">
+                        <Button variant="primary" label="Visualize" />
+                        <Button variant="secondary" label="Reset" />
+                    </div>
+                </div>
+            }
+        />
+    );
+};
+
 export const Default: Story = {
+    render: (args) => <ControlPanelWithSlider {...args} />,
     args: {
         title: 'Algorithm Controls',
-        children: (
-            <div className="flex flex-col gap-4">
-                <Slider label="Speed" value={50} onChange={() => { }} />
-                <div className="flex gap-2">
-                    <Button variant="primary" label="Visualize" />
-                    <Button variant="secondary" label="Reset" />
-                </div>
-            </div>
-        ),
     },
 };
 

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { InteractiveGrid } from './InteractiveGrid';
+import { InteractiveGrid, type InteractiveGridProps } from './InteractiveGrid';
 import { useState } from 'react';
 
 const meta: Meta<typeof InteractiveGrid> = {
@@ -67,7 +67,7 @@ export const Checkerboard: Story = {
     render: (args) => (
         <div className="h-[300px] w-[300px] border border-gray-900">
             <InteractiveGrid
-                {...args}
+                {...(args as InteractiveGridProps)}
                 renderCell={(r, c) => (
                     <div
                         className={`w-full h-full ${(r + c) % 2 === 0 ? 'bg-white' : 'bg-black'

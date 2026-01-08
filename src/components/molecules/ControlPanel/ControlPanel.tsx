@@ -1,4 +1,4 @@
-import { BasicControlPanel, BasicControlPanelProps } from './BasicControlPanel';
+import { BasicControlPanel, type BasicControlPanelProps } from './BasicControlPanel';
 
 export type ControlPanelProps = BasicControlPanelProps;
 
