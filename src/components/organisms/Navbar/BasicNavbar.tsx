@@ -1,6 +1,7 @@
 
 import { Button } from '../../atoms/Button/Button';
 import { ThemeToggle } from '../../atoms/Toggle/ThemeToggle';
+import { LanguageToggle } from '../../atoms/Toggle/LanguageToggle';
 import { type MouseEvent } from 'react';
 
 
@@ -35,6 +36,11 @@ export interface BasicNavbarProps {
     onLinkClick?: (e: MouseEvent<HTMLAnchorElement>, href: string) => void;
     onLogoClick?: () => void;
 
+    // Language Toggle Props
+    enableLanguageToggle?: boolean;
+    language?: 'en' | 'es';
+    onLanguageChange?: (lang: 'en' | 'es') => void;
+
     // --- Color Props ---
     backgroundColor?: string;
     darkBackgroundColor?: string;
@@ -60,6 +66,9 @@ export const BasicNavbar = ({
     onToggleMenu,
     onLinkClick,
     onLogoClick,
+    enableLanguageToggle = false,
+    language = 'en',
+    onLanguageChange,
 
     // Default Colors
     backgroundColor = "bg-white",
@@ -121,6 +130,12 @@ export const BasicNavbar = ({
                         ))}
 
                         <div className="flex items-center gap-4 pl-6 border-l border-gray-200 dark:border-gray-700">
+                            {enableLanguageToggle && (
+                                <LanguageToggle
+                                    initialLanguage={language}
+                                    onLanguageChange={onLanguageChange}
+                                />
+                            )}
                             <ThemeToggle />
                             {actions.map((action, idx) => (
                                 <Button key={idx} {...action} size="small" />
@@ -129,6 +144,12 @@ export const BasicNavbar = ({
                     </div>
 
                     <div className="flex items-center gap-4 md:hidden">
+                        {enableLanguageToggle && (
+                            <LanguageToggle
+                                initialLanguage={language}
+                                onLanguageChange={onLanguageChange}
+                            />
+                        )}
                         <ThemeToggle />
                         <button
                             onClick={onToggleMenu}

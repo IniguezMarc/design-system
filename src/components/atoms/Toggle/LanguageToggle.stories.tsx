@@ -35,6 +35,11 @@ const meta: Meta<typeof LanguageToggle> = {
             description: 'Add custom animation or utility classes',
             table: { category: 'Animation', type: { summary: 'string' } }
         },
+        isDark: {
+            control: 'boolean',
+            description: 'Force dark mode styles',
+            table: { category: 'Appearance' }
+        },
         // English Colors
         englishColor: { control: 'text', table: { category: 'English State' } },
         englishBorderColor: { control: 'text', table: { category: 'English State' } },
@@ -56,13 +61,6 @@ export const Playground: Story = {
         onLanguageChange: fn(),
         customStyles: { container: '', icon: '' },
         className: '',
-
-        englishColor: 'bg-blue-100 hover:bg-blue-200',
-        englishBorderColor: 'border-2 border-blue-500',
-        englishTextColor: 'text-blue-900',
-
-        spanishColor: 'bg-red-100 hover:bg-red-200',
-        spanishBorderColor: 'border-2 border-red-500',
-        spanishTextColor: 'text-red-900',
+        isDark: false,
     },
 };

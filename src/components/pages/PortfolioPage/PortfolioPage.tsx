@@ -35,7 +35,46 @@ const MOCK_ITEMS: GridItem[] = [
     },
 ];
 
-export const PortfolioPage = () => {
+export interface PortfolioPageTexts {
+    navbar: { contact: string };
+    hero: { greeting: string; title: string; subtitle: string; viewProjects: string; downloadCv: string };
+    about: { title: string; bio: string; skillsTitle: string };
+    projects: { title: string; viewCaseStudy: string };
+    footer: { legalNotice: string };
+}
+
+export interface PortfolioPageProps {
+    enableLanguageToggle?: boolean;
+    language?: 'en' | 'es';
+    onLanguageChange?: (lang: 'en' | 'es') => void;
+    text?: PortfolioPageTexts;
+    items?: GridItem[];
+}
+
+export const PortfolioPage = ({
+    enableLanguageToggle = false,
+    language = 'en',
+    onLanguageChange,
+    items = MOCK_ITEMS,
+    text = {
+        navbar: { contact: 'Contact' },
+        hero: {
+            greeting: "Hi, I'm Marc",
+            title: 'I transform ideas into digital experiences.',
+            subtitle: 'Full Stack Developer passionate about clean code and scalable architecture.',
+            viewProjects: 'View Projects',
+            downloadCv: 'Download CV'
+        },
+        about: {
+            title: 'About Me',
+            bio: `Hi, I'm Marc. I've been passionately developing software for several years. 
+          I specialize in the JavaScript/TypeScript ecosystem, building applications that only work well but feel good to use.`,
+            skillsTitle: 'Tech Stack'
+        },
+        projects: { title: 'Featured Projects', viewCaseStudy: 'View Case Study' },
+        footer: { legalNotice: 'Legal Notice' }
+    }
+}: PortfolioPageProps) => {
 
     // 👇 1. CV DOWNLOAD LOGIC
     const handleDownloadCV = () => {
@@ -76,26 +115,30 @@ export const PortfolioPage = () => {
                 links={[]}
                 actions={[
                     {
-                        label: 'Contact',
+                        label: text.navbar.contact,
                         onClick: handleContact,
                         variant: 'primary'
                     }
                 ]}
+                enableLanguageToggle={enableLanguageToggle}
+                language={language}
+                onLanguageChange={onLanguageChange}
             />
 
             <main>
                 <div id="home">
                     <Hero
-                        title="I transform ideas into digital experiences."
-                        subtitle="Full Stack Developer passionate about clean code and scalable architecture."
+                        greeting={text.hero.greeting}
+                        title={text.hero.title}
+                        subtitle={text.hero.subtitle}
                         actions={[
                             {
-                                label: "View Projects",
+                                label: text.hero.viewProjects,
                                 variant: "primary",
                                 onClick: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
                             },
                             {
-                                label: "Download CV",
+                                label: text.hero.downloadCv,
                                 variant: "secondary",
                                 onClick: handleDownloadCV // 👈 Connected here
                             }
@@ -105,18 +148,19 @@ export const PortfolioPage = () => {
 
                 <ProfileSection
                     id="about"
+                    title={text.about.title}
                     avatarUrl="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=300&h=300"
-                    bio={`Hi, I'm Marc. I've been passionately developing software for several years. 
-          I specialize in the JavaScript/TypeScript ecosystem, building applications that not only work well but feel good to use.`}
+                    bio={text.about.bio}
+                    skillsTitle={text.about.skillsTitle}
                     skills={['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Git', 'Docker', 'Storybook']}
                 />
 
                 <div id="projects">
                     <ContentGrid
-                        title="Featured Projects"
-                        items={MOCK_ITEMS}
+                        title={text.projects.title}
+                        items={items}
                         layout="grid"
-                        itemButtonLabel="View Case Study"
+                        itemButtonLabel={text.projects.viewCaseStudy}
                     />
                 </div>
             </main>
@@ -124,7 +168,7 @@ export const PortfolioPage = () => {
             <Footer
                 copyrightOwner="Marc Iñiguez"
                 socialLinks={[{ platform: 'GitHub', url: '#' }]}
-                secondaryLinks={[{ label: 'Legal Notice', href: '#' }]}
+                secondaryLinks={[{ label: text.footer.legalNotice, href: '#' }]}
             />
         </div>
     );

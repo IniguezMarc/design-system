@@ -18,6 +18,8 @@ export interface LanguageToggleProps {
     spanishColor?: string;
     spanishBorderColor?: string;
     spanishTextColor?: string;
+
+    isDark?: boolean;
 }
 
 export const LanguageToggle = ({
@@ -26,13 +28,15 @@ export const LanguageToggle = ({
     className = '',
     customStyles = {},
 
-    englishColor = 'bg-blue-100 hover:bg-blue-200',
-    englishBorderColor = 'border-2 border-blue-500',
-    englishTextColor = 'text-blue-900',
+    englishColor = '!bg-transparent hover:!bg-gray-100 dark:hover:!bg-gray-800',
+    englishBorderColor = 'border-2 border-transparent',
+    englishTextColor = '!text-gray-600 dark:!text-gray-300',
 
-    spanishColor = 'bg-red-100 hover:bg-red-200',
-    spanishBorderColor = 'border-2 border-red-500',
-    spanishTextColor = 'text-red-900',
+    spanishColor = '!bg-transparent hover:!bg-gray-100 dark:hover:!bg-gray-800',
+    spanishBorderColor = 'border-2 border-transparent',
+    spanishTextColor = '!text-gray-600 dark:!text-gray-300',
+
+    isDark = false,
 }: LanguageToggleProps) => {
     // True = Spanish, False = English (arbitrary mapping for boolean toggle)
     const [isSpanish, setIsSpanish] = useState(initialLanguage === 'es');
@@ -50,17 +54,19 @@ export const LanguageToggle = ({
         : `${englishColor} ${englishTextColor} ${englishBorderColor}`;
 
     return (
-        <BasicToggle
-            isToggled={isSpanish}
-            onToggle={handleToggle}
-            className={className}
-            title={isSpanish ? "Switch to English" : "Cambiar a Español"}
-            iconOn={<span className="font-bold text-xs">ES</span>}
-            iconOff={<span className="font-bold text-xs">EN</span>}
-            customStyles={{
-                container: `${currentContainerClasses} ${customStyles.container || ''}`,
-                icon: `w-6 h-6 flex items-center justify-center ${customStyles.icon || ''}`
-            }}
-        />
+        <div className={isDark ? 'dark' : ''}>
+            <BasicToggle
+                isToggled={isSpanish}
+                onToggle={handleToggle}
+                className={className}
+                title={isSpanish ? "Switch to English" : "Cambiar a Español"}
+                iconOn={<span className="font-bold text-xs">ES</span>}
+                iconOff={<span className="font-bold text-xs">EN</span>}
+                customStyles={{
+                    container: `${currentContainerClasses} ${customStyles.container || ''}`,
+                    icon: `w-6 h-6 flex items-center justify-center ${customStyles.icon || ''}`
+                }}
+            />
+        </div>
     );
 };
