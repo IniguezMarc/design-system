@@ -12,3 +12,5 @@ export * from './components/organisms/Footer/Footer';
 export * from './components/organisms/Hero/Hero';
 export * from './components/organisms/Navbar/Navbar';
 export * from './components/organisms/ProfileSection/ProfileSection';
+
+export * from './components/pages/PortfolioPage/PortfolioPage';
