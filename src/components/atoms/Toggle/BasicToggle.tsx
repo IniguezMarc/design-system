@@ -1,6 +1,4 @@
 
-
-
 export interface ToggleSlots {
     container?: string;
     icon?: string;

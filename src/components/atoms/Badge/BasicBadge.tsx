@@ -1,5 +1,3 @@
-
-
 export interface BadgeSlots {
     container?: string;
     label?: string;

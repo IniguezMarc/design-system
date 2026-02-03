@@ -1,4 +1,3 @@
-
 import { BasicAvatar, type AvatarProps } from './BasicAvatar';
 
 export type AvatarStatus = 'online' | 'offline' | 'busy' | 'away';

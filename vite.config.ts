@@ -10,7 +10,7 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       include: ['src'],
-      exclude: ['src/**/*.stories.tsx', 'src/**/*.test.tsx', 'src/components/pages/**/*', 'src/docs/**/*'],
+      exclude: ['src/**/*.stories.tsx', 'src/**/*.test.tsx', 'src/docs/**/*'],
       tsconfigPath: './tsconfig.app.json',
     }),
   ],

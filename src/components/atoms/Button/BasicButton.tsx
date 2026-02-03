@@ -1,42 +1,82 @@
-
-
+/**
+ * Custom CSS class slots for styling different parts of the button.
+ */
 export interface ButtonSlots {
+    /** Additional classes for the button container */
     container?: string;
+    /** Additional classes for the label wrapper */
     label?: string;
 }
 
+/**
+ * Props for the BasicButton component.
+ */
 export interface ButtonProps {
+    /** Text displayed inside the button */
     label: string;
+    /** Visual style variant */
     variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+    /** Button size preset */
     size?: 'small' | 'medium' | 'large';
+    /** Click handler function */
     onClick?: () => void;
+    /** Additional CSS classes */
     className?: string;
+    /** Custom styling slots */
     customStyles?: ButtonSlots;
+    /** If provided, renders as an anchor link */
     href?: string;
+    /** Link target (used with href) */
     target?: string;
 
     // Color Overrides
+    /** Primary variant background class */
     primaryColor?: string;
+    /** Primary variant hover background class */
     primaryHoverColor?: string;
+    /** Primary variant dark mode background class */
     darkPrimaryColor?: string;
+    /** Primary variant dark mode hover class */
     darkPrimaryHoverColor?: string;
 
+    /** Secondary variant background class */
     secondaryColor?: string;
+    /** Secondary variant hover class */
     secondaryHoverColor?: string;
+    /** Secondary variant dark mode background class */
     darkSecondaryColor?: string;
+    /** Secondary variant dark mode hover class */
     darkSecondaryHoverColor?: string;
 
+    /** Outline variant text/border class */
     outlineColor?: string;
+    /** Outline variant hover class */
     outlineHoverColor?: string;
+    /** Outline variant dark mode text/border class */
     darkOutlineColor?: string;
+    /** Outline variant dark mode hover class */
     darkOutlineHoverColor?: string;
 
+    /** Ghost variant text/bg class */
     ghostColor?: string;
+    /** Ghost variant hover class */
     ghostHoverColor?: string;
+    /** Ghost variant dark mode class */
     darkGhostColor?: string;
+    /** Ghost variant dark mode hover class */
     darkGhostHoverColor?: string;
 }
 
+/**
+ * A versatile button component with multiple variants and full color customization.
+ * Supports both button and anchor rendering based on the `href` prop.
+ * 
+ * @example
+ * ```tsx
+ * <BasicButton label="Click me" variant="primary" onClick={() => {}} />
+ * <BasicButton label="Link" href="/page" target="_blank" />
+ * ```
+ */
 export const BasicButton = ({
     label,
     variant = 'primary',

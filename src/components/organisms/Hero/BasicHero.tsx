@@ -1,6 +1,8 @@
 
 import { Button } from '../../atoms/Button/Button';
 
+import { type ReactNode } from 'react';
+
 export interface HeroAction {
     label: string;
     onClick: () => void;
@@ -16,12 +18,15 @@ export interface HeroSlots {
 }
 
 export interface BasicHeroProps {
-    greeting?: string;
-    title: string;
-    subtitle: string;
+    greeting?: ReactNode;
+    title: ReactNode;
+    subtitle: ReactNode;
     imageUrl?: string;
     actions?: HeroAction[];
     customStyles?: HeroSlots; // Style hooks
+
+    /** Optional background elements (for effects) */
+    renderBackground?: () => ReactNode;
 
     // --- Color Props ---
     backgroundColor?: string;
@@ -41,6 +46,7 @@ export const BasicHero = ({
     imageUrl,
     actions = [],
     customStyles = {},
+    renderBackground,
 
     // Default Colors
     backgroundColor = "bg-white",
@@ -71,7 +77,8 @@ export const BasicHero = ({
       ${backgroundColor} ${darkBackgroundColor}
       ${customStyles.container || ''}
     `}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {renderBackground && renderBackground()}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
                 <div className={containerLayout}>
 

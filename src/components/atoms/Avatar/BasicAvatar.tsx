@@ -1,5 +1,3 @@
-
-
 export interface AvatarSlots {
     container?: string;
     image?: string;

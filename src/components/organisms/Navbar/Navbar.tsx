@@ -53,4 +53,6 @@ export const Navbar = (props: NavbarProps) => {
     );
 };
 
+export * from './CreativeNavbar';
+export * from './ScrollNavbar';
 export type { NavbarLink, NavbarAction, NavbarSlots };

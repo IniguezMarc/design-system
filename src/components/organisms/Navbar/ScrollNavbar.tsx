@@ -1,4 +1,3 @@
-
 import { Button } from '../../atoms/Button/Button';
 import { ThemeToggle } from '../../atoms/Toggle/ThemeToggle';
 import { LanguageToggle } from '../../atoms/Toggle/LanguageToggle';

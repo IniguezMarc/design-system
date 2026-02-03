@@ -1,4 +1,4 @@
-
+import type { ReactNode } from 'react';
 import { Avatar } from '../../atoms/Avatar/Avatar';
 import { Badge } from '../../atoms/Badge/Badge';
 
@@ -13,18 +13,21 @@ export interface ProfileSectionSlots {
 
 export interface BasicProfileSectionProps {
     /** Section title (ex: About Me) */
-    title?: string;
+    title?: ReactNode;
     /** Profile photo URL */
-    avatarUrl: string;
+    avatarUrl?: string;
     /** Main biography text (accepts line breaks) */
-    bio: string;
+    bio: ReactNode;
     /** Title for the skills list */
-    skillsTitle?: string;
+    skillsTitle?: ReactNode;
     /** List of technologies to show as Badges */
     skills?: string[];
     /** Style hooks */
     customStyles?: ProfileSectionSlots;
     id?: string; // For menu anchor (#about)
+
+    /** Optional custom visual to replace the avatar (e.g. ScrollSvg) */
+    renderVisual?: () => ReactNode;
 
     // --- Color Props ---
     backgroundColor?: string;
@@ -45,6 +48,7 @@ export const BasicProfileSection = ({
     skills = [],
     customStyles = {},
     id,
+    renderVisual,
 
     // Default Colors
     backgroundColor = "bg-white",
@@ -85,9 +89,11 @@ export const BasicProfileSection = ({
 
                 <div className="flex flex-col md:flex-row items-center gap-12">
 
-                    {/* PHOTO (Avatar) */}
-                    <div className="flex-shrink-0">
-                        <Avatar src={avatarUrl} size="xl" />
+                    {/* PHOTO (Avatar) or VISUAL */}
+                    <div className="flex-shrink-0 w-full md:w-1/2 flex justify-center">
+                        {renderVisual ? renderVisual() : (
+                            avatarUrl && <Avatar src={avatarUrl} size="xl" />
+                        )}
                     </div>
 
                     {/* TEXT AND SKILLS */}

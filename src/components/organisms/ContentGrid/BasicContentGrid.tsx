@@ -1,5 +1,6 @@
 
-import { BasicProjectCard } from '../../molecules/ProjectCard/BasicProjectCard';
+import { BasicProjectCard, type ProjectCardSlots } from '../../molecules/ProjectCard/BasicProjectCard';
+import type { ReactNode } from 'react';
 
 export interface GridItem {
     id: string;
@@ -22,11 +23,27 @@ export interface BasicContentGridProps {
     itemButtonLabel?: string;
     onItemClick?: (id: string) => void;
     customStyles?: ContentGridSlots;
+
+    /**
+     * Custom styles passed down to each ProjectCard
+     */
+    cardCustomStyles?: ProjectCardSlots;
+
+    /**
+     * Optional wrapper for items, allowing injection of animations (e.g. ScrollReveal)
+     */
+    renderItemWrapper?: (children: ReactNode, item: GridItem, index: number) => ReactNode;
+
     // --- Color Props ---
     backgroundColor?: string;
     darkBackgroundColor?: string;
     titleColor?: string;
     darkTitleColor?: string;
+    /**
+     * Optional renderer for the action button of each item
+     */
+    renderItemAction?: (item: GridItem) => React.ReactNode;
+    children?: ReactNode;
 }
 
 export const BasicContentGrid = ({
@@ -36,12 +53,16 @@ export const BasicContentGrid = ({
     itemButtonLabel = "View Details",
     onItemClick,
     customStyles = {},
+    cardCustomStyles,
+    renderItemWrapper,
 
     // Default Colors
     backgroundColor = "bg-gray-50",
     darkBackgroundColor = "dark:bg-gray-900",
     titleColor = "text-gray-900",
     darkTitleColor = "dark:text-white",
+    renderItemAction,
+    children
 }: BasicContentGridProps) => {
 
     const gridClasses = layout === 'grid'
@@ -69,21 +90,35 @@ export const BasicContentGrid = ({
                 )}
 
                 <div className={gridClasses}>
-                    {items.map((item) => (
-                        <BasicProjectCard
-                            key={item.id}
-                            title={item.title}
-                            description={item.description}
-                            image={item.image}
-                            tags={item.tags}
-                            projectUrl={item.url}
-                            orientation={layout === 'list' ? 'horizontal' : 'vertical'}
-                            actionLabel={itemButtonLabel}
-                            onViewProject={() => onItemClick?.(item.id)}
-                        />
-                    ))}
+                    {items.map((item, index) => {
+                        const card = (
+                            <BasicProjectCard
+                                title={item.title}
+                                description={item.description}
+                                image={item.image}
+                                tags={item.tags}
+                                projectUrl={item.url}
+                                orientation={layout === 'list' ? 'horizontal' : 'vertical'}
+                                actionLabel={itemButtonLabel}
+                                onViewProject={() => onItemClick?.(item.id)}
+                                customStyles={cardCustomStyles}
+                                renderAction={renderItemAction ? () => renderItemAction(item) : undefined}
+                            />
+                        );
+
+                        if (renderItemWrapper) {
+                            // We use a div with contents display to avoid breaking grid layout, 
+                            // but allowing the wrapper (which might be ScrollReveal) to take effect?
+                            // ScrollReveal renders a motion.div.
+                            // If we wrap in a div with contents, the motion.div becomes the grid item. Correct.
+                            return <div key={item.id} className="contents">{renderItemWrapper(card, item, index)}</div>;
+                        }
+
+                        return <div key={item.id} className="contents">{card}</div>;
+                    })}
                 </div>
             </div>
+            {children}
         </section>
     );
 };

@@ -1,4 +1,3 @@
-
 import { Button } from '../../atoms/Button/Button';
 import { Badge } from '../../atoms/Badge/Badge';
 
@@ -30,6 +29,7 @@ export interface BasicProjectCardProps {
     customStyles?: ProjectCardSlots;
     // className for the outer container (margins, etc)
     className?: string;
+    renderAction?: (props: { label?: string, onClick?: () => void, href?: string, target?: string }) => React.ReactNode;
 }
 
 export const BasicProjectCard = ({
@@ -43,7 +43,8 @@ export const BasicProjectCard = ({
     linkTarget = '_self',
     onViewProject,
     customStyles = {},
-    className = ''
+    className = '',
+    renderAction
 }: BasicProjectCardProps) => {
 
     const isHorizontal = orientation === 'horizontal';
@@ -125,14 +126,18 @@ export const BasicProjectCard = ({
                 </div>
 
                 <div className="ds-card-actions flex justify-start mt-auto">
-                    <Button
-                        label={actionLabel}
-                        onClick={onViewProject}
-                        href={projectUrl}      // The button will decide whether to be <a> or <button>
-                        target={linkTarget}      // Optional: open in new tab
-                        size="medium"
-                        variant="primary"
-                    />
+                    {renderAction ? (
+                        renderAction({ label: actionLabel, onClick: onViewProject, href: projectUrl, target: linkTarget })
+                    ) : (
+                        <Button
+                            label={actionLabel}
+                            onClick={onViewProject}
+                            href={projectUrl}
+                            target={linkTarget}
+                            size="medium"
+                            variant="primary"
+                        />
+                    )}
                 </div>
             </div>
         </div>

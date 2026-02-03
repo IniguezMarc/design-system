@@ -80,7 +80,7 @@ export const PortfolioPage = ({
     const handleDownloadCV = () => {
         const link = document.createElement('a');
 
-        // 👇 PRO TIP: This automatically detects if you are on local or GitHub Pages
+        // Automatically detects if you are on local or GitHub Pages
         // Local: /cv.pdf
         // GitHub: /design-system/cv.pdf
         const baseUrl = import.meta.env.BASE_URL;

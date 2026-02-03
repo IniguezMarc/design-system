@@ -1,4 +1,3 @@
-
 import { Button } from '../../atoms/Button/Button';
 import { ThemeToggle } from '../../atoms/Toggle/ThemeToggle';
 import { LanguageToggle } from '../../atoms/Toggle/LanguageToggle';
@@ -54,6 +53,10 @@ export interface BasicNavbarProps {
     darkActiveLinkColor?: string;
     hoverLinkColor?: string;
     darkHoverLinkColor?: string;
+
+    // Custom Renderers
+    renderAction?: (action: NavbarAction, index: number) => React.ReactNode;
+    renderMobileAction?: (action: NavbarAction, index: number) => React.ReactNode;
 }
 
 export const BasicNavbar = ({
@@ -82,6 +85,9 @@ export const BasicNavbar = ({
     darkActiveLinkColor = "dark:text-blue-400",
     hoverLinkColor = "hover:text-blue-600",
     darkHoverLinkColor = "dark:hover:text-blue-400",
+    // Custom Renderers
+    renderAction,
+    renderMobileAction,
 }: BasicNavbarProps) => {
 
     return (
@@ -94,7 +100,7 @@ export const BasicNavbar = ({
       `}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-20">
+                <div className="flex justify-between items-center h-16 md:h-20">
 
                     <div className={`flex-shrink-0 cursor-pointer flex items-center ${customStyles.logo || ''}`} onClick={onLogoClick}>
                         {isLogoImage ? (
@@ -138,7 +144,9 @@ export const BasicNavbar = ({
                             )}
                             <ThemeToggle />
                             {actions.map((action, idx) => (
-                                <Button key={idx} {...action} size="small" />
+                                renderAction
+                                    ? renderAction(action, idx)
+                                    : <Button key={idx} {...action} size="small" />
                             ))}
                         </div>
                     </div>
@@ -195,7 +203,9 @@ export const BasicNavbar = ({
                     {actions.length > 0 && (
                         <div className="pt-4 w-full flex flex-col gap-3">
                             {actions.map((action, idx) => (
-                                <Button key={idx} {...action} size="medium" className="w-full" />
+                                renderMobileAction
+                                    ? renderMobileAction(action, idx)
+                                    : <Button key={idx} {...action} size="medium" className="w-full" />
                             ))}
                         </div>
                     )}

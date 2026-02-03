@@ -1,4 +1,3 @@
-
 import { BasicBadge, type BadgeProps } from './BasicBadge';
 
 export interface RemovableBadgeProps extends BadgeProps {

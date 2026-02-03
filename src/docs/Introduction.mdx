@@ -2,188 +2,343 @@ import { Meta } from "@storybook/blocks";
 
 <Meta title="Introduction" />
 
-<div className="sb-container">
-  
-  {/* HERO HEADER */}
-  <div className="sb-hero">
-    <div className="sb-hero-content">
-      <h1 className="sb-title text-gradient">Design System</h1>
-      <div className="sb-badges">
-        <span className="sb-badge">v2.0.0</span>
-        <span className="sb-badge">TypeScript</span>
-        <span className="sb-badge">React 18</span>
-        <span className="sb-badge">Dark Mode</span>
-      </div>
-    </div>
-  </div>
-
-  {/* SECCIÓN DE CARACTERÍSTICAS */}
-  <div className="sb-section">
-    <h2 className="sb-section-title">Design Principles</h2>
-    <div className="sb-grid">
-      
-      <div className="sb-card">
-        <div className="sb-icon">⚛️</div>
-        <h3>Atomic Architecture</h3>
-        <p>Modular structure based on Atoms, Molecules, and Organisms for maximum reuse.</p>
-      </div>
-
-      <div className="sb-card">
-        <div className="sb-icon">🌗</div>
-        <h3>Dark Mode Native</h3>
-        <p>All components automatically react to the system theme or user preference.</p>
-      </div>
-
-      <div className="sb-card">
-        <div className="sb-icon">🎨</div>
-        <h3>Customizable & Typed</h3>
-        <p>Built with TypeScript for type safety and Tailwind CSS for total styling flexibility.</p>
-      </div>
-
-      <div className="sb-card">
-        <div className="sb-icon">⚡</div>
-        <h3>Performance First</h3>
-        <p>Lightweight components optimized for fast load times and zero unnecessary dependencies.</p>
-      </div>
-
-    </div>
-  </div>
-
-  <div className="sb-footer">
-    <p>Created by <strong>Marc Iñiguez</strong> · {new Date().getFullYear()}</p>
-  </div>
-
-</div>
-
-{/* ESTILOS CSS INCRUSTADOS */}
 <style>
   {`
-  .sb-container {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    color: #1f2937;
-    margin: -1rem; /* Romper márgenes por defecto de SB */
+  /* Custom styles for the introduction page */
+  .intro-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #111827;
+    background: #ffffff;
+    margin: -1rem -1rem -1rem -1rem;
+    padding: 0;
+    line-height: 1.5;
+    min-height: 100vh;
   }
 
   /* --- HERO --- */
-  .sb-hero {
-    background: radial-gradient(circle at 10% 20%, rgb(30, 30, 40) 0%, rgb(10, 10, 15) 90%);
-    color: white;
-    padding: 4rem 2rem;
+  .intro-hero {
+    background: linear-gradient(to bottom, #f9fafb, #ffffff);
+    border-bottom: 1px solid #e5e7eb;
+    padding: 5rem 2rem 4rem;
     text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
   }
 
-  .sb-title {
-    font-size: 3.5rem;
+  .intro-title {
+    font-size: 3rem;
     font-weight: 800;
-    margin-bottom: 1rem;
-    letter-spacing: -0.05em;
-    line-height: 1.1;
+    color: #111827;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.03em;
   }
 
-  .text-gradient {
-    background: linear-gradient(to right, #60a5fa, #a78bfa);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .sb-subtitle {
+  .intro-subtitle {
     font-size: 1.25rem;
-    color: #ffffffff;
-    max-width: 600px;
-    margin: 0 auto 2rem auto;
-    line-height: 1.6;
+    color: #6b7280;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    font-weight: 400;
   }
 
-  .sb-badges {
+  .intro-badges {
     display: flex;
-    gap: 10px;
     justify-content: center;
+    gap: 0.75rem;
     flex-wrap: wrap;
   }
 
-  .sb-badge {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
+  .intro-badge {
     padding: 4px 12px;
-    border-radius: 99px;
-    font-size: 0.8rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
     font-weight: 600;
-    color: #e5e7eb;
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #e5e7eb;
   }
 
-  /* --- GRID --- */
-  .sb-section {
-    padding: 3rem 2rem;
-    max-width: 1200px;
+  .intro-badge-blue {
+    background: #eff6ff;
+    color: #2563eb;
+    border-color: #dbeafe;
+  }
+
+  .intro-badge-gray {
+    background: #f9fafb;
+    color: #4b5563;
+  }
+
+  /* --- MAIN CONTENT --- */
+  .intro-main {
+    max-width: 1024px;
     margin: 0 auto;
+    padding: 4rem 2rem;
   }
 
-  .sb-section-title {
+  .intro-section {
+    margin-bottom: 3rem;
+  }
+
+  .intro-heading {
     font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 2rem;
-    color: #111827; /* Dark gray for light mode */
+    color: #111827;
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -0.02em;
   }
 
-  .sb-grid {
+  .intro-text {
+    font-size: 1rem;
+    color: #4b5563;
+    margin-bottom: 1rem;
+    max-width: 65ch;
+  }
+
+  .intro-code-block {
+    background: #111827;
+    color: #e5e7eb;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    display: inline-block;
+  }
+
+  .intro-divider {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 4rem 0;
+  }
+
+  /* --- ALERT BOX --- */
+  .intro-alert {
+    background: #eff6ff;
+    border-left: 4px solid #3b82f6;
+    padding: 1rem;
+    border-radius: 4px;
+    color: #1e40af;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-alert strong {
+    color: #1e3a8a;
+    font-weight: 700;
+  }
+
+  .intro-alert code {
+    background: rgba(59, 130, 246, 0.15);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #1e40af;
+  }
+
+  /* --- GRID LINKS --- */
+  .intro-grid-3 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+    gap: 2rem;
   }
 
-  .sb-card {
-    padding: 24px;
-    border-radius: 12px;
+  .intro-link-card {
+    display: block;
+    padding: 2rem;
     border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
     background: white;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   }
 
-  .sb-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  .intro-link-card:hover {
     border-color: #3b82f6;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
   }
 
-  .sb-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .sb-card h3 {
-    font-size: 1.1rem;
+  .intro-card-label {
+    text-transform: uppercase;
+    font-size: 0.75rem;
     font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #6b7280;
     margin-bottom: 0.5rem;
-    color: #1f2937;
+    display: block;
   }
 
-  .sb-card p {
+  .intro-link-card h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .intro-link-card p {
     font-size: 0.95rem;
     color: #6b7280;
-    line-height: 1.5;
+    line-height: 1.6;
+    margin: 0;
   }
 
-  /* --- FOOTER --- */
-  .sb-footer {
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid #e5e7eb;
-    color: #9ca3af;
-    font-size: 0.9rem;
-  }
-
-  /* --- DARK MODE SUPPORT (Automático según Storybook docs) --- */
+  /* --- DARK MODE --- */
   @media (prefers-color-scheme: dark) {
-    .sb-section-title { color: white; }
-    .sb-card { 
-      background: #1f2937; 
-      border-color: #374151; 
+    .intro-container { 
+      background: #0f172a; 
+      color: #e2e8f0; 
     }
-    .sb-card h3 { color: white; }
-    .sb-card p { color: #9ca3af; }
-    .sb-footer { border-color: #374151; }
+    
+    .intro-hero { 
+      background: linear-gradient(to bottom, #0f172a, #1e293b);
+      border-bottom-color: #334155; 
+    }
+    
+    .intro-title { 
+      color: #ffffff; 
+    }
+    
+    .intro-subtitle {
+      color: #cbd5e1;
+    }
+    
+    .intro-badge { 
+      background: #1e293b; 
+      border-color: #334155; 
+      color: #cbd5e1; 
+    }
+    
+    .intro-badge-blue {
+      background: rgba(59, 130, 246, 0.15);
+      color: #93c5fd;
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .intro-badge-gray {
+      background: #1e293b;
+      color: #94a3b8;
+      border-color: #334155;
+    }
+    
+    .intro-heading { 
+      color: #f8fafc; 
+    }
+    
+    .intro-text { 
+      color: #cbd5e1; 
+    }
+    
+    .intro-code-block { 
+      background: #1e293b; 
+      border: 1px solid #334155;
+      color: #e2e8f0;
+    }
+    
+    .intro-divider { 
+      background: #334155; 
+    }
+    
+    .intro-alert {
+      background: rgba(37, 99, 235, 0.15);
+      border-left-color: #60a5fa;
+      color: #bfdbfe;
+    }
+
+    .intro-alert strong {
+      color: #dbeafe;
+    }
+
+    .intro-alert code {
+      background: rgba(96, 165, 250, 0.2);
+      color: #93c5fd;
+    }
+    
+    .intro-link-card { 
+      background: #1e293b; 
+      border-color: #334155; 
+    }
+    
+    .intro-link-card:hover { 
+      border-color: #60a5fa; 
+      background: #1e2839;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    }
+    
+    .intro-link-card h4 { 
+      color: #f8fafc; 
+    }
+    
+    .intro-link-card p { 
+      color: #94a3b8; 
+    }
+    
+    .intro-card-label { 
+      color: #64748b; 
+    }
   }
   `}
 </style>
+
+<div className="intro-container">
+  
+  {/* HERO HEADER */}
+  <div className="intro-hero">
+    <h1 className="intro-title">Design System</h1>
+
+    
+    <div className="intro-badges">
+      <span className="intro-badge">v0.0.17</span>
+
+      <span className="intro-badge intro-badge-gray">TypeScript</span>
+    </div>
+  </div>
+
+  {/* MAIN CONTENT */}
+  <div className="intro-main">
+    
+    <div className="intro-section">
+      <h2 className="intro-heading">Getting Started</h2>
+      <p className="intro-text">Install the package to access the full suite of components.</p>
+      
+      <div className="intro-code-block">
+        <code>npm install @iniguezmarc/design-system</code>
+      </div>
+
+      <p className="intro-text" style={{marginTop: '1.5rem'}}>Import the stylesheet in your root application file:</p>
+      <div className="intro-code-block">
+        <code>import '@iniguezmarc/design-system/dist/style.css';</code>
+      </div>
+    </div>
+
+    <div className="intro-divider" />
+
+    <div className="intro-section">
+      <h2 className="intro-heading">Architecture</h2>
+      <div className="intro-grid-3">
+        
+        <a className="intro-link-card" href="/?path=/docs/atoms-button--docs">
+          <span className="intro-card-label">Atoms</span>
+          <h4>Foundations</h4>
+          <p>Buttons, Badges, Typography, and other indivisible elements that act as the building blocks of the interface.</p>
+        </a>
+
+        <a className="intro-link-card" href="/?path=/docs/molecules-projectcard--docs">
+          <span className="intro-card-label">Molecules</span>
+          <h4>Components</h4>
+          <p>Combinations of atoms that form functional units, such as Cards, Form inputs, and Timelines.</p>
+        </a>
+
+        <a className="intro-link-card" href="/?path=/docs/organisms-navbar--docs">
+          <span className="intro-card-label">Organisms</span>
+          <h4>Patterns</h4>
+          <p>Complex, self-contained UI sections like Navigation bars, Hero headers, and Content grids.</p>
+        </a>
+
+      </div>
+    </div>
+
+    <div className="intro-divider" />
+
+  </div>
+
+</div>
