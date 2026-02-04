@@ -55,7 +55,7 @@ export const BasicProjectCard = ({
       ds-card
       
       /* 2. BASE STRUCTURE */
-      group w-full rounded-xl overflow-hidden border transition-all duration-300
+      group w-full h-full rounded-xl overflow-hidden border transition-all duration-300
       /* Switch layout based on orientation prop */
       ${isHorizontal ? 'flex flex-col md:flex-row' : 'flex flex-col'}
       

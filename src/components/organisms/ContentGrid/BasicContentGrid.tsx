@@ -66,7 +66,7 @@ export const BasicContentGrid = ({
 }: BasicContentGridProps) => {
 
     const gridClasses = layout === 'grid'
-        ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+        ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch'
         : 'flex flex-col gap-12 max-w-4xl mx-auto';
 
     return (

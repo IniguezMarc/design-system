@@ -110,15 +110,17 @@ export const Typewriter = ({
 
     return (
         <Component ref={ref} className={className} style={style}>
-            {displayedText}
-            {cursor && (
-                <motion.span
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{ repeat: Infinity, duration: 0.8 }}
-                    className={`inline-block ml-0.5 w-[2px] h-[1em] bg-current align-middle ${cursorClassName}`}
-                    style={cursorStyle}
-                />
-            )}
+            <span style={{ whiteSpace: 'nowrap' }}>
+                {displayedText}
+                {cursor && (
+                    <motion.span
+                        animate={{ opacity: [0, 1, 0] }}
+                        transition={{ repeat: Infinity, duration: 0.8 }}
+                        className={`inline-block ml-0.5 w-[2px] h-[1em] bg-current align-middle ${cursorClassName}`}
+                        style={cursorStyle}
+                    />
+                )}
+            </span>
         </Component>
     );
 };
